@@ -6,8 +6,25 @@ environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies: 
-  cupertino_icons: ^1.0.2
+  
+  
+  #state management
   get: 4.3.8
+  
+  #storage
+  get_storage: ^2.0.2
+  
+  #UI
+  flutter_displaymode: ^0.3.2
+  cupertino_icons: ^1.0.2
+  animations: ^2.0.0
+  animated_text_kit: ^4.2.1
+  shimmer: ^2.0.0
+  
+  #map
+  google_maps_flutter: ^2.0.6
+  
+  
   flutter: 
     sdk: flutter
 
