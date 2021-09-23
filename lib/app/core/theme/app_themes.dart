@@ -13,7 +13,6 @@ List<Map<String, dynamic>> themes = [
       primaryColor: const Color(0xff0054BF),
       primaryColorLight: const Color(0xfff8f6f7),
       primaryColorDark: const Color(0xff000f4a),
-      accentColor: const Color(0xff004d82),
       scaffoldBackgroundColor: const Color(0xfff9f9f9),
       iconTheme: IconThemeData(
         color: const Color(0xff0054BF),
@@ -39,10 +38,13 @@ List<Map<String, dynamic>> themes = [
           borderSide: BorderSide.none,
         ),
         hintStyle: TextStyle(
-            fontSize: 13.0, fontWeight: FontWeight.w600, color: const Color(0xff171616).withOpacity(0.45)),
+            fontSize: 13.0,
+            fontWeight: FontWeight.w600,
+            color: const Color(0xff171616).withOpacity(0.45)),
         fillColor: const Color(0xffF4F4F4),
         filled: true,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
         errorStyle: const TextStyle(
           color: Color(0xffD03333),
           fontSize: 12.0,
@@ -51,8 +53,10 @@ List<Map<String, dynamic>> themes = [
       ),
       cardColor: Colors.white,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        selectedLabelStyle: const TextStyle(fontSize: 10.0, fontWeight: FontWeight.w800),
-        unselectedLabelStyle: const TextStyle(fontSize: 10.0, fontWeight: FontWeight.w800),
+        selectedLabelStyle:
+            const TextStyle(fontSize: 10.0, fontWeight: FontWeight.w800),
+        unselectedLabelStyle:
+            const TextStyle(fontSize: 10.0, fontWeight: FontWeight.w800),
         type: BottomNavigationBarType.fixed,
         unselectedItemColor: const Color(0xff0054BF).withOpacity(0.35),
         selectedItemColor: const Color(0xff0054BF),
@@ -74,7 +78,6 @@ List<Map<String, dynamic>> themes = [
       primaryColor: const Color(0xff0054BF),
       primaryColorLight: const Color(0xfff8f6f7),
       primaryColorDark: const Color(0xff000f4a),
-      accentColor: const Color(0xff004d82),
       iconTheme: IconThemeData(
         color: const Color(0xfff8f6f7),
       ),
@@ -98,11 +101,14 @@ List<Map<String, dynamic>> themes = [
           borderRadius: BorderRadius.circular(100.0),
           borderSide: BorderSide.none,
         ),
-        hintStyle:
-            TextStyle(fontSize: 13.0, fontWeight: FontWeight.w600, color: Colors.white.withOpacity(0.45)),
+        hintStyle: TextStyle(
+            fontSize: 13.0,
+            fontWeight: FontWeight.w600,
+            color: Colors.white.withOpacity(0.45)),
         fillColor: Colors.grey.shade900,
         filled: true,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
         errorStyle: const TextStyle(
           color: Color(0xffD03333),
           fontSize: 12.0,
@@ -112,8 +118,10 @@ List<Map<String, dynamic>> themes = [
       indicatorColor: const Color(0xff0054BF),
       cardColor: Colors.black,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        selectedLabelStyle: const TextStyle(fontSize: 10.0, fontWeight: FontWeight.w800),
-        unselectedLabelStyle: const TextStyle(fontSize: 10.0, fontWeight: FontWeight.w800),
+        selectedLabelStyle:
+            const TextStyle(fontSize: 10.0, fontWeight: FontWeight.w800),
+        unselectedLabelStyle:
+            const TextStyle(fontSize: 10.0, fontWeight: FontWeight.w800),
         type: BottomNavigationBarType.fixed,
         unselectedItemColor: const Color(0xfff8f6f7).withOpacity(0.35),
         selectedItemColor: const Color(0xff0054BF),
@@ -128,7 +136,8 @@ List<Map<String, dynamic>> themes = [
 ];
 
 ThemeData getThemeById(BuildContext context, int id) {
-  return themes.where((element) => element['id'] == id).first['data'] as ThemeData;
+  return themes.where((element) => element['id'] == id).first['data']
+      as ThemeData;
   // switch (id) {
   //   case 1:
   //   case 2:
