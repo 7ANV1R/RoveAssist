@@ -23,6 +23,8 @@ class OnboardingView extends GetView<OnboardingController> {
         ],
         done: Text('Let\'s go'),
         onDone: () {},
+        showNextButton: true,
+        next: Text('Next'),
       ),
     ));
   }
