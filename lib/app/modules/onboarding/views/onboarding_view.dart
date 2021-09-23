@@ -13,12 +13,16 @@ class OnboardingView extends GetView<OnboardingController> {
       child: IntroductionScreen(
         pages: [
           PageViewModel(
-            title: 'Title 1',
-            body: 'Body 1111111111111111111',
+            title: 'RoveAssist',
+            body: 'Welcome to roveassist app.',
           ),
           PageViewModel(
-            title: 'Title 2',
-            body: 'Body 1111111111111111111',
+            title: 'RoveAssist',
+            body: 'Travel is investment in yourself.',
+          ),
+          PageViewModel(
+            title: 'RoveAssist',
+            body: 'Never let your memories to greater than your dream.',
           ),
         ],
         done: Text('Let\'s go'),
