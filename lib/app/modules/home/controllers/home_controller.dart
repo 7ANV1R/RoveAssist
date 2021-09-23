@@ -1,7 +1,11 @@
 import 'package:get/get.dart';
 
+import '../../../data/services/storage_service.dart';
+
 class HomeController extends GetxController {
   //TODO: Implement HomeController
+
+  //final StorageService _storageService = Get.find<StorageService>();
 
   final count = 0.obs;
   @override
