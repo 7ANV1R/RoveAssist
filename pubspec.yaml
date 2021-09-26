@@ -28,16 +28,33 @@ dependencies:
   flutter: 
     sdk: flutter
   introduction_screen: ^2.1.0
+  
+  
+
 
 dev_dependencies: 
+  flutter_native_splash: ^1.2.4
+  flutter_launcher_icons: ^0.9.2
   flutter_test: 
     sdk: flutter
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/logo/splash_icon.png
+  android: true
+  ios: true
+  
+flutter_icons:
+  image_path: "assets/images/logo/logoicon.png"
+  android: true
+  ios: true
 
 flutter: 
   uses-material-design: true
   assets:
     #- .env
     - assets/images/
+    - assets/images/logo/
     - assets/images/onboard_image/
     - assets/icons/
     
