@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:roveassist/app/core/values/assets.dart';
 
 import '../controllers/onboarding_controller.dart';
 
@@ -18,19 +19,19 @@ class OnboardingView extends GetView<OnboardingController> {
           PageViewModel(
             title: 'RoveAssist',
             body: 'Welcome to roveassist app.',
-            image: Image.asset('assets/images/onboard_image/2.png'),
+            image: Image.asset(kAssetOnboarding1),
             decoration: contentDecoration(_textTheme, _themeData),
           ),
           PageViewModel(
             title: 'RoveAssist',
             body: 'Travel is investment in yourself.',
-            image: Image.asset('assets/images/onboard_image/1.png'),
+            image: Image.asset(kAssetOnboarding2),
             decoration: contentDecoration(_textTheme, _themeData),
           ),
           PageViewModel(
             title: 'RoveAssist',
             body: 'Never let your memories to greater than your dream.',
-            image: Image.asset('assets/images/onboard_image/0.png'),
+            image: Image.asset(kAssetOnboarding3),
             decoration: contentDecoration(_textTheme, _themeData),
           ),
         ],
