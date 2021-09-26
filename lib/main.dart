@@ -6,7 +6,6 @@ import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:get/get.dart';
 
 import 'app/core/theme/app_themes.dart';
-//import 'app/data/services/storage_service.dart';
 import 'app/routes/app_pages.dart';
 
 Future<void> main() async {
@@ -31,7 +30,8 @@ class MyApp extends StatelessWidget {
       fallbackLocale: Locale('en', 'US'),
       defaultTransition: Transition.cupertino,
       themeMode: ThemeMode.light,
-      // theme: MyTheme.lightTheme,
+
+      //theme: CustomTheme().lightTheme,
       // darkTheme: MyTheme.darkTheme,
     );
   }

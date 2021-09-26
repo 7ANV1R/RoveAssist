@@ -34,15 +34,43 @@ class OnboardingView extends GetView<OnboardingController> {
             decoration: contentDecoration(_textTheme, _themeData),
           ),
         ],
-        done: Text(
-          'Let\'s go',
-          style: TextStyle(color: _themeData.primaryColor),
+        done: Container(
+          height: 38,
+          width: 150,
+          decoration: BoxDecoration(
+            color: _themeData.primaryColor,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: Center(
+            child: Text(
+              'Let\'s go',
+              style: TextStyle(color: _themeData.scaffoldBackgroundColor),
+            ),
+          ),
         ),
-        onDone: () {},
+        onDone: controller.onTapLetsGo,
         showNextButton: true,
-        next: Text(
-          'Next',
-          style: TextStyle(color: _themeData.primaryColor),
+        next: Container(
+          height: 38,
+          width: 150,
+          decoration: BoxDecoration(
+            color: _themeData.primaryColor,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: Center(
+            child: Text(
+              'Next',
+              style: TextStyle(color: _themeData.scaffoldBackgroundColor),
+            ),
+          ),
+        ),
+        dotsDecorator: DotsDecorator(
+          spacing: EdgeInsets.all(2),
+          activeColor: _themeData.primaryColor,
+          activeSize: Size(22, 10),
+          activeShape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
         ),
       ),
     ));
@@ -51,8 +79,12 @@ class OnboardingView extends GetView<OnboardingController> {
   PageDecoration contentDecoration(TextTheme _textTheme, ThemeData _themeData) {
     return PageDecoration(
       titleTextStyle: _textTheme.headline1!.copyWith(color: _themeData.primaryColor),
-      bodyTextStyle: _textTheme.subtitle1!.copyWith(color: _themeData.secondaryHeaderColor),
+      bodyTextStyle: _textTheme.bodyText2!.copyWith(color: _themeData.secondaryHeaderColor),
       bodyAlignment: Alignment.center,
+      imageFlex: 2,
+      imagePadding: EdgeInsets.only(bottom: 20),
+      titlePadding: EdgeInsets.symmetric(vertical: 8),
+      descriptionPadding: EdgeInsets.symmetric(horizontal: 60, vertical: 0),
     );
   }
 }

@@ -12,16 +12,23 @@ List<Map<String, dynamic>> themes = [
       secondaryHeaderColor: const Color(0xff30475E),
       primaryColorLight: const Color(0xffF4999F),
       primaryColorDark: const Color(0xffF05454),
-      colorScheme: ColorScheme.light(),
+      colorScheme: ColorScheme.light().copyWith(
+        primary: Color(0xffFF4F5B),
+      ),
       scaffoldBackgroundColor: const Color(0xfff9f9f9),
       textTheme: const TextTheme(
         headline1: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
         headline2: TextStyle(fontSize: 26.0, fontWeight: FontWeight.w700),
         headline3: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w700),
         bodyText1: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400),
-        bodyText2: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w700),
+        bodyText2: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500),
         button: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w800),
         subtitle1: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(Color(0xffF4999F)),
+        ),
       ),
     ),
   },

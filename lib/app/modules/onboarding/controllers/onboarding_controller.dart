@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
+import 'package:roveassist/app/routes/app_pages.dart';
 
 class OnboardingController extends GetxController {
-  //TODO: Implement OnboardingController
-
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -16,5 +14,8 @@ class OnboardingController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
+
+  void onTapLetsGo() {
+    Get.toNamed(Routes.HOME);
+  }
 }
