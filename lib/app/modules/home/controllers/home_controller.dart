@@ -1,13 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:roveassist/app/modules/home/views/home_view.dart';
 
 //import '../../../data/services/storage_service.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
-
   //final StorageService _storageService = Get.find<StorageService>();
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -20,5 +20,10 @@ class HomeController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
+
+  TextEditingController searchController = TextEditingController();
+
+  void onMapCreated(GoogleMapController controller) {
+    controller.setMapStyle(MapColorStyle.mapStyle);
+  }
 }
