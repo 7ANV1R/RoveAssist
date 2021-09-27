@@ -23,6 +23,13 @@ dependencies:
   
   #map
   google_maps_flutter: ^2.0.6
+  dio: ^4.0.0
+  flutter_polyline_points: ^1.0.0
+  
+  #firebase
+  firebase_auth: ^3.1.1
+  firebase_storage: ^10.0.3
+  cloud_firestore: ^2.5.3
   
   
   flutter: 
@@ -30,6 +37,8 @@ dependencies:
   introduction_screen: ^2.1.0
   fancy_bottom_navigation: ^0.3.3
   font_awesome_flutter: ^9.1.0
+  
+  
   
   
 

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "913672743092",
+    "project_id": "roveassist",
+    "storage_bucket": "roveassist.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:913672743092:android:9bf54c4eba4c0c2d238fe1",
+        "android_client_info": {
+          "package_name": "com.roveassist.roveassist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "913672743092-cm0use095es6bgp1j6m1d3fjgps9a2si.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaorT4u6U9zTpeqICYOzuscWMoMkUFSmg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "913672743092-cm0use095es6bgp1j6m1d3fjgps9a2si.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

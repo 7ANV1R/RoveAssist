@@ -2,6 +2,14 @@ import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:roveassist/app/modules/explore/controllers/explore_controller.dart';
+import 'package:roveassist/app/modules/explore/views/explore_view.dart';
+import 'package:roveassist/app/modules/home/controllers/home_controller.dart';
+import 'package:roveassist/app/modules/home/views/home_view.dart';
+import 'package:roveassist/app/modules/profile/controllers/profile_controller.dart';
+import 'package:roveassist/app/modules/profile/views/profile_view.dart';
+import 'package:roveassist/app/modules/saved/controllers/saved_controller.dart';
+import 'package:roveassist/app/modules/saved/views/saved_view.dart';
 
 import '../controllers/nav_service_controller.dart';
 
@@ -16,38 +24,10 @@ class NavServiceView extends GetView<NavServiceController> {
             parent: NeverScrollableScrollPhysics(),
           ),
           children: [
-            Container(
-              child: Center(
-                child: Text(
-                  'Home',
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-            ),
-            Container(
-              child: Center(
-                child: Text(
-                  'Explore',
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-            ),
-            Container(
-              child: Center(
-                child: Text(
-                  'Saved',
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-            ),
-            Container(
-              child: Center(
-                child: Text(
-                  'Profile',
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-            ),
+            homeView(),
+            exploreView(),
+            savedView(),
+            profileView(),
           ],
         ),
       ),
@@ -66,5 +46,33 @@ class NavServiceView extends GetView<NavServiceController> {
             key: controller.bottomNavKey,
           )),
     );
+  }
+
+  ProfileView profileView() {
+    Get.lazyPut<ProfileController>(
+      () => ProfileController(),
+    );
+    return ProfileView();
+  }
+
+  SavedView savedView() {
+    Get.lazyPut<SavedController>(
+      () => SavedController(),
+    );
+    return SavedView();
+  }
+
+  ExploreView exploreView() {
+    Get.lazyPut<ExploreController>(
+      () => ExploreController(),
+    );
+    return ExploreView();
+  }
+
+  HomeView homeView() {
+    Get.lazyPut<HomeController>(
+      () => HomeController(),
+    );
+    return HomeView();
   }
 }

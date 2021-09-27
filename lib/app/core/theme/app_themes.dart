@@ -24,6 +24,8 @@ List<Map<String, dynamic>> themes = [
         bodyText2: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500),
         button: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w800),
         subtitle1: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
+      ).apply(
+        bodyColor: Color(0xff30475E),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(

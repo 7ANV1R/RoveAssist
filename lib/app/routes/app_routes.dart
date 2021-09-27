@@ -7,10 +7,16 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const ONBOARDING = _Paths.ONBOARDING;
   static const NAV_SERVICE = _Paths.NAV_SERVICE;
+  static const SAVED = _Paths.SAVED;
+  static const EXPLORE = _Paths.EXPLORE;
+  static const PROFILE = _Paths.PROFILE;
 }
 
 abstract class _Paths {
   static const HOME = '/home';
   static const ONBOARDING = '/onboarding';
   static const NAV_SERVICE = '/nav-service';
+  static const SAVED = '/saved';
+  static const EXPLORE = '/explore';
+  static const PROFILE = '/profile';
 }
