@@ -17,6 +17,7 @@ class NavServiceView extends GetView<NavServiceController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       body: SizedBox.expand(
         child: PageView(
           controller: controller.pageController,
