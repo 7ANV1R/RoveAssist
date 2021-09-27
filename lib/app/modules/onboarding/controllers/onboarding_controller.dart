@@ -16,6 +16,6 @@ class OnboardingController extends GetxController {
   void onClose() {}
 
   void onTapLetsGo() {
-    Get.toNamed(Routes.HOME);
+    Get.toNamed(Routes.NAV_SERVICE);
   }
 }
