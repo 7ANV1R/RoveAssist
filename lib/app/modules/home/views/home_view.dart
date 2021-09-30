@@ -26,7 +26,7 @@ class _HomeViewState extends State<HomeView> with AutomaticKeepAliveClientMixin 
         parallaxEnabled: true,
         parallaxOffset: 0.1,
         borderRadius: BorderRadius.vertical(top: Radius.circular(18.0)),
-        minHeight: screenSize.height * 0.35,
+        minHeight: screenSize.height * 0.3,
         maxHeight: screenSize.height * 0.85,
         panelBuilder: (controller) => ContentPanel(
           scrollController: controller,
@@ -56,7 +56,7 @@ class _HomeViewState extends State<HomeView> with AutomaticKeepAliveClientMixin 
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        color: _themeData.primaryColor.withOpacity(0.15),
+                        color: _themeData.primaryColor.withOpacity(0.25),
                         blurRadius: 15,
                         offset: Offset(0, 2), //position of shadow
                       ),
