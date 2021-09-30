@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:roveassist/app/modules/home/views/home_view.dart';
+import 'package:roveassist/app/routes/app_pages.dart';
 
 //import '../../../data/services/storage_service.dart';
 
@@ -20,6 +21,10 @@ class HomeController extends GetxController {
 
   @override
   void onClose() {}
+
+  Future<void> onTapExplore() async {
+    Get.toNamed(Routes.MAP);
+  }
 
   TextEditingController searchController = TextEditingController();
 

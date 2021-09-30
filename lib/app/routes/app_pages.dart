@@ -4,6 +4,8 @@ import 'package:roveassist/app/modules/explore/bindings/explore_binding.dart';
 import 'package:roveassist/app/modules/explore/views/explore_view.dart';
 import 'package:roveassist/app/modules/home/bindings/home_binding.dart';
 import 'package:roveassist/app/modules/home/views/home_view.dart';
+import 'package:roveassist/app/modules/map/bindings/map_binding.dart';
+import 'package:roveassist/app/modules/map/views/map_view.dart';
 import 'package:roveassist/app/modules/nav_service/bindings/nav_service_binding.dart';
 import 'package:roveassist/app/modules/nav_service/views/nav_service_view.dart';
 import 'package:roveassist/app/modules/onboarding/bindings/onboarding_binding.dart';
@@ -50,6 +52,11 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.MAP,
+      page: () => MapView(),
+      binding: MapBinding(),
     ),
   ];
 }

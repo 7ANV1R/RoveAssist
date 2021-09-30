@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:roveassist/app/core/theme/ui_helpers.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import '../controllers/home_controller.dart';
@@ -17,6 +18,7 @@ class _HomeViewState extends State<HomeView> with AutomaticKeepAliveClientMixin 
   @override
   Widget build(BuildContext context) {
     final ThemeData _themeData = Theme.of(context);
+    final TextTheme _textTheme = _themeData.textTheme;
     var screenSize = MediaQuery.of(context).size;
     final controller = Get.put(HomeController());
     super.build(context);
@@ -76,6 +78,45 @@ class _HomeViewState extends State<HomeView> with AutomaticKeepAliveClientMixin 
                       border: InputBorder.none,
                     ),
                   ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: screenSize.height * 0.6,
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white,
+                  minimumSize: Size.zero,
+                  padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+                ),
+                onPressed: controller.onTapExplore,
+                icon: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      height: 34,
+                      width: 34,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: _themeData.primaryColor.withOpacity(0.30),
+                            blurRadius: 16,
+                            offset: Offset(0, 2), //position of shadow
+                          ),
+                        ],
+                        color: _themeData.primaryColor,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                    Icon(
+                      Icons.near_me_outlined,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+                label: Text(
+                  'Explore Nearby',
+                  style: _textTheme.bodyText2!.copyWith(color: _themeData.secondaryHeaderColor),
                 ),
               ),
             ),
