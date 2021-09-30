@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import '../controllers/home_controller.dart';
+import '../widgets/content_panel.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -21,55 +22,65 @@ class _HomeViewState extends State<HomeView> with AutomaticKeepAliveClientMixin 
     super.build(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          GoogleMap(
-            onMapCreated: controller.onMapCreated,
-            myLocationButtonEnabled: false,
-            zoomControlsEnabled: false,
-            initialCameraPosition: CameraPosition(
-              target: LatLng(23.874745, 90.320942),
-              zoom: 13,
+      body: SlidingUpPanel(
+        parallaxEnabled: true,
+        parallaxOffset: 0.1,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(18.0)),
+        minHeight: screenSize.height * 0.35,
+        maxHeight: screenSize.height * 0.85,
+        panelBuilder: (controller) => ContentPanel(
+          scrollController: controller,
+        ),
+        body: Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            GoogleMap(
+              onMapCreated: controller.onMapCreated,
+              myLocationButtonEnabled: false,
+              zoomControlsEnabled: false,
+              initialCameraPosition: CameraPosition(
+                target: LatLng(23.874745, 90.320942),
+                zoom: 13,
+              ),
             ),
-          ),
-          Positioned(
-            top: screenSize.height * 0.1,
-            left: 0,
-            right: 0,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 24, right: 24),
-              child: Container(
-                alignment: Alignment.center,
-                height: 50,
-                width: screenSize.width * 0.8,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: _themeData.primaryColor.withOpacity(0.15),
-                      blurRadius: 15,
-                      offset: Offset(0, 2), //position of shadow
+            Positioned(
+              top: screenSize.height * 0.1,
+              left: 0,
+              right: 0,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 24, right: 24),
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 50,
+                  width: screenSize.width * 0.8,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: _themeData.primaryColor.withOpacity(0.15),
+                        blurRadius: 15,
+                        offset: Offset(0, 2), //position of shadow
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.white,
+                  ),
+                  child: TextFormField(
+                    textAlign: TextAlign.start,
+                    controller: controller.searchController,
+                    textInputAction: TextInputAction.search,
+                    decoration: InputDecoration(
+                      hintText: 'Search...',
+                      contentPadding: EdgeInsets.all(16.0),
+                      prefixIcon: Icon(Icons.search),
+                      suffixIcon: Icon(Icons.menu_open_outlined),
+                      border: InputBorder.none,
                     ),
-                  ],
-                  borderRadius: BorderRadius.circular(5),
-                  color: Colors.white,
-                ),
-                child: TextFormField(
-                  textAlign: TextAlign.start,
-                  controller: controller.searchController,
-                  textInputAction: TextInputAction.search,
-                  decoration: InputDecoration(
-                    hintText: 'Search...',
-                    contentPadding: EdgeInsets.all(16.0),
-                    prefixIcon: Icon(Icons.search),
-                    suffixIcon: Icon(Icons.menu_open_outlined),
-                    border: InputBorder.none,
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

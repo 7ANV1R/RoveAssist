@@ -31,12 +31,16 @@ dependencies:
   firebase_storage: ^10.0.3
   cloud_firestore: ^2.5.3
   
-  
-  flutter: 
-    sdk: flutter
+  #util
   introduction_screen: ^2.1.0
   fancy_bottom_navigation: ^0.3.3
   font_awesome_flutter: ^9.1.0
+  sliding_up_panel: ^2.0.0+1
+  
+  
+  flutter: 
+    sdk: flutter
+
   
   
   
