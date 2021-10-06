@@ -87,7 +87,7 @@ class _HomeViewState extends State<HomeView> with AutomaticKeepAliveClientMixin 
                 style: ElevatedButton.styleFrom(
                   primary: Colors.white,
                   minimumSize: Size.zero,
-                  padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                 ),
                 onPressed: controller.onTapExplore,
                 icon: Stack(
@@ -131,7 +131,8 @@ class _HomeViewState extends State<HomeView> with AutomaticKeepAliveClientMixin 
 }
 
 class MapColorStyle {
-  static String mapStyle = '''
+  static String mapStyle =
+      '''
   [
   {
     "elementType": "geometry",
