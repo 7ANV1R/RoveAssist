@@ -131,8 +131,7 @@ class _HomeViewState extends State<HomeView> with AutomaticKeepAliveClientMixin 
 }
 
 class MapColorStyle {
-  static String mapStyle =
-      '''
+  static String mapStyle = '''
   [
   {
     "elementType": "geometry",

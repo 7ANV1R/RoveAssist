@@ -1,11 +1,38 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../../../../widgets/snakbar/general_snakbar.dart';
 
 class MapController extends GetxController {
-  //TODO: Implement MapController
-
-  final count = 0.obs;
+  RxBool isBusy = RxBool(false);
   @override
-  void onInit() {
+  Future<void> onInit() async {
+    isBusy.value = true;
+
+    final LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.whileInUse || permission == LocationPermission.always) {
+      final Position myLocation = await Geolocator.getCurrentPosition();
+
+      initialCameraPosition = CameraPosition(
+        target: LatLng(myLocation.latitude, myLocation.longitude),
+        zoom: 16.0,
+      );
+    } else {
+      showGeneralSnakbar(
+        message: 'Please give location permission to use this feature.',
+        backgroundColor: Colors.red,
+        icon: Icon(
+          Icons.error,
+          color: Colors.white,
+        ),
+      );
+    }
+
+    isBusy.value = false;
     super.onInit();
   }
 
@@ -15,6 +42,12 @@ class MapController extends GetxController {
   }
 
   @override
-  void onClose() {}
-  void increment() => count.value++;
+  void onClose() {
+    mapController.future.then((value) => value.dispose());
+
+    super.onClose();
+  }
+
+  Completer<GoogleMapController> mapController = Completer();
+  late CameraPosition initialCameraPosition;
 }

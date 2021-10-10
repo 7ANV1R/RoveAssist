@@ -33,11 +33,16 @@ class CardOne extends StatelessWidget {
             openColor: _themeData.cardColor,
             closedElevation: 0,
             closedBuilder: (context, action) => ListView(
-              padding: EdgeInsets.all(10), //padding of card data
+              //padding: EdgeInsets.all(10), //padding of card data
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               children: [
-                ClipRRect(borderRadius: BorderRadius.circular(8.0), child: Image.asset(kAssetCover1)),
+                ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.asset(
+                      kAssetCover1,
+                      fit: BoxFit.fitWidth,
+                    )),
                 kVerticalSpaceS,
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
