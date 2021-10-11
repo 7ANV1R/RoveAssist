@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:roveassist/app/modules/home/views/home_view.dart';
 
+import '../../../../data/models/map_style.dart';
 import '../controllers/map_controller.dart';
 
 class MapView extends GetView<MapController> {
@@ -24,7 +24,7 @@ class MapView extends GetView<MapController> {
             : GoogleMap(
                 onMapCreated: (mapController) {
                   controller.mapController.complete(mapController);
-                  mapController.setMapStyle(MapColorStyle.mapStyle);
+                  mapController.setMapStyle(MapStyleJson.mapStyle);
                 },
                 initialCameraPosition: controller.initialCameraPosition,
                 myLocationEnabled: true,

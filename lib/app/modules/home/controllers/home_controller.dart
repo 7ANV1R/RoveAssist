@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:roveassist/app/modules/home/views/home_view.dart';
-import 'package:roveassist/app/routes/app_pages.dart';
+
+import '../../../data/models/map_style.dart';
+import '../../../routes/app_pages.dart';
 
 //import '../../../data/services/storage_service.dart';
 
@@ -29,6 +30,6 @@ class HomeController extends GetxController {
   TextEditingController searchController = TextEditingController();
 
   void onMapCreated(GoogleMapController controller) {
-    controller.setMapStyle(MapColorStyle.mapStyle);
+    controller.setMapStyle(MapStyleJson.mapStyle);
   }
 }
