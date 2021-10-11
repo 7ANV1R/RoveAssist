@@ -1,38 +1,21 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../../../widgets/snakbar/general_snakbar.dart';
-
 class MapController extends GetxController {
-  RxBool isBusy = RxBool(false);
+  late Position currentPosition;
+  var geoLocator = Geolocator();
+  Completer<GoogleMapController> mapController = Completer();
+
+  CameraPosition initialCameraPosition = CameraPosition(
+    target: LatLng(23.874745, 90.320942),
+    zoom: 13,
+  );
   @override
   Future<void> onInit() async {
-    isBusy.value = true;
-
-    final LocationPermission permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.whileInUse || permission == LocationPermission.always) {
-      final Position myLocation = await Geolocator.getCurrentPosition();
-
-      initialCameraPosition = CameraPosition(
-        target: LatLng(myLocation.latitude, myLocation.longitude),
-        zoom: 16.0,
-      );
-    } else {
-      showGeneralSnakbar(
-        message: 'Please give location permission to use this feature.',
-        backgroundColor: Colors.red,
-        icon: Icon(
-          Icons.error,
-          color: Colors.white,
-        ),
-      );
-    }
-
-    isBusy.value = false;
+    locatePosition();
     super.onInit();
   }
 
@@ -43,11 +26,16 @@ class MapController extends GetxController {
 
   @override
   void onClose() {
-    mapController.future.then((value) => value.dispose());
-
     super.onClose();
   }
 
-  Completer<GoogleMapController> mapController = Completer();
-  late CameraPosition initialCameraPosition;
+  void locatePosition() async {
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+    currentPosition = position;
+    print(currentPosition);
+    LatLng latLngPosition = LatLng(position.latitude, position.longitude);
+    CameraPosition cameraPosition = CameraPosition(target: latLngPosition, zoom: 14);
+    final GoogleMapController controller = await mapController.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+  }
 }
