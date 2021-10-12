@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:roveassist/app/core/values/assets.dart';
-import 'package:roveassist/app/modules/home/widgets/cardOne.dart';
+import '../../../core/values/assets.dart';
+import 'cardOne.dart';
 
 class ContentPanel extends StatelessWidget {
   final ScrollController scrollController;
@@ -21,13 +21,16 @@ class ContentPanel extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Recommended',
-                    style: _textTheme.bodyText1!
-                        .copyWith(fontWeight: FontWeight.bold, color: _themeData.primaryColor),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: Text(
+                      'Recommended',
+                      style: _textTheme.bodyText1!
+                          .copyWith(fontWeight: FontWeight.bold, color: _themeData.primaryColor),
+                    ),
                   ),
                   Container(
-                    height: screenSize.height * 0.32,
+                    height: screenSize.height * 0.36,
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: 8,
@@ -42,39 +45,48 @@ class ContentPanel extends StatelessWidget {
                   SizedBox(
                     height: 20.0,
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: Text(
+                      'Popular Place',
+                      style: _textTheme.bodyText1!
+                          .copyWith(fontWeight: FontWeight.bold, color: _themeData.primaryColor),
+                    ),
+                  ),
                   ListView.builder(
                     physics: ScrollPhysics(),
                     itemCount: 10,
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      return Container(
-                        height: 230,
-                        margin: EdgeInsets.symmetric(horizontal: 20),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Stack(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color:
-                                          (index % 2 == 0) ? Colors.blueGrey[200] : Colors.orangeAccent[200],
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    margin: EdgeInsets.only(top: 40),
-                                  ),
-                                  Align(
-                                      child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.asset(kAssetCover1),
-                                  )),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
+                      return CardOne();
+                      // return Container(
+                      //   height: 230,
+                      //   margin: EdgeInsets.symmetric(horizontal: 20),
+                      //   child: Row(
+                      //     children: [
+                      //       Expanded(
+                      //         child: Stack(
+                      //           children: [
+                      //             Container(
+                      //               decoration: BoxDecoration(
+                      //                 color:
+                      //                     (index % 2 == 0) ? Colors.blueGrey[200] : Colors.orangeAccent[200],
+                      //                 borderRadius: BorderRadius.circular(20),
+                      //               ),
+                      //               margin: EdgeInsets.only(top: 40),
+                      //             ),
+                      //             Align(
+                      //                 child: Padding(
+                      //               padding: const EdgeInsets.all(8.0),
+                      //               child: Image.asset(kAssetCover1),
+                      //             )),
+                      //           ],
+                      //         ),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // );
                     },
                   ),
                 ],

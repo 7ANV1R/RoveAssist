@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:roveassist/app/widgets/loader.dart';
 
 import '../../../../data/models/map_style.dart';
 import '../controllers/map_controller.dart';
@@ -19,7 +20,7 @@ class MapView extends GetView<MapController> {
       body: Obx(
         () => controller.isBusy.value
             ? Center(
-                child: CircularProgressIndicator(),
+                child: Loader(),
               )
             : GoogleMap(
                 onMapCreated: (mapController) {
