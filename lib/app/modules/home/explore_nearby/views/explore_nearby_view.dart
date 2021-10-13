@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:roveassist/app/widgets/loader.dart';
 
 import '../../../../data/models/map_style.dart';
-import '../controllers/map_controller.dart';
+import '../../../../widgets/loader.dart';
+import '../controllers/explore_nearby_controller.dart';
 
-class MapView extends GetView<MapController> {
+class ExploreNearbyView extends GetView<ExploreNearbyController> {
   @override
   Widget build(BuildContext context) {
-    final ThemeData _themeData = Theme.of(context);
-    final TextTheme _textTheme = _themeData.textTheme;
-    var screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Nearby Map'),
+        title: Text('ExploreNearbyView'),
         centerTitle: true,
       ),
       body: Obx(

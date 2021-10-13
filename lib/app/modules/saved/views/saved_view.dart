@@ -42,6 +42,7 @@ class SavedView extends GetView<SavedController> {
                   crossAxisCount: 2,
                   crossAxisSpacing: 16.0,
                   mainAxisSpacing: 16.0,
+                  childAspectRatio: 0.8,
                 ),
                 itemBuilder: (context, index) => Container(
                       decoration: BoxDecoration(

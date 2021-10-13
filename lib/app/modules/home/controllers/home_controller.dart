@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -23,8 +24,9 @@ class HomeController extends GetxController {
   @override
   void onClose() {}
 
-  Future<void> onTapExplore() async {
-    Get.toNamed(Routes.MAP);
+  Future<void> onTapExploreNearby() async {
+    await Geolocator.requestPermission();
+    await Get.toNamed(Routes.EXPLORE_NEARBY);
   }
 
   TextEditingController searchController = TextEditingController();

@@ -92,7 +92,7 @@ class _HomeViewState extends State<HomeView> with AutomaticKeepAliveClientMixin 
                   minimumSize: Size.zero,
                   padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                 ),
-                onPressed: controller.onTapExplore,
+                onPressed: controller.onTapExploreNearby,
                 icon: Stack(
                   alignment: Alignment.center,
                   children: [

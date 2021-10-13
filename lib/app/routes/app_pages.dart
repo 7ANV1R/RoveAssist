@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import '../modules/explore/bindings/explore_binding.dart';
 import '../modules/explore/views/explore_view.dart';
 import '../modules/home/bindings/home_binding.dart';
-import '../modules/home/map/bindings/map_binding.dart';
-import '../modules/home/map/views/map_view.dart';
+import '../modules/home/explore_nearby/bindings/explore_nearby_binding.dart';
+import '../modules/home/explore_nearby/views/explore_nearby_view.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/nav_service/bindings/nav_service_binding.dart';
 import '../modules/nav_service/views/nav_service_view.dart';
@@ -23,13 +23,18 @@ class AppPages {
   static const INITIAL = Routes.ONBOARDING;
 
   static final routes = [
-    GetPage(name: _Paths.HOME, page: () => HomeView(), binding: HomeBinding(), children: [
-      GetPage(
-        name: _Paths.MAP,
-        page: () => MapView(),
-        binding: MapBinding(),
-      ),
-    ]),
+    GetPage(
+      name: _Paths.HOME,
+      page: () => HomeView(),
+      binding: HomeBinding(),
+      children: [
+        GetPage(
+          name: _Paths.EXPLORE_NEARBY,
+          page: () => ExploreNearbyView(),
+          binding: ExploreNearbyBinding(),
+        ),
+      ],
+    ),
     GetPage(
       name: _Paths.ONBOARDING,
       page: () => OnboardingView(),

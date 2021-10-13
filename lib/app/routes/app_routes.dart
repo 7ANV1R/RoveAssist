@@ -10,7 +10,7 @@ abstract class Routes {
   static const SAVED = _Paths.SAVED;
   static const EXPLORE = _Paths.EXPLORE;
   static const PROFILE = _Paths.PROFILE;
-  static const MAP = _Paths.HOME + _Paths.MAP;
+  static const EXPLORE_NEARBY = _Paths.HOME + _Paths.EXPLORE_NEARBY;
 }
 
 abstract class _Paths {
@@ -20,5 +20,5 @@ abstract class _Paths {
   static const SAVED = '/saved';
   static const EXPLORE = '/explore';
   static const PROFILE = '/profile';
-  static const MAP = '/map';
+  static const EXPLORE_NEARBY = '/explore-nearby';
 }

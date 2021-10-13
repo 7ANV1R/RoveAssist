@@ -1,12 +1,12 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:roveassist/app/widgets/snakbar/general_snakbar.dart';
 
-class MapController extends GetxController {
+import '../../../../widgets/snakbar/general_snakbar.dart';
+
+class ExploreNearbyController extends GetxController {
   RxBool isBusy = RxBool(false);
 
   @override
@@ -15,7 +15,8 @@ class MapController extends GetxController {
 
     final LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.whileInUse || permission == LocationPermission.always) {
-      final Position myLocation = await Geolocator.getCurrentPosition();
+      final Position myLocation =
+          await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.bestForNavigation);
 
       initialCameraPosition = CameraPosition(
         target: LatLng(myLocation.latitude, myLocation.longitude),
