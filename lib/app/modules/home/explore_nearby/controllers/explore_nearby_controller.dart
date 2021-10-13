@@ -15,8 +15,9 @@ class ExploreNearbyController extends GetxController {
 
     final LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.whileInUse || permission == LocationPermission.always) {
-      final Position myLocation =
-          await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.bestForNavigation);
+      final Position myLocation = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
 
       initialCameraPosition = CameraPosition(
         target: LatLng(myLocation.latitude, myLocation.longitude),

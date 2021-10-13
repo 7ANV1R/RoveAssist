@@ -11,7 +11,7 @@ class ExploreNearbyView extends GetView<ExploreNearbyController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ExploreNearbyView'),
+        title: Text('Nearby Map'),
         centerTitle: true,
       ),
       body: Obx(
@@ -26,12 +26,13 @@ class ExploreNearbyView extends GetView<ExploreNearbyController> {
                 },
                 initialCameraPosition: controller.initialCameraPosition,
                 myLocationEnabled: true,
-                compassEnabled: false,
+                compassEnabled: true,
                 buildingsEnabled: true,
                 mapToolbarEnabled: true,
                 tiltGesturesEnabled: false,
                 rotateGesturesEnabled: true,
                 myLocationButtonEnabled: true,
+                trafficEnabled: true,
               ),
       ),
     );
