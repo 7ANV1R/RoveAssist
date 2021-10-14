@@ -31,33 +31,22 @@ class AuthPage extends GetView<ProfileController> {
               height: screenSize.height * 0.01,
             ),
             Center(child: Text('Sign up to save your travel related plan')),
-            SizedBox(
-              height: screenSize.height * 0.1,
+            Expanded(
+              child: SizedBox(
+                height: screenSize.height * 0.01,
+              ),
             ),
             DefaultButton(
-              onTap: () {},
+              onTap: controller.onTapSignInWithGoogle,
               label: Text(
-                'Login',
+                'Login with Google',
                 style: _textTheme.button!.copyWith(color: _themeData.scaffoldBackgroundColor),
               ),
               color: _themeData.primaryColor,
               padding: EdgeInsets.symmetric(horizontal: 16.0),
             ),
             SizedBox(
-              height: screenSize.height * 0.015,
-            ),
-            DefaultButton(
-              onTap: controller.onTapSignInWithGoogle,
-              label: Text(
-                'Sign up',
-                style: _textTheme.button!.copyWith(color: _themeData.primaryColor),
-              ),
-              decoration: BoxDecoration(
-                border: Border.all(color: _themeData.primaryColor, width: 2.0),
-                borderRadius: BorderRadius.circular(100),
-                color: Colors.white,
-              ),
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              height: screenSize.height * 0.1,
             ),
           ],
         ),

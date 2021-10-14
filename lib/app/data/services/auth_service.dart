@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:roveassist/app/data/models/user_model.dart';
+import 'package:roveassist/app/data/services/database_services.dart';
 
 class AuthService extends GetxService {
   Future<AuthService> init() async {
@@ -12,18 +14,26 @@ class AuthService extends GetxService {
   GoogleSignInAccount get user => _user!;
 
   Future onTapSignInWithGoogle() async {
-    final googleUser = await googleSignIn.signIn();
-    if (googleUser == null) return;
-    _user = googleUser;
+    try {
+      final googleUser = await googleSignIn.signIn();
+      if (googleUser == null) return;
+      _user = googleUser;
 
-    final googleAuth = await googleUser.authentication;
+      final googleAuth = await googleUser.authentication;
 
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
 
-    await FirebaseAuth.instance.signInWithCredential(credential);
+      await FirebaseAuth.instance.signInWithCredential(credential);
+      UserModel _firebaseUser =
+          UserModel(id: _user!.id, name: _user!.displayName, email: _user!.email, photoURL: _user!.photoUrl);
+      await DatabaseService().createNewUser(_firebaseUser);
+    } catch (e) {
+      print(e.toString());
+      rethrow;
+    }
   }
 
   Future onTapLogOut() async {
