@@ -8,10 +8,6 @@ class ExploreView extends GetView<ExploreController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('ExploreView'),
-        centerTitle: true,
-      ),
       body: Center(
         child: Text(
           'ExploreView is working',
