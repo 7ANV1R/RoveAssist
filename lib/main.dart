@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
       getPages: AppPages.routes,
       theme: getThemeById(context, 1),
       debugShowCheckedModeBanner: false,
-      fallbackLocale: Locale('en', 'US'),
       defaultTransition: Transition.cupertino,
       themeMode: ThemeMode.light,
     );
