@@ -31,9 +31,6 @@ class MyApp extends StatelessWidget {
       fallbackLocale: Locale('en', 'US'),
       defaultTransition: Transition.cupertino,
       themeMode: ThemeMode.light,
-
-      //theme: CustomTheme().lightTheme,
-      // darkTheme: MyTheme.darkTheme,
     );
   }
 }

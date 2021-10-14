@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../core/values/assets.dart';
+import 'package:roveassist/app/modules/home/widgets/popular_card.dart';
+
+import '../../../core/theme/ui_helpers.dart';
 import 'cardOne.dart';
 
 class ContentPanel extends StatelessWidget {
@@ -11,13 +13,15 @@ class ContentPanel extends StatelessWidget {
     final ThemeData _themeData = Theme.of(context);
     final TextTheme _textTheme = _themeData.textTheme;
     var screenSize = MediaQuery.of(context).size;
-    return Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: ListView(
+    return MediaQuery.removeViewPadding(
+      context: context,
+      removeTop: true,
+      child: Stack(
+        children: [
+          ListView(
             controller: scrollController,
             children: [
+              kVerticalSpaceXL,
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -25,22 +29,24 @@ class ContentPanel extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 16.0),
                     child: Text(
                       'Recommended',
-                      style: _textTheme.bodyText1!
+                      style: _textTheme.headline6!
                           .copyWith(fontWeight: FontWeight.bold, color: _themeData.primaryColor),
                     ),
                   ),
                   Container(
-                    height: screenSize.height * 0.36,
+                    height: screenSize.height * 0.4, // height of card inside main listview
                     child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 8,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            height: screenSize.height * 0.35,
-                            width: screenSize.height * 0.35,
-                            child: CardOne(),
-                          );
-                        }),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 8,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          color: Color(0xFFFAFBFB),
+                          height: screenSize.height * 0.35,
+                          width: screenSize.height * 0.28,
+                          child: CardOne(),
+                        );
+                      },
+                    ),
                   ),
                   SizedBox(
                     height: 20.0,
@@ -49,67 +55,44 @@ class ContentPanel extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 16),
                     child: Text(
                       'Popular Place',
-                      style: _textTheme.bodyText1!
+                      style: _textTheme.headline6!
                           .copyWith(fontWeight: FontWeight.bold, color: _themeData.primaryColor),
                     ),
                   ),
-                  ListView.builder(
-                    physics: ScrollPhysics(),
-                    itemCount: 10,
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      return CardOne();
-                      // return Container(
-                      //   height: 230,
-                      //   margin: EdgeInsets.symmetric(horizontal: 20),
-                      //   child: Row(
-                      //     children: [
-                      //       Expanded(
-                      //         child: Stack(
-                      //           children: [
-                      //             Container(
-                      //               decoration: BoxDecoration(
-                      //                 color:
-                      //                     (index % 2 == 0) ? Colors.blueGrey[200] : Colors.orangeAccent[200],
-                      //                 borderRadius: BorderRadius.circular(20),
-                      //               ),
-                      //               margin: EdgeInsets.only(top: 40),
-                      //             ),
-                      //             Align(
-                      //                 child: Padding(
-                      //               padding: const EdgeInsets.all(8.0),
-                      //               child: Image.asset(kAssetCover1),
-                      //             )),
-                      //           ],
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // );
-                    },
+                  kVerticalSpaceL,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16, right: 16),
+                    child: ListView.separated(
+                      physics: ScrollPhysics(),
+                      itemCount: 10,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return PopularCard();
+                      },
+                      separatorBuilder: (context, index) => kVerticalSpaceL,
+                    ),
                   ),
                 ],
               ),
             ],
           ),
-        ),
-        Positioned(
-          top: 5,
-          left: 0,
-          right: 0,
-          child: Center(
-            child: Container(
-              height: 5,
-              width: 30,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: Colors.grey,
+          Positioned(
+            top: 5,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: Container(
+                height: 5,
+                width: 30,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: Colors.grey,
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
     // return CustomScrollView(
     //   controller: scrollController,
