@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
 
+import 'package:roveassist/app/modules/logged_in_profile/bindings/logged_in_profile_binding.dart';
+import 'package:roveassist/app/modules/logged_in_profile/views/logged_in_profile_view.dart';
+
 import '../modules/explore/bindings/explore_binding.dart';
 import '../modules/explore/views/explore_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -59,6 +62,11 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOGGED_IN_PROFILE,
+      page: () => LoggedInProfileView(),
+      binding: LoggedInProfileBinding(),
     ),
   ];
 }

@@ -1,13 +1,12 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+
+import '../../../data/services/auth_service.dart';
 
 class ProfileController extends GetxController {
-  late GoogleSignIn googleSignIn;
-  var isSignedIn = false.obs;
-  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final AuthService _authService = Get.find<AuthService>();
 
-  final count = 0.obs;
+  final RxBool _isSignedIn = RxBool(false);
+  bool get isSignedIn => _isSignedIn.value;
   @override
   void onInit() {
     super.onInit();
@@ -15,16 +14,14 @@ class ProfileController extends GetxController {
 
   @override
   void onReady() {
-    googleSignIn = GoogleSignIn();
-    ever(isSignedIn, handleAuthStateChange);
     super.onReady();
   }
 
   @override
   void onClose() {}
 
-  void handleAuthStateChange(isLoggedIn) {
-    if (isLoggedIn) {
-    } else {}
+  Future onTapSignInWithGoogle() async {
+    await _authService.onTapSignInWithGoogle();
+    _isSignedIn.value = true;
   }
 }

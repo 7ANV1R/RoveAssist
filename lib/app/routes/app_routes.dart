@@ -11,6 +11,7 @@ abstract class Routes {
   static const EXPLORE = _Paths.EXPLORE;
   static const PROFILE = _Paths.PROFILE;
   static const EXPLORE_NEARBY = _Paths.HOME + _Paths.EXPLORE_NEARBY;
+  static const LOGGED_IN_PROFILE = _Paths.LOGGED_IN_PROFILE;
 }
 
 abstract class _Paths {
@@ -21,4 +22,5 @@ abstract class _Paths {
   static const EXPLORE = '/explore';
   static const PROFILE = '/profile';
   static const EXPLORE_NEARBY = '/explore-nearby';
+  static const LOGGED_IN_PROFILE = '/logged-in-profile';
 }
