@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     if (GetPlatform.isAndroid) FlutterDisplayMode.setHighRefreshRate();
-    //final StorageService _storageService = Get.find<StorageService>();
 
     return GetMaterialApp(
       title: "RoveAssist",
@@ -27,7 +26,6 @@ class MyApp extends StatelessWidget {
       getPages: AppPages.routes,
       theme: getThemeById(context, 1),
       debugShowCheckedModeBanner: false,
-      locale: Get.deviceLocale,
       fallbackLocale: Locale('en', 'US'),
       defaultTransition: Transition.cupertino,
       themeMode: ThemeMode.light,
