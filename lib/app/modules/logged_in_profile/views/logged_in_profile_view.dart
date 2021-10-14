@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:roveassist/app/data/services/auth_service.dart';
 
+import '../../../data/services/auth_service.dart';
 import '../controllers/logged_in_profile_controller.dart';
 
 class LoggedInProfileView extends GetView<LoggedInProfileController> {

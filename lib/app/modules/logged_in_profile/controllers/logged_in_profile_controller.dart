@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:roveassist/app/data/services/auth_service.dart';
+
+import '../../../data/services/auth_service.dart';
 
 class LoggedInProfileController extends GetxController {
   final AuthService _authService = Get.find<AuthService>();

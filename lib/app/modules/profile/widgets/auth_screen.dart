@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:roveassist/app/data/services/auth_service.dart';
-import 'package:roveassist/app/widgets/default_button.dart';
 
 import '../../../core/values/assets.dart';
+import '../../../data/services/auth_service.dart';
+import '../../../widgets/default_button.dart';
 import '../controllers/profile_controller.dart';
 
 class AuthPage extends GetView<ProfileController> {

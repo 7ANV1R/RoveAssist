@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:roveassist/app/data/services/auth_service.dart';
-import 'package:roveassist/app/modules/logged_in_profile/views/logged_in_profile_view.dart';
-import 'package:roveassist/app/modules/profile/controllers/profile_controller.dart';
-import 'package:roveassist/app/modules/profile/widgets/auth_screen.dart';
-import 'package:roveassist/app/widgets/loader.dart';
+
+import '../../../widgets/loader.dart';
+import '../../logged_in_profile/views/logged_in_profile_view.dart';
+import '../controllers/profile_controller.dart';
+import '../widgets/auth_screen.dart';
 
 class ProfileView extends GetView<ProfileController> {
   const ProfileView({Key? key}) : super(key: key);
