@@ -23,7 +23,7 @@ class DefaultButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(100.0),
+      borderRadius: BorderRadius.circular(8.0),
       child: Container(
         height: 44.0,
         color: color,

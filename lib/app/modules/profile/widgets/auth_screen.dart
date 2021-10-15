@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:roveassist/app/core/theme/ui_helpers.dart';
 
 import '../../../core/values/assets.dart';
 import '../../../data/services/auth_service.dart';
@@ -36,14 +38,29 @@ class AuthPage extends GetView<ProfileController> {
                 height: screenSize.height * 0.01,
               ),
             ),
-            DefaultButton(
-              onTap: controller.onTapSignInWithGoogle,
-              label: Text(
-                'Login with Google',
-                style: _textTheme.button!.copyWith(color: _themeData.scaffoldBackgroundColor),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: DefaultButton(
+                onTap: controller.onTapSignInWithGoogle,
+                label: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                      FontAwesomeIcons.google,
+                      size: 20,
+                      color: Colors.white,
+                    ),
+                    kHorizontalSpaceM,
+                    Text(
+                      'Login with Google',
+                      style: _textTheme.button!.copyWith(color: _themeData.scaffoldBackgroundColor),
+                    ),
+                  ],
+                ),
+                color: _themeData.primaryColor,
+                //padding: EdgeInsets.symmetric(horizontal: 60.0),
               ),
-              color: _themeData.primaryColor,
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
             ),
             SizedBox(
               height: screenSize.height * 0.1,
