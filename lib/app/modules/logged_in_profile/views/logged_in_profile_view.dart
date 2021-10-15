@@ -36,8 +36,8 @@ class LoggedInProfileView extends GetView<LoggedInProfileController> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            kVerticalSpaceXXXL,
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Container(
@@ -46,8 +46,8 @@ class LoggedInProfileView extends GetView<LoggedInProfileController> {
                 ),
                 child: Image.network(
                   user!.photoURL!,
-                  height: 98,
-                  width: 98,
+                  height: 90,
+                  width: 90,
                 ),
               ),
             ),
