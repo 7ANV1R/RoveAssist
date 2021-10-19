@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:roveassist/app/data/models/user_model.dart';
+import 'package:roveassist/app/data/models/travel_plan/travel_plan.dart';
 import 'package:roveassist/app/data/services/database_services.dart';
 
 import '../../../data/services/auth_service.dart';
@@ -12,6 +11,7 @@ class LoggedInProfileController extends GetxController {
 
   @override
   void onInit() {
+    travelPlanList.bindStream(_databaseService.travelPlanStream(_authService.user.id));
     super.onInit();
   }
 
@@ -24,20 +24,19 @@ class LoggedInProfileController extends GetxController {
   void onClose() {}
 
   Future onTapLogOut() async {
+    Get.delete<LoggedInProfileController>();
+    super.dispose();
+
     _authService.onTapLogOut();
-  }
-
-  Rx<UserModel> _userModel = UserModel().obs;
-  UserModel get userModel => _userModel.value;
-  set userModel(UserModel value) => this._userModel.value = value;
-
-  void userClear() {
-    _userModel.value = UserModel();
   }
 
   TextEditingController addController = TextEditingController();
 
-  Future<void> onTapAddTravelPlan(String content) async {
-    _databaseService.addPlan(content, _authService.user.id);
+  Future<void> onTapAddTravelPlan(String? title, String content) async {
+    _databaseService.addPlan(title, content, _authService.user.id);
   }
+
+  final RxList<TravelPlanModel> travelPlanList = RxList<TravelPlanModel>();
+
+  List<TravelPlanModel> get travelPlans => travelPlanList;
 }

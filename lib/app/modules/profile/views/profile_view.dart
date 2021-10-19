@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:roveassist/app/data/services/auth_service.dart';
 import 'package:roveassist/app/data/services/database_services.dart';
 
 import '../../../widgets/loader.dart';
@@ -22,6 +23,7 @@ class ProfileView extends GetView<ProfileController> {
                 return Center(child: Loader());
               else if (snapshot.hasData) {
                 Get.put(DatabaseService());
+                Get.put(AuthService());
                 return LoggedInProfileView();
               } else if (snapshot.hasError) {
                 return Center(
