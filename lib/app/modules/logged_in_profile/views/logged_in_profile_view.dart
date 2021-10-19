@@ -34,35 +34,53 @@ class LoggedInProfileView extends GetView<LoggedInProfileController> {
               ))
         ],
       ),
-      body: Center(
-        child: Column(
-          children: [
-            kVerticalSpaceXXXL,
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[400],
-                ),
-                child: Image.network(
-                  user!.photoURL!,
-                  height: 90,
-                  width: 90,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              kVerticalSpaceXXXL,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[400],
+                  ),
+                  child: Image.network(
+                    user!.photoURL!,
+                    height: 90,
+                    width: 90,
+                  ),
                 ),
               ),
-            ),
-            kVerticalSpaceL,
-            Text(
-              user.displayName!,
-              style: _textTheme.headline6,
-            ),
-            Text(
-              user.email!,
-              style: _textTheme.bodyText1,
-            ),
-            kVerticalSpaceS,
-            ElevatedButton(onPressed: controller.onTapLogOut, child: Text('logout'))
-          ],
+              kVerticalSpaceL,
+              Text(
+                user.displayName!,
+                style: _textTheme.headline6,
+              ),
+              Text(
+                user.email!,
+                style: _textTheme.bodyText1,
+              ),
+              kVerticalSpaceS,
+              ElevatedButton(
+                onPressed: controller.onTapLogOut,
+                child: Text('logout'),
+              ),
+              kVerticalSpaceXXL,
+              TextFormField(
+                controller: controller.addController,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  if (controller.addController.text != "") {
+                    controller.onTapAddTravelPlan(controller.addController.text);
+                    controller.addController.clear();
+                  }
+                },
+                child: Text('Add Travel Plan'),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,7 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 import 'package:roveassist/app/data/models/user_model.dart';
 
-class DatabaseService {
+class DatabaseService extends GetxService {
+  Future<DatabaseService> init() async {
+    return this;
+  }
+
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
   Future<bool> createNewUser(UserModel user) async {
@@ -25,5 +30,14 @@ class DatabaseService {
       print(e.toString());
       rethrow;
     }
+  }
+
+  Future<void> addPlan(String content, String uid) async {
+    try {
+      await firebaseFirestore.collection("users").doc(uid).collection("travelPlan").add({
+        "timeCreated": Timestamp.now(),
+        "content": content,
+      });
+    } catch (e) {}
   }
 }

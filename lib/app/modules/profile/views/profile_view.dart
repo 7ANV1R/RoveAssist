@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:roveassist/app/data/services/database_services.dart';
 
 import '../../../widgets/loader.dart';
 import '../../logged_in_profile/views/logged_in_profile_view.dart';
@@ -19,9 +20,10 @@ class ProfileView extends GetView<ProfileController> {
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting)
                 return Center(child: Loader());
-              else if (snapshot.hasData)
+              else if (snapshot.hasData) {
+                Get.put(DatabaseService());
                 return LoggedInProfileView();
-              else if (snapshot.hasError) {
+              } else if (snapshot.hasError) {
                 return Center(
                   child: Text('Something went wrong'),
                 );
