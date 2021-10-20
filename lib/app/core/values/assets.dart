@@ -10,3 +10,4 @@ const String kAssetCover1 = 'assets/images/other_image/cox_1.jpg';
 const String kAssetCover2 = 'assets/images/other_image/cox_2.jpg';
 const String kAssetCover3 = 'assets/images/other_image/cox_3.jpg';
 const String kAssetCover4 = 'assets/images/other_image/cox_4.jpg';
+const String kAssetProfileBG = 'assets/images/other_image/profile_bg.png';
