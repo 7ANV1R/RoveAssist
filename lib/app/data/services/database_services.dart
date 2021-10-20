@@ -12,7 +12,7 @@ class DatabaseService extends GetxService {
 
   Future<bool> createNewUser(UserModel user) async {
     try {
-      await firebaseFirestore.collection("users").doc(user.id).set({
+      await firebaseFirestore.collection("users").doc(user.email).set({
         "name": user.name,
         "email": user.email,
         "photoURL": user.photoURL,
@@ -23,9 +23,9 @@ class DatabaseService extends GetxService {
     }
   }
 
-  Future<UserModel> getUser(String uid) async {
+  Future<UserModel> getUser(String email) async {
     try {
-      DocumentSnapshot doc = await firebaseFirestore.collection("users").doc(uid).get();
+      DocumentSnapshot doc = await firebaseFirestore.collection("users").doc(email).get();
       return UserModel.fromDocumentSnapshot(doc);
     } catch (e) {
       print(e.toString());
@@ -33,9 +33,9 @@ class DatabaseService extends GetxService {
     }
   }
 
-  Future<void> addPlan(String? title, String content, String uid) async {
+  Future<void> addPlan(String? title, String content, String? email) async {
     try {
-      await firebaseFirestore.collection("users").doc(uid).collection("travelPlan").add({
+      await firebaseFirestore.collection("users").doc(email).collection("travelPlan").add({
         "timeCreated": Timestamp.now(),
         "content": content,
         "title": title,
@@ -43,10 +43,10 @@ class DatabaseService extends GetxService {
     } catch (e) {}
   }
 
-  Stream<List<TravelPlanModel>> travelPlanStream(String uid) {
+  Stream<List<TravelPlanModel>> travelPlanStream(String? email) {
     return firebaseFirestore
         .collection("users")
-        .doc(uid)
+        .doc(email)
         .collection("travelPlan")
         .orderBy("timeCreated", descending: true)
         .snapshots()

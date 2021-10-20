@@ -11,7 +11,7 @@ class AuthService extends GetxService {
 
   final googleSignIn = GoogleSignIn();
   GoogleSignInAccount? _user;
-  GoogleSignInAccount get user => _user!;
+  GoogleSignInAccount? get user => _user;
 
   Future onTapSignInWithGoogle() async {
     try {
@@ -28,7 +28,7 @@ class AuthService extends GetxService {
 
       await FirebaseAuth.instance.signInWithCredential(credential);
       UserModel _firebaseUser =
-          UserModel(id: _user!.id, name: _user!.displayName, email: _user!.email, photoURL: _user!.photoUrl);
+          UserModel(name: _user!.displayName, email: _user!.email, photoURL: _user!.photoUrl);
       await DatabaseService().createNewUser(_firebaseUser);
     } catch (e) {
       print(e.toString());

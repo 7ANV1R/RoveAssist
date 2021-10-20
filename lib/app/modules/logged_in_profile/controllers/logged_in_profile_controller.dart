@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:roveassist/app/data/models/travel_plan/travel_plan.dart';
@@ -8,10 +9,11 @@ import '../../../data/services/auth_service.dart';
 class LoggedInProfileController extends GetxController {
   final AuthService _authService = Get.find<AuthService>();
   final DatabaseService _databaseService = Get.find<DatabaseService>();
+  final user = FirebaseAuth.instance.currentUser;
 
   @override
   void onInit() {
-    travelPlanList.bindStream(_databaseService.travelPlanStream(_authService.user.id));
+    travelPlanList.bindStream(_databaseService.travelPlanStream(_authService.user?.email ?? user!.email));
     super.onInit();
   }
 
@@ -33,7 +35,7 @@ class LoggedInProfileController extends GetxController {
   TextEditingController addController = TextEditingController();
 
   Future<void> onTapAddTravelPlan(String? title, String content) async {
-    _databaseService.addPlan(title, content, _authService.user.id);
+    _databaseService.addPlan(title, content, _authService.user?.email ?? user!.email);
   }
 
   final RxList<TravelPlanModel> travelPlanList = RxList<TravelPlanModel>();
