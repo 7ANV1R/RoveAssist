@@ -28,7 +28,7 @@ class _HomeViewState extends State<HomeView> with AutomaticKeepAliveClientMixin 
         parallaxOffset: 0.1,
         borderRadius: BorderRadius.vertical(top: Radius.circular(18.0)),
         minHeight: screenSize.height * 0.3,
-        maxHeight: screenSize.height * 0.85,
+        maxHeight: screenSize.height * 0.75,
         panelBuilder: (controller) => ContentPanel(
           scrollController: controller,
         ),
@@ -85,7 +85,7 @@ class _HomeViewState extends State<HomeView> with AutomaticKeepAliveClientMixin 
               ),
             ),
             Positioned(
-              top: screenSize.height * 0.6,
+              top: screenSize.height * 0.5,
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                   primary: Colors.white,
