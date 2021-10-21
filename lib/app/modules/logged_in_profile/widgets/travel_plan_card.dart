@@ -1,10 +1,10 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:roveassist/app/modules/logged_in_profile/widgets/travel_plan_details.dart';
 
 import '../../../data/models/travel_plan/travel_plan.dart';
 import '../controllers/logged_in_profile_controller.dart';
+import 'travel_plan_details.dart';
 
 class TravelPlanCard extends GetView<LoggedInProfileController> {
   TravelPlanCard({Key? key, required this.travelPlan}) : super(key: key);

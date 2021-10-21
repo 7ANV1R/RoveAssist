@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:roveassist/app/data/models/travel_plan/travel_plan.dart';
-import 'package:roveassist/app/data/models/user_model.dart';
+
+import '../models/travel_plan/travel_plan.dart';
+import '../models/user_model.dart';
 
 class DatabaseService extends GetxService {
   Future<DatabaseService> init() async {
@@ -41,6 +42,26 @@ class DatabaseService extends GetxService {
         "title": title,
       });
     } catch (e) {}
+  }
+
+  Future<void> updatePlan(String? newtitle, String newcontent, String? email, String? planID) async {
+    try {
+      await firebaseFirestore.collection("users").doc(email).collection("travelPlan").doc(planID).update({
+        "timeCreated": Timestamp.now(),
+        "content": newcontent,
+        "title": newtitle,
+      });
+    } catch (e) {}
+  }
+
+  Future<void> deletePlan(String? email, String? planID) async {
+    try {
+      await firebaseFirestore.collection("users").doc(email).collection("travelPlan").doc(planID).delete();
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
+      rethrow;
+    }
   }
 
   Stream<List<TravelPlanModel>> travelPlanStream(String? email) {

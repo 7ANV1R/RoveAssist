@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 
 import '../../../core/theme/ui_helpers.dart';
@@ -87,7 +88,6 @@ class LoggedInProfileView extends GetView<LoggedInProfileController> {
                 ),
               ],
             ),
-            kVerticalSpaceM,
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -113,25 +113,37 @@ class LoggedInProfileView extends GetView<LoggedInProfileController> {
                 padding: const EdgeInsets.all(16.0),
                 child: Obx(
                   () => controller.travelPlans.isEmpty
-                      ? Loader()
-                      // : ListView.separated(
-                      //     physics: BouncingScrollPhysics(),
-                      //     shrinkWrap: true,
-                      //     itemCount: controller.travelPlans.length,
-                      //     itemBuilder: (context, index) => TravelPlanCard(
-                      //       travelPlan: controller.travelPlanList[index],
-                      //     ),
-                      //     separatorBuilder: (context, index) => kVerticalSpaceS,
-                      //   ),
-                      : GridView.builder(
+                      ? Center(
+                          child: Container(
+                            child: Column(
+                              children: [
+                                kVerticalSpaceXL,
+                                Icon(
+                                  Icons.sticky_note_2,
+                                  size: 64,
+                                  color: Colors.grey,
+                                ),
+                                //Text('[No Travel Plan Found]', style: _textTheme.button),
+                                TextButton(
+                                    onPressed: controller.onTapAddNavigation,
+                                    child: Text('Plans you add appear here',
+                                        style: _textTheme.subtitle1!.copyWith(color: Colors.grey))),
+                                kVerticalSpaceXXXL,
+                                kVerticalSpaceXXXL,
+                                kVerticalSpaceXXXL,
+                              ],
+                            ),
+                          ),
+                        )
+                      : StaggeredGridView.countBuilder(
+                          crossAxisCount: 4,
                           physics: BouncingScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: controller.travelPlans.length,
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 16,
-                            mainAxisSpacing: 16,
-                          ),
+                          staggeredTileBuilder: (index) =>
+                              StaggeredTile.extent(2, (index % 3 == 0) ? 160 : 240),
+                          crossAxisSpacing: 16,
+                          mainAxisSpacing: 16,
                           itemBuilder: (context, index) => TravelPlanCard(
                             travelPlan: controller.travelPlanList[index],
                           ),

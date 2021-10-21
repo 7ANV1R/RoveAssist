@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:roveassist/app/widgets/snakbar/general_snakbar.dart';
+
+import '../../widgets/snakbar/general_snakbar.dart';
 
 class LocationServices extends GetxService {
   Future<LocationServices> init() async {

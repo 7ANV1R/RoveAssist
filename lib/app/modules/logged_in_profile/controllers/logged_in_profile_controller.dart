@@ -3,11 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:roveassist/app/data/models/travel_plan/travel_plan.dart';
-import 'package:roveassist/app/data/services/database_services.dart';
-import 'package:roveassist/app/modules/logged_in_profile/widgets/add_travel_plan.dart';
 
+import '../../../data/models/travel_plan/travel_plan.dart';
 import '../../../data/services/auth_service.dart';
+import '../../../data/services/database_services.dart';
+import '../widgets/add_travel_plan.dart';
 
 class LoggedInProfileController extends GetxController {
   final AuthService _authService = Get.find<AuthService>();
@@ -42,6 +42,18 @@ class LoggedInProfileController extends GetxController {
     _databaseService.addPlan(title, content, _authService.user?.email ?? user!.email);
   }
 
+  Future<void> onUpdateandSavePlan(String? newtitle, String newcontent, String planID) async {
+    _databaseService.updatePlan(newtitle, newcontent, _authService.user?.email ?? user!.email, planID);
+    Get.back();
+    _detailsPlan.value = true;
+    _updatePlan.value = false;
+  }
+
+  Future<void> onDeletePlan(String planID) async {
+    _databaseService.deletePlan(_authService.user?.email ?? user!.email, planID);
+    Get.back();
+  }
+
   final RxList<TravelPlanModel> travelPlanList = RxList<TravelPlanModel>();
 
   List<TravelPlanModel> get travelPlans => travelPlanList;
@@ -54,5 +66,23 @@ class LoggedInProfileController extends GetxController {
     var dateTimeFromStamp = DateTime.fromMillisecondsSinceEpoch(timestamp.seconds * 1000);
     return DateFormat('hh:mm a').format(dateTimeFromStamp);
     // return DateFormat('hh:mm a dd MMMM, yyyy').format(dateTimeFromStamp);
+  }
+
+  //For details page:
+  final RxBool _detailsPlan = RxBool(true);
+  bool get detailsPlan => _detailsPlan.value;
+
+  //For update page :
+  final RxBool _updatePlan = RxBool(false);
+  bool get updatePlan => _updatePlan.value;
+
+  void onUpdate() {
+    _detailsPlan.value = false;
+    _updatePlan.value = true;
+  }
+
+  void onGetBackFromUpdate() {
+    _detailsPlan.value = true;
+    _updatePlan.value = false;
   }
 }

@@ -42,7 +42,7 @@ class AddTravelPlan extends GetView<LoggedInProfileController> {
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
               ),
 
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.text,
               textInputAction: TextInputAction.next,
               //onFieldSubmitted: controller.onTapSearch,
               //validator: controller.searchValidator,
