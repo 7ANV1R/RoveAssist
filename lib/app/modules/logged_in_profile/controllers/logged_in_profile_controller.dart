@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:roveassist/app/widgets/snakbar/general_snakbar.dart';
 
 import '../../../data/models/travel_plan/travel_plan.dart';
 import '../../../data/services/auth_service.dart';
@@ -45,13 +47,30 @@ class LoggedInProfileController extends GetxController {
   Future<void> onUpdateandSavePlan(String? newtitle, String newcontent, String planID) async {
     _databaseService.updatePlan(newtitle, newcontent, _authService.user?.email ?? user!.email, planID);
     Get.back();
+    await showGeneralSnakbar(
+      message: 'Plan Updated',
+      backgroundColor: Colors.red,
+      icon: Icon(
+        Icons.delete,
+        color: Colors.white,
+      ),
+    );
     _detailsPlan.value = true;
     _updatePlan.value = false;
   }
 
   Future<void> onDeletePlan(String planID) async {
     _databaseService.deletePlan(_authService.user?.email ?? user!.email, planID);
+
     Get.back();
+    await showGeneralSnakbar(
+      message: 'Plan Deleted',
+      backgroundColor: Colors.red,
+      icon: Icon(
+        Icons.delete,
+        color: Colors.white,
+      ),
+    );
   }
 
   final RxList<TravelPlanModel> travelPlanList = RxList<TravelPlanModel>();
