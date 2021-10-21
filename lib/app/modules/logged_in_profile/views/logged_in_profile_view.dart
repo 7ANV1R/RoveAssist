@@ -136,12 +136,11 @@ class LoggedInProfileView extends GetView<LoggedInProfileController> {
                           ),
                         )
                       : StaggeredGridView.countBuilder(
-                          crossAxisCount: 4,
+                          crossAxisCount: 2,
                           physics: BouncingScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: controller.travelPlans.length,
-                          staggeredTileBuilder: (index) =>
-                              StaggeredTile.extent(2, (index % 3 == 0) ? 160 : 240),
+                          staggeredTileBuilder: (index) => StaggeredTile.fit(1),
                           crossAxisSpacing: 16,
                           mainAxisSpacing: 16,
                           itemBuilder: (context, index) => TravelPlanCard(

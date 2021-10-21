@@ -85,7 +85,7 @@ class PlanDetails extends StatelessWidget {
             child: ListView(
               children: [
                 kVerticalSpaceS,
-                Text(travelPlan.title!, style: _textTheme.headline5),
+                Text(travelPlan.title!, style: _textTheme.headline6),
                 Divider(),
                 kVerticalSpaceXS,
                 Text(travelPlan.content!, style: _textTheme.bodyText1),
@@ -157,7 +157,7 @@ class UpdatePlan extends StatelessWidget {
           child: ListView(
             children: [
               TextFormField(
-                style: _textTheme.headline5,
+                style: _textTheme.headline6,
 
                 controller: updatetravelPlanTitleController,
                 decoration: InputDecoration(

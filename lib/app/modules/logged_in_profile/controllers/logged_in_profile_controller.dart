@@ -35,6 +35,14 @@ class LoggedInProfileController extends GetxController {
     super.dispose();
 
     _authService.onTapLogOut();
+    await showGeneralSnakbar(
+      message: 'Logged out successfully',
+      backgroundColor: Colors.green,
+      icon: Icon(
+        Icons.logout,
+        color: Colors.white,
+      ),
+    );
   }
 
   TextEditingController travelPlanTextController = TextEditingController();
@@ -49,9 +57,9 @@ class LoggedInProfileController extends GetxController {
     Get.back();
     await showGeneralSnakbar(
       message: 'Plan Updated',
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.green,
       icon: Icon(
-        Icons.delete,
+        Icons.edit_attributes_rounded,
         color: Colors.white,
       ),
     );
