@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:roveassist/app/data/models/travel_plan/travel_plan.dart';
 import 'package:roveassist/app/data/services/database_services.dart';
 import 'package:roveassist/app/modules/logged_in_profile/widgets/add_travel_plan.dart';
@@ -46,5 +48,11 @@ class LoggedInProfileController extends GetxController {
 
   Future<void> onTapAddNavigation() async {
     Get.to(() => AddTravelPlan());
+  }
+
+  String formattedDateTime(Timestamp timestamp) {
+    var dateTimeFromStamp = DateTime.fromMillisecondsSinceEpoch(timestamp.seconds * 1000);
+    return DateFormat('hh:mm a').format(dateTimeFromStamp);
+    // return DateFormat('hh:mm a dd MMMM, yyyy').format(dateTimeFromStamp);
   }
 }
