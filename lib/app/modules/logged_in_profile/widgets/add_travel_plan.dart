@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:roveassist/app/core/theme/ui_helpers.dart';
 import 'package:roveassist/app/modules/logged_in_profile/controllers/logged_in_profile_controller.dart';
+import 'package:roveassist/app/routes/app_pages.dart';
+import 'package:roveassist/app/widgets/snakbar/general_snakbar.dart';
 
 class AddTravelPlan extends GetView<LoggedInProfileController> {
   const AddTravelPlan({Key? key}) : super(key: key);
@@ -11,75 +14,27 @@ class AddTravelPlan extends GetView<LoggedInProfileController> {
     final ThemeData _themeData = Theme.of(context);
     final TextTheme _textTheme = _themeData.textTheme;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Add plan'),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView(
+        appBar: AppBar(
+          title: Text('Add Travel Plan'),
+          centerTitle: true,
+          leading: BackButton(
+            onPressed: () {
+              controller.travelPlanTitleController.clear();
+              controller.travelPlanTextController.clear();
+              Get.back();
+            },
+          ),
+          systemOverlayStyle: SystemUiOverlayStyle(statusBarIconBrightness: Brightness.dark),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            TextFormField(
-              controller: controller.travelPlanTitleController,
-              decoration: InputDecoration(
-                fillColor: Colors.white,
-                suffixIcon: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Icon(Icons.title),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: _themeData.primaryColor, width: 2.0),
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: _themeData.primaryColor, width: 2.0),
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                labelText: 'Plan Title',
-                labelStyle: TextStyle(
-                  color: _themeData.primaryColor,
-                ),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-              ),
-
-              keyboardType: TextInputType.text,
-              textInputAction: TextInputAction.next,
-              //onFieldSubmitted: controller.onTapSearch,
-              //validator: controller.searchValidator,
-            ),
-            kVerticalSpaceM,
-            TextFormField(
-              controller: controller.travelPlanTextController,
-              minLines: 2,
-              maxLines: 20,
-              decoration: InputDecoration(
-                fillColor: Colors.white,
-                suffixIcon: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Icon(Icons.description),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: _themeData.primaryColor, width: 2.0),
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: _themeData.primaryColor, width: 2.0),
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                labelText: 'Plan Details',
-                labelStyle: TextStyle(
-                  color: _themeData.primaryColor,
-                ),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-              ),
-
-              keyboardType: TextInputType.text,
-              textInputAction: TextInputAction.done,
-              //onFieldSubmitted: controller.onTapSearch,
-              //validator: controller.searchValidator,
-            ),
-            kVerticalSpaceL,
             ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.red,
+              ),
               onPressed: () {
                 if (controller.travelPlanTitleController.text != "" &&
                     controller.travelPlanTextController.text != "") {
@@ -87,15 +42,65 @@ class AddTravelPlan extends GetView<LoggedInProfileController> {
                       controller.travelPlanTitleController.text, controller.travelPlanTextController.text);
                   controller.travelPlanTitleController.clear();
                   controller.travelPlanTextController.clear();
-                  Get.back();
+                } else if (controller.travelPlanTitleController.text == "" &&
+                    controller.travelPlanTextController.text != "") {
+                  controller.onTapAddTravelPlan('Untitled', controller.travelPlanTextController.text);
+                  controller.travelPlanTitleController.clear();
+                  controller.travelPlanTextController.clear();
+                } else {
+                  showGeneralSnakbar(
+                    message: 'Details are required',
+                    backgroundColor: Colors.red,
+                    icon: Icon(
+                      Icons.warning_amber_rounded,
+                      color: Colors.white,
+                    ),
+                  );
                 }
               },
-              icon: Icon(Icons.done),
-              label: Text('Save Plan'),
+              icon: Icon(Icons.description),
+              label: Text('Save'),
             ),
           ],
         ),
-      ),
-    );
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: ListView(
+            children: [
+              TextFormField(
+                style: _textTheme.headline6,
+                controller: controller.travelPlanTitleController,
+                decoration: InputDecoration(
+                  fillColor: Colors.white,
+                  suffixIcon: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Icon(Icons.title),
+                  ),
+                  hintText: 'Title',
+                  labelStyle: TextStyle(
+                    color: _themeData.primaryColor,
+                  ),
+                ),
+                keyboardType: TextInputType.text,
+                textInputAction: TextInputAction.next,
+              ),
+              kVerticalSpaceXS,
+              TextFormField(
+                autofocus: true,
+                style: _textTheme.bodyText1,
+                maxLines: 20,
+                controller: controller.travelPlanTextController,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  fillColor: Colors.white,
+                  hintText: 'Travel Plan Details',
+                  labelStyle: TextStyle(
+                    color: _themeData.primaryColor,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 }

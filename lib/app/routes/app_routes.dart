@@ -12,6 +12,9 @@ abstract class Routes {
   static const PROFILE = _Paths.PROFILE;
   static const EXPLORE_NEARBY = _Paths.HOME + _Paths.EXPLORE_NEARBY;
   static const LOGGED_IN_PROFILE = _Paths.LOGGED_IN_PROFILE;
+  static const PLACE = _Paths.EXPLORE + _Paths.PLACE;
+  static const RESTAURANT = _Paths.EXPLORE + _Paths.RESTAURANT;
+  static const HOTEL = _Paths.EXPLORE + _Paths.HOTEL;
 }
 
 abstract class _Paths {
@@ -23,4 +26,7 @@ abstract class _Paths {
   static const PROFILE = '/profile';
   static const EXPLORE_NEARBY = '/explore-nearby';
   static const LOGGED_IN_PROFILE = '/logged-in-profile';
+  static const PLACE = '/place';
+  static const RESTAURANT = '/restaurant';
+  static const HOTEL = '/hotel';
 }

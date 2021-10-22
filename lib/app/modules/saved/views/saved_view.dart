@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:roveassist/app/core/theme/ui_helpers.dart';
-import 'package:roveassist/app/modules/home/widgets/cardOne.dart';
 
+import '../../../core/theme/ui_helpers.dart';
 import '../controllers/saved_controller.dart';
+import '../widgets/saved_hotel.dart';
+import '../widgets/saved_place.dart';
+import '../widgets/saved_restaurant.dart';
 
 class SavedView extends GetView<SavedController> {
   @override
@@ -12,47 +13,101 @@ class SavedView extends GetView<SavedController> {
     final ThemeData _themeData = Theme.of(context);
     final TextTheme _textTheme = _themeData.textTheme;
     var screenSize = MediaQuery.of(context).size;
-    return Scaffold(
-        // appBar: AppBar(
-        //   elevation: 0,
-        //   backgroundColor: Colors.transparent,
-        //   title: Text(
-        //     'Saved Place',
-        //     style: TextStyle(color: _themeData.secondaryHeaderColor),
-        //   ),
-        //   centerTitle: true,
-        // ),
-        body: SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-        child: ListView(
-          shrinkWrap: true,
-          physics: BouncingScrollPhysics(),
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'BOOKMARKED',
-              style: _textTheme.headline3!.copyWith(color: _themeData.primaryColor),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Your Saved',
+                    style: _textTheme.headline1!
+                        .copyWith(color: _themeData.secondaryHeaderColor, fontWeight: FontWeight.w900),
+                  ),
+                  kVerticalSpaceXS,
+                  Text(
+                    'Things you\'ve bookmarked',
+                    style: _textTheme.subtitle1!.copyWith(color: Colors.grey),
+                  ),
+                ],
+              ),
             ),
-            kVerticalSpaceS,
-            GridView.builder(
-                shrinkWrap: true,
-                physics: BouncingScrollPhysics(),
-                itemCount: 8,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 16.0,
-                  mainAxisSpacing: 16.0,
-                  childAspectRatio: 0.8,
-                ),
-                itemBuilder: (context, index) => Container(
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                    ))
+            _buildTabBar(_themeData, _textTheme),
           ],
         ),
       ),
-    ));
+    );
+  }
+
+  Widget _buildTabBar(ThemeData _themeData, TextTheme _textTheme) {
+    return Flexible(
+      child: Container(
+        child: DefaultTabController(
+          length: 3,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 25,
+                ),
+                constraints: BoxConstraints.expand(height: 60),
+                child: TabBar(
+                  //isScrollable: true,
+                  indicator: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(5),
+                      topRight: Radius.circular(5),
+                    ), // Creates border
+                    color: _themeData.primaryColor,
+                  ),
+                  indicatorPadding: EdgeInsets.only(top: 56),
+                  indicatorWeight: 4.0,
+                  //indicatorSize: TabBarIndicatorSize.label,
+                  labelColor: _themeData.primaryColor,
+                  unselectedLabelColor: const Color(0xFF9A9A9A),
+                  labelStyle: _textTheme.subtitle1,
+
+                  tabs: const [
+                    Tab(
+                      text: "Place",
+                    ),
+                    Tab(
+                      text: "Restaurant",
+                    ),
+                    Tab(
+                      text: "Hotel",
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: SizedBox(
+                  height: 0.6,
+                  child: Container(
+                    color: const Color(0xFFE6E6E6),
+                  ),
+                ),
+              ),
+              kVerticalSpaceM,
+              Expanded(
+                child: TabBarView(
+                  children: const [
+                    SavedPlace(),
+                    SavedRestaurant(),
+                    SavedHotel(),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

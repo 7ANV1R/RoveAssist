@@ -34,8 +34,8 @@ class NavServiceView extends GetView<NavServiceController> {
       ),
       bottomNavigationBar: Obx(() => FancyBottomNavigation(
             tabs: [
-              TabData(iconData: Icons.backpack, title: 'Home'),
-              TabData(iconData: Icons.travel_explore, title: 'Explore'),
+              TabData(iconData: Icons.directions, title: 'Home'),
+              TabData(iconData: Icons.space_dashboard_rounded, title: 'Explore'),
               TabData(iconData: Icons.loyalty, title: 'Saved'),
               TabData(iconData: Icons.manage_accounts, title: 'Profile'),
             ],

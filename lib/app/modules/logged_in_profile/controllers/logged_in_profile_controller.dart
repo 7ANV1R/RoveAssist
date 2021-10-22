@@ -50,6 +50,15 @@ class LoggedInProfileController extends GetxController {
 
   Future<void> onTapAddTravelPlan(String? title, String content) async {
     _databaseService.addPlan(title, content, _authService.user?.email ?? user!.email);
+    Get.back();
+    await showGeneralSnakbar(
+      message: 'Plan Added',
+      backgroundColor: Colors.green,
+      icon: Icon(
+        Icons.edit_attributes_rounded,
+        color: Colors.white,
+      ),
+    );
   }
 
   Future<void> onUpdateandSavePlan(String? newtitle, String newcontent, String planID) async {

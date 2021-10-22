@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import '../../../core/theme/ui_helpers.dart';
 import '../../../core/values/assets.dart';
 import '../../../data/services/auth_service.dart';
-import '../../../widgets/loader.dart';
 import '../controllers/logged_in_profile_controller.dart';
 import '../widgets/travel_plan_card.dart';
 
