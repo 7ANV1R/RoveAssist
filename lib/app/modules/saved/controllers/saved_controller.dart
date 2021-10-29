@@ -1,11 +1,12 @@
 import 'package:get/get.dart';
+import 'package:roveassist/app/data/models/type_model/place_model.dart';
+import 'package:roveassist/app/data/services/database_services.dart';
 
 class SavedController extends GetxController {
-  //TODO: Implement SavedController
-
-  final count = 0.obs;
+  final DatabaseService _databaseService = Get.find<DatabaseService>();
   @override
   void onInit() {
+    savedplaceDataList.bindStream(_databaseService.savedplaceFetchStream());
     super.onInit();
   }
 
@@ -16,5 +17,8 @@ class SavedController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
+
+  final RxList<PlaceDataModel> savedplaceDataList = RxList<PlaceDataModel>();
+
+  List<PlaceDataModel> get savedplaceData => savedplaceDataList;
 }

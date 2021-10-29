@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/theme/ui_helpers.dart';
+import '../../../data/services/database_services.dart';
 import '../controllers/explore_controller.dart';
 import '../hotel/controllers/hotel_controller.dart';
 import '../hotel/views/hotel_view.dart';
@@ -13,29 +14,30 @@ import '../restaurant/views/restaurant_view.dart';
 class ExploreView extends GetView<ExploreController> {
   @override
   Widget build(BuildContext context) {
+    Get.put(DatabaseService());
     final ThemeData _themeData = Theme.of(context);
     final TextTheme _textTheme = _themeData.textTheme;
 
     var screenSize = MediaQuery.of(context).size;
 
-    Get.lazyPut<RestaurantController>(
-      () => RestaurantController(),
+    Get.put(
+      RestaurantController(),
     );
-    Get.lazyPut<PlaceController>(
-      () => PlaceController(),
+    Get.put(
+      PlaceController(),
     );
     Get.lazyPut<HotelController>(
       () => HotelController(),
     );
     return SafeArea(
       child: Scaffold(
-          body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView(
-          shrinkWrap: true,
-          physics: BouncingScrollPhysics(),
-          children: [
-            Column(
+          body: ListView(
+        shrinkWrap: true,
+        physics: BouncingScrollPhysics(),
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -58,16 +60,16 @@ class ExploreView extends GetView<ExploreController> {
                 ),
               ],
             ),
-            kVerticalSpaceM,
-            Obx(
-              () => controller.showingPlace
-                  ? PlaceView()
-                  : controller.showingRestaurant
-                      ? RestaurantView()
-                      : HotelView(),
-            ),
-          ],
-        ),
+          ),
+          kVerticalSpaceM,
+          Obx(
+            () => controller.showingPlace
+                ? PlaceView()
+                : controller.showingRestaurant
+                    ? RestaurantView()
+                    : HotelView(),
+          ),
+        ],
       )),
     );
   }

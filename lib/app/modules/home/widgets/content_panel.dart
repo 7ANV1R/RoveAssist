@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:roveassist/app/modules/home/widgets/popular_card.dart';
+import 'package:get/get.dart';
+import 'package:roveassist/app/modules/explore/place/widgets/place_card.dart';
 
 import '../../../core/theme/ui_helpers.dart';
+import '../controllers/home_controller.dart';
 import 'cardOne.dart';
+import 'popular_card.dart';
 
-class ContentPanel extends StatelessWidget {
+class ContentPanel extends GetView<HomeController> {
   final ScrollController scrollController;
   const ContentPanel({Key? key, required this.scrollController}) : super(key: key);
 
@@ -36,14 +39,17 @@ class ContentPanel extends StatelessWidget {
                   Container(
                     height: screenSize.height * 0.4, // height of card inside main listview
                     child: ListView.builder(
+                      physics: BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
-                      itemCount: 8,
+                      itemCount: controller.recplaceData.length,
                       itemBuilder: (context, index) {
                         return Container(
                           color: Color(0xFFFAFBFB),
                           height: screenSize.height * 0.35,
                           width: screenSize.height * 0.28,
-                          child: CardOne(),
+                          child: CardOne(
+                            place: controller.recplaceData[index],
+                          ),
                         );
                       },
                     ),
@@ -60,18 +66,22 @@ class ContentPanel extends StatelessWidget {
                     ),
                   ),
                   kVerticalSpaceL,
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16, right: 16),
-                    child: ListView.separated(
-                      physics: ScrollPhysics(),
-                      itemCount: 10,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return PopularCard();
-                      },
-                      separatorBuilder: (context, index) => kVerticalSpaceL,
-                    ),
-                  ),
+                  Obx(() => Padding(
+                        padding: const EdgeInsets.only(left: 16, right: 16),
+                        child: ListView.separated(
+                          physics: BouncingScrollPhysics(),
+                          itemCount: controller.recplaceData.length.isLowerThan(4)
+                              ? controller.recplaceData.length
+                              : 5,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return PlaceCard(
+                              place: controller.recplaceData[index],
+                            );
+                          },
+                          separatorBuilder: (context, index) => kVerticalSpaceL,
+                        ),
+                      )),
                 ],
               ),
             ],

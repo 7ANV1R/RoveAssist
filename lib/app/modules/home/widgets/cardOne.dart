@@ -1,11 +1,16 @@
 import 'package:animations/animations.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:roveassist/app/data/models/type_model/place_model.dart';
+import 'package:roveassist/app/modules/explore/place/widgets/place_details.dart';
+import 'package:roveassist/app/widgets/loader.dart';
 
 import '../../../core/theme/ui_helpers.dart';
 import '../../../core/values/assets.dart';
 
 class CardOne extends StatelessWidget {
-  const CardOne({Key? key}) : super(key: key);
+  CardOne({Key? key, required this.place}) : super(key: key);
+  final PlaceDataModel place;
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +58,11 @@ class CardOne extends StatelessWidget {
                               ),
                             ],
                           ),
-                          child: Image.asset(
-                            kAssetCover1,
-                            fit: BoxFit.cover,
+                          child: CachedNetworkImage(
+                            imageUrl: place.photoUrl!,
+                            placeholder: (context, url) => Loader(),
+                            fit: BoxFit.fill,
+                            errorWidget: (context, url, error) => Icon(Icons.error),
                           ),
                         ),
                         Positioned(
@@ -86,19 +93,19 @@ class CardOne extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Cox's Bazar",
+                        place.name!,
                         style: _textTheme.headline6!.copyWith(color: _themeData.primaryColor),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            Icons.place,
-                            color: Colors.grey,
-                            size: 15,
+                            Icons.star_rounded,
+                            color: Colors.yellow[700],
+                            size: 18,
                           ),
                           Text(
-                            'Chittagong, Bangladesh',
+                            '4.3',
                             style: _textTheme.bodyText1!.copyWith(color: Colors.grey),
                           ),
                         ],
@@ -108,7 +115,9 @@ class CardOne extends StatelessWidget {
                 ],
               ),
             ),
-            openBuilder: (context, action) => Container(),
+            openBuilder: (context, action) => PlaceDetails(
+              place: place,
+            ),
           ),
         ),
       ),

@@ -1,24 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 
+import '../../../../data/services/database_services.dart';
 import '../controllers/place_controller.dart';
+import '../widgets/place_card.dart';
 
 class PlaceView extends GetView<PlaceController> {
   @override
   Widget build(BuildContext context) {
-    return StaggeredGridView.countBuilder(
-        crossAxisCount: 2,
-        physics: BouncingScrollPhysics(),
+    final ThemeData _themeData = Theme.of(context);
+    Get.put(DatabaseService());
+    return Obx(() => ListView.builder(
         shrinkWrap: true,
-        itemCount: 10,
-        staggeredTileBuilder: (index) =>
-            StaggeredTile.count((index % 3 == 0 ? 3 : 1), (index % 3 == 0 ? 2 : 1)),
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
-        itemBuilder: (context, index) => Container(
-              height: 80,
-              color: Colors.grey,
-            ));
+        physics: BouncingScrollPhysics(),
+        itemCount: controller.placeData.length,
+        itemBuilder: (context, index) => Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: _themeData.primaryColor.withOpacity(0.25),
+                      blurRadius: 20,
+                      offset: Offset(0, 8), //position of shadow
+                    ),
+                  ],
+                ),
+                child: PlaceCard(
+                  place: controller.placeData[index],
+                ),
+              ),
+            )));
   }
 }

@@ -1,16 +1,16 @@
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:roveassist/app/modules/explore/controllers/explore_controller.dart';
-import 'package:roveassist/app/modules/explore/views/explore_view.dart';
-import 'package:roveassist/app/modules/home/controllers/home_controller.dart';
-import 'package:roveassist/app/modules/home/views/home_view.dart';
-import 'package:roveassist/app/modules/profile/controllers/profile_controller.dart';
-import 'package:roveassist/app/modules/profile/views/profile_view.dart';
-import 'package:roveassist/app/modules/saved/controllers/saved_controller.dart';
-import 'package:roveassist/app/modules/saved/views/saved_view.dart';
 
+import '../../../data/services/database_services.dart';
+import '../../explore/controllers/explore_controller.dart';
+import '../../explore/views/explore_view.dart';
+import '../../home/controllers/home_controller.dart';
+import '../../home/views/home_view.dart';
+import '../../profile/controllers/profile_controller.dart';
+import '../../profile/views/profile_view.dart';
+import '../../saved/controllers/saved_controller.dart';
+import '../../saved/views/saved_view.dart';
 import '../controllers/nav_service_controller.dart';
 
 class NavServiceView extends GetView<NavServiceController> {
@@ -74,6 +74,7 @@ class NavServiceView extends GetView<NavServiceController> {
     Get.lazyPut<HomeController>(
       () => HomeController(),
     );
+    Get.put(DatabaseService());
     return HomeView();
   }
 }

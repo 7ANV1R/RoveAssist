@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../models/travel_plan/travel_plan.dart';
+import '../models/type_model/place_model.dart';
 import '../models/user_model.dart';
 
 class DatabaseService extends GetxService {
@@ -78,5 +79,51 @@ class DatabaseService extends GetxService {
       });
       return returnValue;
     });
+  }
+
+  Stream<List<PlaceDataModel>> placeFetchStream() {
+    return firebaseFirestore.collection("places").orderBy("name", descending: true).snapshots().map((event) {
+      List<PlaceDataModel> returnValue = [];
+      event.docs.forEach((element) {
+        returnValue.add(PlaceDataModel.fromDocumentSnapshot(element));
+      });
+      return returnValue;
+    });
+  }
+
+  Stream<List<PlaceDataModel>> savedplaceFetchStream() {
+    return firebaseFirestore.collection("places").where("isSaved", isEqualTo: true).snapshots().map((event) {
+      List<PlaceDataModel> returnValue = [];
+      event.docs.forEach((element) {
+        returnValue.add(PlaceDataModel.fromDocumentSnapshot(element));
+      });
+      return returnValue;
+    });
+  }
+
+  Stream<List<PlaceDataModel>> recPlaceFetchStream() {
+    return firebaseFirestore.collection("places").where("isRec", isEqualTo: true).snapshots().map((event) {
+      List<PlaceDataModel> returnValue = [];
+      event.docs.forEach((element) {
+        returnValue.add(PlaceDataModel.fromDocumentSnapshot(element));
+      });
+      return returnValue;
+    });
+  }
+
+  Future<void> addSavedPlace(String? placeID) async {
+    try {
+      await firebaseFirestore.collection("places").doc(placeID).update({
+        "isSaved": true,
+      });
+    } catch (e) {}
+  }
+
+  Future<void> removeSavedPlace(String? placeID) async {
+    try {
+      await firebaseFirestore.collection("places").doc(placeID).update({
+        "isSaved": false,
+      });
+    } catch (e) {}
   }
 }
