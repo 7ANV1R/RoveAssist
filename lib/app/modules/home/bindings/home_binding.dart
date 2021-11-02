@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:roveassist/app/data/services/database_services.dart';
 //import 'package:roveassist/app/data/services/storage_service.dart';
 
 import '../controllers/home_controller.dart';
@@ -10,5 +11,7 @@ class HomeBinding extends Bindings {
       () => HomeController(),
     );
     //Get.put(StorageService());
+
+    Get.put(DatabaseService());
   }
 }

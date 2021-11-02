@@ -50,8 +50,10 @@ dependencies:
   
   flutter: 
     sdk: flutter
+  http: ^0.13.4
 
-
+get_cli:
+  sub_folder: false
   
   
   

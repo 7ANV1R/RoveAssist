@@ -1,5 +1,10 @@
 import 'package:get/get.dart';
 
+import 'package:roveassist/app/modules/login_page/login_page_binding.dart';
+import 'package:roveassist/app/modules/login_page/login_page_view.dart';
+import 'package:roveassist/app/modules/sign_up_page/sign_up_page_binding.dart';
+import 'package:roveassist/app/modules/sign_up_page/sign_up_page_view.dart';
+
 import '../modules/explore/bindings/explore_binding.dart';
 import '../modules/explore/hotel/bindings/hotel_binding.dart';
 import '../modules/explore/hotel/views/hotel_view.dart';
@@ -28,7 +33,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.ONBOARDING;
+  static const INITIAL = Routes.NAV_SERVICE;
 
   static final routes = [
     GetPage(
@@ -58,23 +63,27 @@ class AppPages {
       page: () => SavedView(),
       binding: SavedBinding(),
     ),
-    GetPage(name: _Paths.EXPLORE, page: () => ExploreView(), binding: ExploreBinding(), children: [
-      GetPage(
-        name: _Paths.PLACE,
-        page: () => PlaceView(),
-        binding: PlaceBinding(),
-      ),
-      GetPage(
-        name: _Paths.RESTAURANT,
-        page: () => RestaurantView(),
-        binding: RestaurantBinding(),
-      ),
-      GetPage(
-        name: _Paths.HOTEL,
-        page: () => HotelView(),
-        binding: HotelBinding(),
-      ),
-    ]),
+    GetPage(
+        name: _Paths.EXPLORE,
+        page: () => ExploreView(),
+        binding: ExploreBinding(),
+        children: [
+          GetPage(
+            name: _Paths.PLACE,
+            page: () => PlaceView(),
+            binding: PlaceBinding(),
+          ),
+          GetPage(
+            name: _Paths.RESTAURANT,
+            page: () => RestaurantView(),
+            binding: RestaurantBinding(),
+          ),
+          GetPage(
+            name: _Paths.HOTEL,
+            page: () => HotelView(),
+            binding: HotelBinding(),
+          ),
+        ]),
     GetPage(
       name: _Paths.PROFILE,
       page: () => ProfileView(),
@@ -84,6 +93,16 @@ class AppPages {
       name: _Paths.LOGGED_IN_PROFILE,
       page: () => LoggedInProfileView(),
       binding: LoggedInProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOGIN_PAGE,
+      page: () => LoginPageView(),
+      binding: LoginPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.SIGN_UP_PAGE,
+      page: () => SignUpPageView(),
+      binding: SignUpPageBinding(),
     ),
   ];
 }
