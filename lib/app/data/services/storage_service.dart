@@ -18,6 +18,6 @@ class StorageService extends GetxService {
   int get activeThemeId => _appConfig.read('active_theme') ?? 1;
   set activeThemeId(int value) => _appConfig.write('active_theme', value);
 
-  String? get authToken => _authConfig.read('auth_token') as String?;
-  set authToken(String? value) => _authConfig.write('auth_token', value);
+  String? get authToken => _authConfig.read('refresh_token') as String?;
+  set authToken(String? value) => _authConfig.write('refresh_token', value);
 }

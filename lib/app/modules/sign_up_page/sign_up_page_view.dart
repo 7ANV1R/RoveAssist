@@ -91,10 +91,10 @@ class SignUpPageView extends GetView<SignUpPageController> {
             ),
             Row(
               children: [
-                Text('If you are new /'),
+                Text('already member? /'),
                 TextButton(
-                  onPressed: () {},
-                  child: Text('Sign up'),
+                  onPressed: controller.onTapLogIn,
+                  child: Text('Login'),
                 ),
               ],
             ),

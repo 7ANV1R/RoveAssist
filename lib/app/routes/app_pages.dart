@@ -4,6 +4,8 @@ import 'package:roveassist/app/modules/login_page/login_page_binding.dart';
 import 'package:roveassist/app/modules/login_page/login_page_view.dart';
 import 'package:roveassist/app/modules/sign_up_page/sign_up_page_binding.dart';
 import 'package:roveassist/app/modules/sign_up_page/sign_up_page_view.dart';
+import 'package:roveassist/app/modules/user_profile/user_profile_binding.dart';
+import 'package:roveassist/app/modules/user_profile/user_profile_view.dart';
 
 import '../modules/explore/bindings/explore_binding.dart';
 import '../modules/explore/hotel/bindings/hotel_binding.dart';
@@ -103,6 +105,11 @@ class AppPages {
       name: _Paths.SIGN_UP_PAGE,
       page: () => SignUpPageView(),
       binding: SignUpPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.USER_PROFILE,
+      page: () => UserProfileView(),
+      binding: UserProfileBinding(),
     ),
   ];
 }

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:roveassist/app/core/theme/ui_helpers.dart';
-import 'package:roveassist/app/core/values/assets.dart';
-import 'package:roveassist/app/widgets/default_button.dart';
 
+import '../../core/theme/ui_helpers.dart';
+import '../../core/values/assets.dart';
+import '../../widgets/default_button.dart';
 import 'login_page_controller.dart';
 
 class LoginPageView extends GetView<LoginPageController> {
@@ -21,20 +20,30 @@ class LoginPageView extends GetView<LoginPageController> {
           children: [
             Image.asset(
               kAssetOnboarding3,
-              height: screenSize.height * 0.4,
+              height: screenSize.height * 0.3,
             ),
             Text(
               'Hey,\nLogin Now.',
               style: _textTheme.headline3!.copyWith(color: _themeData.primaryColor),
             ),
-            kVerticalSpaceS,
+            kVerticalSpaceM,
             Form(
               child: Column(
                 children: [
                   TextFormField(
+                    controller: controller.emailTextController,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.email),
                       labelText: 'Email',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                  kVerticalSpaceM,
+                  TextFormField(
+                    controller: controller.passwordController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.password_outlined),
+                      labelText: 'Password',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -43,7 +52,12 @@ class LoginPageView extends GetView<LoginPageController> {
             ),
             kVerticalSpaceM,
             DefaultButton(
-              onTap: () {},
+              onTap: () {
+                if (controller.emailTextController.text != "" && controller.passwordController.text != "") {
+                  controller.onTapLogIn(
+                      controller.emailTextController.text, controller.passwordController.text);
+                }
+              },
               label: Text(
                 'LOGIN',
                 style: _textTheme.button!.copyWith(color: _themeData.scaffoldBackgroundColor),

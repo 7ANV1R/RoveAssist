@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:roveassist/app/routes/app_pages.dart';
 
 class SignUpPageController extends GetxController {
   final GetConnect connect = GetConnect();
@@ -44,13 +45,12 @@ class SignUpPageController extends GetxController {
 
     try {
       String baseUrl = 'http://172.17.2.89:8000/accounts/auth/';
-      Map<String, String> headers = {'Content-Type': 'application/json;charset=UTF-8', 'Charset': 'utf-8'};
+      Map<String, String> headers = {'Content-Type': 'application/json'};
       http.Response response = await http.post(Uri.parse(baseUrl),
           headers: headers,
           body: json.encode(
             {"password": password, "email": email, "username": username},
           ));
-      print(response.toString());
       var data = json.decode(response.body) as Map;
       print(data);
       print('user created');
@@ -76,5 +76,9 @@ class SignUpPageController extends GetxController {
     //   print(e.toString());
     // }
     // return true;
+  }
+
+  Future<void> onTapLogIn() async {
+    await Get.toNamed(Routes.LOGIN_PAGE);
   }
 }

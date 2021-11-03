@@ -18,6 +18,7 @@ abstract class Routes {
 
   static const LOGIN_PAGE = _Paths.LOGIN_PAGE;
   static const SIGN_UP_PAGE = _Paths.SIGN_UP_PAGE;
+  static const USER_PROFILE = _Paths.USER_PROFILE;
 }
 
 abstract class _Paths {
@@ -35,4 +36,5 @@ abstract class _Paths {
 
   static const LOGIN_PAGE = '/login-page';
   static const SIGN_UP_PAGE = '/sign-up-page';
+  static const USER_PROFILE = '/user-profile';
 }

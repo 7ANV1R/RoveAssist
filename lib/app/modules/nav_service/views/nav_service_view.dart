@@ -1,10 +1,13 @@
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:roveassist/app/data/services/storage_service.dart';
 import 'package:roveassist/app/modules/login_page/login_page_controller.dart';
 import 'package:roveassist/app/modules/login_page/login_page_view.dart';
 import 'package:roveassist/app/modules/sign_up_page/sign_up_page_controller.dart';
 import 'package:roveassist/app/modules/sign_up_page/sign_up_page_view.dart';
+import 'package:roveassist/app/modules/user_profile/user_profile_controller.dart';
+import 'package:roveassist/app/modules/user_profile/user_profile_view.dart';
 
 import '../../../data/services/database_services.dart';
 import '../../explore/controllers/explore_controller.dart';
@@ -16,6 +19,7 @@ import '../../saved/views/saved_view.dart';
 import '../controllers/nav_service_controller.dart';
 
 class NavServiceView extends GetView<NavServiceController> {
+  final StorageService _storageService = Get.find<StorageService>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +34,7 @@ class NavServiceView extends GetView<NavServiceController> {
             homeView(),
             exploreView(),
             savedView(),
-            profileView(),
+            _storageService.authToken != null ? userProfileView() : profileView(),
           ],
         ),
       ),
@@ -51,10 +55,19 @@ class NavServiceView extends GetView<NavServiceController> {
     );
   }
 
+  UserProfileView userProfileView() {
+    Get.lazyPut<UserProfileController>(
+      () => UserProfileController(),
+    );
+    Get.lazyPut<StorageService>(() => StorageService());
+    return UserProfileView();
+  }
+
   LoginPageView profileView() {
     Get.lazyPut<LoginPageController>(
       () => LoginPageController(),
     );
+    Get.lazyPut<StorageService>(() => StorageService());
     return LoginPageView();
   }
 
@@ -62,6 +75,7 @@ class NavServiceView extends GetView<NavServiceController> {
     Get.lazyPut<SignUpPageController>(
       () => SignUpPageController(),
     );
+    Get.lazyPut<StorageService>(() => StorageService());
     return SignUpPageView();
   }
 
