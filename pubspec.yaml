@@ -42,6 +42,8 @@ dependencies:
   intl: ^0.17.0
   flutter_rating_bar: ^4.0.0
   cached_network_image: ^3.1.0
+  flutter_dotenv: ^5.0.2
+  jwt_decoder: ^2.0.1
   
   #icon
   font_awesome_flutter: ^9.1.0
@@ -51,6 +53,7 @@ dependencies:
   flutter: 
     sdk: flutter
   http: ^0.13.4
+  
 
 get_cli:
   sub_folder: false
@@ -85,7 +88,7 @@ flutter_icons:
 flutter: 
   uses-material-design: true
   assets:
-    #- .env
+    - .env
     - assets/images/
     - assets/images/logo/
     - assets/images/onboard_image/

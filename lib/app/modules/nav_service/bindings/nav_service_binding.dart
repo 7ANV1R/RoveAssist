@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
-import 'package:roveassist/app/data/services/storage_service.dart';
 
+import '../../../data/services/storage_service.dart';
+import '../../../data/services/user_auth_services.dart';
 import '../controllers/nav_service_controller.dart';
 
 class NavServiceBinding extends Bindings {
@@ -10,5 +11,8 @@ class NavServiceBinding extends Bindings {
       () => NavServiceController(),
     );
     Get.lazyPut<StorageService>(() => StorageService());
+    Get.lazyPut<UserAuthServices>(
+      () => UserAuthServices(),
+    );
   }
 }
