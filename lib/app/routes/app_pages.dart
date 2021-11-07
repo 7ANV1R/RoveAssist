@@ -1,5 +1,13 @@
 import 'package:get/get.dart';
 
+import 'package:roveassist/app/modules/auth_view/auth_view_binding.dart';
+import 'package:roveassist/app/modules/auth_view/auth_view_view.dart';
+import 'package:roveassist/app/modules/authentication/authentication_binding.dart';
+import 'package:roveassist/app/modules/authentication/authentication_view.dart';
+import 'package:roveassist/app/modules/home_page/home_page_binding.dart';
+import 'package:roveassist/app/modules/home_page/home_page_view.dart';
+import 'package:roveassist/app/modules/hotel_page/hotel_page_binding.dart';
+import 'package:roveassist/app/modules/hotel_page/hotel_page_view.dart';
 import 'package:roveassist/app/modules/login_page/login_page_binding.dart';
 import 'package:roveassist/app/modules/login_page/login_page_view.dart';
 import 'package:roveassist/app/modules/sign_up_page/sign_up_page_binding.dart';
@@ -35,7 +43,8 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.NAV_SERVICE;
+  static const INITIAL = Routes.AUTHENTICATION;
+  static const SECONDARY = Routes.NAV_SERVICE;
 
   static final routes = [
     GetPage(
@@ -110,6 +119,26 @@ class AppPages {
       name: _Paths.USER_PROFILE,
       page: () => UserProfileView(),
       binding: UserProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.AUTH_VIEW,
+      page: () => AuthViewView(),
+      binding: AuthViewBinding(),
+    ),
+    GetPage(
+      name: _Paths.AUTHENTICATION,
+      page: () => AuthenticationView(),
+      binding: AuthenticationBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOME_PAGE,
+      page: () => HomePageView(),
+      binding: HomePageBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOTEL_PAGE,
+      page: () => HotelPageView(),
+      binding: HotelPageBinding(),
     ),
   ];
 }

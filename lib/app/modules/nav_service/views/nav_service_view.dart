@@ -2,8 +2,10 @@ import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:roveassist/app/data/services/storage_service.dart';
-import 'package:roveassist/app/modules/login_page/login_page_controller.dart';
-import 'package:roveassist/app/modules/login_page/login_page_view.dart';
+import 'package:roveassist/app/modules/home_page/home_page_controller.dart';
+import 'package:roveassist/app/modules/home_page/home_page_view.dart';
+import 'package:roveassist/app/modules/hotel_page/hotel_page_controller.dart';
+import 'package:roveassist/app/modules/hotel_page/hotel_page_view.dart';
 import 'package:roveassist/app/modules/sign_up_page/sign_up_page_controller.dart';
 import 'package:roveassist/app/modules/sign_up_page/sign_up_page_view.dart';
 import 'package:roveassist/app/modules/user_profile/user_profile_controller.dart';
@@ -19,7 +21,6 @@ import '../../saved/views/saved_view.dart';
 import '../controllers/nav_service_controller.dart';
 
 class NavServiceView extends GetView<NavServiceController> {
-  final StorageService _storageService = Get.find<StorageService>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,17 +32,17 @@ class NavServiceView extends GetView<NavServiceController> {
             parent: NeverScrollableScrollPhysics(),
           ),
           children: [
-            homeView(),
-            exploreView(),
+            homePage(),
+            hotelPage(),
             savedView(),
-            _storageService.authToken != null ? userProfileView() : profileView(),
+            userProfileView(),
           ],
         ),
       ),
       bottomNavigationBar: Obx(() => FancyBottomNavigation(
             tabs: [
               TabData(iconData: Icons.directions, title: 'Home'),
-              TabData(iconData: Icons.space_dashboard_rounded, title: 'Explore'),
+              TabData(iconData: Icons.home_work, title: 'Hotel'),
               TabData(iconData: Icons.loyalty, title: 'Saved'),
               TabData(iconData: Icons.manage_accounts, title: 'Profile'),
             ],
@@ -61,14 +62,6 @@ class NavServiceView extends GetView<NavServiceController> {
     );
     Get.lazyPut<StorageService>(() => StorageService());
     return UserProfileView();
-  }
-
-  LoginPageView profileView() {
-    Get.lazyPut<LoginPageController>(
-      () => LoginPageController(),
-    );
-    Get.lazyPut<StorageService>(() => StorageService());
-    return LoginPageView();
   }
 
   SignUpPageView signupView() {
@@ -99,5 +92,20 @@ class NavServiceView extends GetView<NavServiceController> {
     );
     Get.put(DatabaseService());
     return HomeView();
+  }
+
+  HomePageView homePage() {
+    Get.lazyPut<HomePageController>(
+      () => HomePageController(),
+    );
+    return HomePageView();
+  }
+
+  HotelPageView hotelPage() {
+    Get.lazyPut<HotelPageController>(
+      () => HotelPageController(),
+    );
+
+    return HotelPageView();
   }
 }

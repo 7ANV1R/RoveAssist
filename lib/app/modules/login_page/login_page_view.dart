@@ -13,6 +13,7 @@ class LoginPageView extends GetView<LoginPageController> {
     final TextTheme _textTheme = _themeData.textTheme;
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16),
         child: ListView(
@@ -40,6 +41,7 @@ class LoginPageView extends GetView<LoginPageController> {
                   ),
                   kVerticalSpaceM,
                   TextFormField(
+                    obscureText: true,
                     controller: controller.passwordController,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.password_outlined),
@@ -73,6 +75,9 @@ class LoginPageView extends GetView<LoginPageController> {
                   child: Text('Sign up'),
                 ),
               ],
+            ),
+            Container(
+              height: screenSize.height * 0.3,
             ),
           ],
         ),

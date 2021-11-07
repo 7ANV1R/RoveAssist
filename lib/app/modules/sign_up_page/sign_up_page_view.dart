@@ -21,8 +21,8 @@ class SignUpPageView extends GetView<SignUpPageController> {
           shrinkWrap: true,
           children: [
             Image.asset(
-              kAssetOnboarding3,
-              height: screenSize.height * 0.4,
+              kAssetOnboarding1,
+              height: screenSize.height * 0.3,
             ),
             Text(
               'Hey,\nSign Up Now.',
@@ -30,6 +30,8 @@ class SignUpPageView extends GetView<SignUpPageController> {
             ),
             kVerticalSpaceS,
             Form(
+              key: controller.signUpFormKey,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               child: Column(
                 children: [
                   TextFormField(
@@ -43,6 +45,9 @@ class SignUpPageView extends GetView<SignUpPageController> {
                   kVerticalSpaceM,
                   TextFormField(
                     controller: controller.emailTextController,
+                    validator: (value) {
+                      return controller.validateEmail(value!);
+                    },
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.email),
                       labelText: 'Email',
@@ -51,6 +56,7 @@ class SignUpPageView extends GetView<SignUpPageController> {
                   ),
                   kVerticalSpaceM,
                   TextFormField(
+                    obscureText: true,
                     controller: controller.passwordController,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.password),
@@ -64,22 +70,17 @@ class SignUpPageView extends GetView<SignUpPageController> {
             kVerticalSpaceM,
             DefaultButton(
               onTap: () {
-                if (controller.usernameTextController.text != "" &&
-                    controller.emailTextController.text != "" &&
-                    controller.passwordController.text != "") {
-                  controller.onTapSignUp(
-                    controller.usernameTextController.text,
-                    controller.emailTextController.text,
-                    controller.passwordController.text,
-                  );
-                  showGeneralSnakbar(
-                    message: 'User Created',
-                    backgroundColor: Colors.green,
-                    icon: Icon(
-                      Icons.done_all,
-                      color: Colors.white,
-                    ),
-                  );
+                // controller.checkValid();
+                if (!controller.checkValid()) {
+                  if (controller.usernameTextController.text != "" &&
+                      controller.emailTextController.text != "" &&
+                      controller.passwordController.text != "") {
+                    controller.onTapSignUp(
+                      controller.usernameTextController.text,
+                      controller.emailTextController.text,
+                      controller.passwordController.text,
+                    );
+                  }
                 }
               },
               label: Text(

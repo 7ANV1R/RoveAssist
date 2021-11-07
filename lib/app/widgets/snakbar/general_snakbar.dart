@@ -5,8 +5,9 @@ Future<dynamic> showGeneralSnakbar(
     {Icon? icon,
     String message = 'OK',
     Color backgroundColor = Colors.black,
-    Duration duration = const Duration(milliseconds: 3000)}) async {
+    Duration duration = const Duration(milliseconds: 1000)}) async {
   return await Get.showSnackbar(GetBar(
+    isDismissible: true,
     duration: duration,
     backgroundColor: backgroundColor.withOpacity(0.8),
     barBlur: 8.0,

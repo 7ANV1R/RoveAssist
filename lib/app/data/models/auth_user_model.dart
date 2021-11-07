@@ -3,12 +3,14 @@ class AuthUserModel {
   final String username;
   final String email;
   final String companyName;
+  final bool isAgent;
 
   AuthUserModel({
     required this.id,
     required this.username,
     required this.email,
     required this.companyName,
+    required this.isAgent,
   });
 
   factory AuthUserModel.fromJson(Map<String, dynamic> json) {
@@ -19,6 +21,7 @@ class AuthUserModel {
       username: json['username'] as String,
       email: json['email'] as String,
       companyName: companyName,
+      isAgent: (json['is_agent'] as bool?) ?? false,
     );
   }
 }
