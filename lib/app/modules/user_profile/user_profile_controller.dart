@@ -54,7 +54,11 @@ class UserProfileController extends GetxController {
       final AuthUserModel authUserModel = AuthUserModel.fromJson(data);
       userInfo.value = [authUserModel];
 
-      print(data);
+      print(data['username']);
     }
+  }
+
+  Future<void> onTapBecomeAgent() async {
+    await Get.toNamed(Routes.BECOME_AGENT);
   }
 }

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:roveassist/app/widgets/snakbar/general_snakbar.dart';
+import 'package:roveassist/app/routes/app_pages.dart';
 
-import '../../routes/app_pages.dart';
+import '../../widgets/snakbar/general_snakbar.dart';
 import 'storage_service.dart';
 
 class UserAuthServices extends GetxService {
@@ -42,6 +42,7 @@ class UserAuthServices extends GetxService {
             color: Colors.white,
           ),
         );
+        Get.offAllNamed(Routes.NAV_SERVICE);
       } else {
         showGeneralSnakbar(
           message: 'Email or password did not match',
@@ -71,6 +72,14 @@ class UserAuthServices extends GetxService {
       var data = json.decode(response.body) as Map;
       print(data);
       print('user created');
+      showGeneralSnakbar(
+        message: 'Welcome to RoveAssist',
+        backgroundColor: Colors.green,
+        icon: Icon(
+          Icons.login,
+          color: Colors.white,
+        ),
+      );
       try {
         String baseUrl = '$localhost/accounts/token/';
         Map<String, String> headers = {'Content-Type': 'application/json'};
@@ -85,6 +94,8 @@ class UserAuthServices extends GetxService {
         if (data.containsKey('access')) {
           _storageService.authToken = data['access'];
           print(data['access']);
+
+          Get.offAllNamed(Routes.NAV_SERVICE);
         } else {
           showGeneralSnakbar(
             message: 'Not formatted correctly',

@@ -5,6 +5,7 @@ class DefaultButton extends StatelessWidget {
     Key? key,
     this.decoration,
     this.color,
+    this.height,
     this.onTap,
     required this.label,
     this.highlightColor,
@@ -19,13 +20,14 @@ class DefaultButton extends StatelessWidget {
   final Color? splashColor;
   final Color? highlightColor;
   final EdgeInsetsGeometry? padding;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(5.0),
       child: Container(
-        height: 44.0,
+        height: height ?? 44.0,
         color: color,
         decoration: decoration,
         child: Material(

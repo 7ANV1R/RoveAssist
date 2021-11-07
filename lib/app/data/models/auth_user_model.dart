@@ -2,7 +2,7 @@ class AuthUserModel {
   final int id;
   final String username;
   final String email;
-  final String companyName;
+  final String? companyName;
   final bool isAgent;
 
   AuthUserModel({
@@ -15,12 +15,12 @@ class AuthUserModel {
 
   factory AuthUserModel.fromJson(Map<String, dynamic> json) {
     String companyName = "Not Found";
-    if (json['company_name'] != null) companyName = json['company_name'] as String;
+    //if (json['company_name'] != null) companyName = json['company_name'] as String;
     return AuthUserModel(
       id: json['id'] as int,
       username: json['username'] as String,
       email: json['email'] as String,
-      companyName: companyName,
+      companyName: json['company_name'] as String?,
       isAgent: (json['is_agent'] as bool?) ?? false,
     );
   }

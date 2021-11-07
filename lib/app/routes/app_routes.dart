@@ -23,6 +23,8 @@ abstract class Routes {
   static const AUTHENTICATION = _Paths.AUTHENTICATION;
   static const HOME_PAGE = _Paths.HOME_PAGE;
   static const HOTEL_PAGE = _Paths.HOTEL_PAGE;
+  static const BECOME_AGENT = _Paths.USER_PROFILE + _Paths.BECOME_AGENT;
+  static const TOUR_PACKAGE = _Paths.TOUR_PACKAGE;
 }
 
 abstract class _Paths {
@@ -45,4 +47,6 @@ abstract class _Paths {
   static const AUTHENTICATION = '/authentication';
   static const HOME_PAGE = '/home-page';
   static const HOTEL_PAGE = '/hotel-page';
+  static const BECOME_AGENT = '/become-agent';
+  static const TOUR_PACKAGE = '/tour-package';
 }

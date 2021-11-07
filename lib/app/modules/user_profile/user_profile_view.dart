@@ -144,7 +144,7 @@ class UserProfileView extends GetView<UserProfileController> {
                                         ),
                                       ),
                                       Icon(
-                                        Icons.note_add,
+                                        Icons.hotel,
                                         color: Colors.red[600],
                                       ),
                                     ],
@@ -181,7 +181,7 @@ class UserProfileView extends GetView<UserProfileController> {
                                         ),
                                       ),
                                       Icon(
-                                        Icons.note_add,
+                                        Icons.tour,
                                         color: Colors.red[600],
                                       ),
                                     ],
@@ -248,12 +248,12 @@ class UserProfileView extends GetView<UserProfileController> {
                                   width: 40,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100.0),
-                                    color: Colors.red[50],
+                                    color: Colors.green[50],
                                   ),
                                 ),
                                 Icon(
-                                  Icons.note_add,
-                                  color: Colors.red[600],
+                                  Icons.place,
+                                  color: Colors.green[600],
                                 ),
                               ],
                             ),
@@ -276,7 +276,7 @@ class UserProfileView extends GetView<UserProfileController> {
                           Obx(() => controller.userInfo.first.isAgent
                               ? Container()
                               : ProfileMenuTile(
-                                  onTap: () {},
+                                  onTap: controller.onTapBecomeAgent,
                                   icon: Stack(
                                     alignment: Alignment.center,
                                     children: [
@@ -289,12 +289,12 @@ class UserProfileView extends GetView<UserProfileController> {
                                         ),
                                       ),
                                       Icon(
-                                        Icons.note_add,
+                                        Icons.support_agent,
                                         color: Colors.red[600],
                                       ),
                                     ],
                                   ),
-                                  title: 'Become a agent',
+                                  title: 'Become an agent',
                                   trailing: Stack(
                                     alignment: Alignment.center,
                                     children: [

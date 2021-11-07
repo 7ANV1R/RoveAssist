@@ -75,12 +75,9 @@ class AuthenticationController extends GetxController {
 
   Future<void> onTapLogIn(String email, String password) async {
     _userAuthServices.onLogIn(email, password);
-
-    Get.offAllNamed(Routes.NAV_SERVICE);
   }
 
   Future<void> onTapSignUp(String username, String email, String password) async {
     _userAuthServices.onSignUp(username, email, password);
-    Get.offAllNamed(Routes.NAV_SERVICE);
   }
 }

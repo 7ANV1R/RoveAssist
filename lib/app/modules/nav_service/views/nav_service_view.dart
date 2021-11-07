@@ -8,6 +8,8 @@ import 'package:roveassist/app/modules/hotel_page/hotel_page_controller.dart';
 import 'package:roveassist/app/modules/hotel_page/hotel_page_view.dart';
 import 'package:roveassist/app/modules/sign_up_page/sign_up_page_controller.dart';
 import 'package:roveassist/app/modules/sign_up_page/sign_up_page_view.dart';
+import 'package:roveassist/app/modules/tour_package/tour_package_controller.dart';
+import 'package:roveassist/app/modules/tour_package/tour_package_view.dart';
 import 'package:roveassist/app/modules/user_profile/user_profile_controller.dart';
 import 'package:roveassist/app/modules/user_profile/user_profile_view.dart';
 
@@ -34,7 +36,7 @@ class NavServiceView extends GetView<NavServiceController> {
           children: [
             homePage(),
             hotelPage(),
-            savedView(),
+            tourPackagePage(),
             userProfileView(),
           ],
         ),
@@ -107,5 +109,13 @@ class NavServiceView extends GetView<NavServiceController> {
     );
 
     return HotelPageView();
+  }
+
+  TourPackageView tourPackagePage() {
+    Get.lazyPut<TourPackageController>(
+      () => TourPackageController(),
+    );
+
+    return TourPackageView();
   }
 }
