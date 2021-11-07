@@ -45,7 +45,7 @@ class NavServiceView extends GetView<NavServiceController> {
             tabs: [
               TabData(iconData: Icons.directions, title: 'Home'),
               TabData(iconData: Icons.home_work, title: 'Hotel'),
-              TabData(iconData: Icons.loyalty, title: 'Saved'),
+              TabData(iconData: Icons.loyalty, title: 'Package'),
               TabData(iconData: Icons.manage_accounts, title: 'Profile'),
             ],
             onTabChangedListener: (position) {
