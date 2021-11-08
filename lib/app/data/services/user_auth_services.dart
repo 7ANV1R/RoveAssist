@@ -72,14 +72,7 @@ class UserAuthServices extends GetxService {
       var data = json.decode(response.body) as Map;
       print(data);
       print('user created');
-      showGeneralSnakbar(
-        message: 'Welcome to RoveAssist',
-        backgroundColor: Colors.green,
-        icon: Icon(
-          Icons.login,
-          color: Colors.white,
-        ),
-      );
+
       try {
         String baseUrl = '$localhost/accounts/token/';
         Map<String, String> headers = {'Content-Type': 'application/json'};
@@ -96,6 +89,14 @@ class UserAuthServices extends GetxService {
           print(data['access']);
 
           Get.offAllNamed(Routes.NAV_SERVICE);
+          showGeneralSnakbar(
+            message: 'Welcome to RoveAssist',
+            backgroundColor: Colors.green,
+            icon: Icon(
+              Icons.login,
+              color: Colors.white,
+            ),
+          );
         } else {
           showGeneralSnakbar(
             message: 'Not formatted correctly',
