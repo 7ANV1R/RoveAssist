@@ -156,36 +156,36 @@ class BecomeAgentView extends GetView<BecomeAgentController> {
                     validator: controller.companyPhoneValidator,
                   ),
                   kVerticalSpaceL,
-                  TextFormField(
-                    obscureText: true,
-                    controller: controller.accountsPasswordTextController,
-                    decoration: InputDecoration(
-                      isDense: true,
-                      fillColor: Colors.white,
-                      suffixIcon: Padding(
-                        padding: const EdgeInsetsDirectional.only(end: 20),
-                        child: Icon(
-                          Icons.password,
-                        ),
-                      ),
-                      border: OutlineInputBorder(),
-                      labelText: 'Accounts Password',
-                    ),
+                  // TextFormField(
+                  //   obscureText: true,
+                  //   controller: controller.accountsPasswordTextController,
+                  //   decoration: InputDecoration(
+                  //     isDense: true,
+                  //     fillColor: Colors.white,
+                  //     suffixIcon: Padding(
+                  //       padding: const EdgeInsetsDirectional.only(end: 20),
+                  //       child: Icon(
+                  //         Icons.password,
+                  //       ),
+                  //     ),
+                  //     border: OutlineInputBorder(),
+                  //     labelText: 'Accounts Password',
+                  //   ),
 
-                    keyboardType: TextInputType.text,
-                    textInputAction: TextInputAction.next,
-                    //onFieldSubmitted: controller.onTapSearch,
-                    validator: controller.passwordValidator,
-                  ),
+                  //   keyboardType: TextInputType.text,
+                  //   textInputAction: TextInputAction.next,
+                  //   //onFieldSubmitted: controller.onTapSearch,
+                  //   validator: controller.passwordValidator,
+                  // ),
                   kVerticalSpaceL,
                   DefaultButton(
                     onTap: () {
                       if (controller.agentFormKey.currentState!.validate()) {
                         controller.onAgentSubmission(
-                            controller.companyNameTextController.text,
-                            controller.companyDetailsTextController.text,
-                            controller.phoneTextController.text,
-                            controller.accountsPasswordTextController.text);
+                          controller.companyNameTextController.text,
+                          controller.companyDetailsTextController.text,
+                          controller.phoneTextController.text,
+                        );
                       }
                     },
                     height: 50,

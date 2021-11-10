@@ -204,7 +204,7 @@ class UserProfileView extends GetView<UserProfileController> {
                                 )
                               : Container()),
                           ProfileMenuTile(
-                            onTap: () {},
+                            onTap: controller.onTapTravelNote,
                             icon: Stack(
                               alignment: Alignment.center,
                               children: [

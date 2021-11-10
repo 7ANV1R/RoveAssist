@@ -61,4 +61,8 @@ class UserProfileController extends GetxController {
   Future<void> onTapBecomeAgent() async {
     await Get.toNamed(Routes.BECOME_AGENT);
   }
+
+  Future<void> onTapTravelNote() async {
+    await Get.toNamed(Routes.TRAVEL_NOTE);
+  }
 }

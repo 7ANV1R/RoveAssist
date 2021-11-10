@@ -12,6 +12,7 @@ import 'package:http/http.dart' as http;
 import 'package:roveassist/app/routes/app_pages.dart';
 
 class BecomeAgentController extends GetxController {
+  //TODO: Remove extra user info
   final StorageService _storageService = Get.find<StorageService>();
 
   final UserAuthServices _userAuthServices = Get.find<UserAuthServices>();
@@ -110,21 +111,17 @@ class BecomeAgentController extends GetxController {
     }
   }
 
-  Future<bool> onAgentSubmission(
-      String compName, String compDetails, String compPhone, String password) async {
+  Future<bool> onAgentSubmission(String compName, String compDetails, String compPhone) async {
     try {
       String baseUrl = '$localhost/accounts/auth/$userIdFromToken/';
       Map<String, String> headers = {'Content-Type': 'application/json'};
-      http.Response response = await http.put(Uri.parse(baseUrl),
+      http.Response response = await http.patch(Uri.parse(baseUrl),
           headers: headers,
           body: json.encode(
             {
               "company_name": compName,
               "phone": compPhone,
               "address": compDetails,
-              "password": password,
-              "email": emailFromToken,
-              "username": usernameFromToken,
             },
           ));
 

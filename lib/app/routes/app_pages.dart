@@ -1,8 +1,5 @@
 import 'package:get/get.dart';
 
-import 'package:roveassist/app/modules/tour_package/tour_package_binding.dart';
-import 'package:roveassist/app/modules/tour_package/tour_package_view.dart';
-
 import '../modules/auth_view/auth_view_binding.dart';
 import '../modules/auth_view/auth_view_view.dart';
 import '../modules/authentication/authentication_binding.dart';
@@ -37,8 +34,12 @@ import '../modules/saved/bindings/saved_binding.dart';
 import '../modules/saved/views/saved_view.dart';
 import '../modules/sign_up_page/sign_up_page_binding.dart';
 import '../modules/sign_up_page/sign_up_page_view.dart';
+import '../modules/tour_package/tour_package_binding.dart';
+import '../modules/tour_package/tour_package_view.dart';
 import '../modules/user_profile/become_agent/become_agent_binding.dart';
 import '../modules/user_profile/become_agent/become_agent_view.dart';
+import '../modules/user_profile/travel_note/travel_note_binding.dart';
+import '../modules/user_profile/travel_note/travel_note_view.dart';
 import '../modules/user_profile/user_profile_binding.dart';
 import '../modules/user_profile/user_profile_view.dart';
 
@@ -78,27 +79,23 @@ class AppPages {
       page: () => SavedView(),
       binding: SavedBinding(),
     ),
-    GetPage(
-        name: _Paths.EXPLORE,
-        page: () => ExploreView(),
-        binding: ExploreBinding(),
-        children: [
-          GetPage(
-            name: _Paths.PLACE,
-            page: () => PlaceView(),
-            binding: PlaceBinding(),
-          ),
-          GetPage(
-            name: _Paths.RESTAURANT,
-            page: () => RestaurantView(),
-            binding: RestaurantBinding(),
-          ),
-          GetPage(
-            name: _Paths.HOTEL,
-            page: () => HotelView(),
-            binding: HotelBinding(),
-          ),
-        ]),
+    GetPage(name: _Paths.EXPLORE, page: () => ExploreView(), binding: ExploreBinding(), children: [
+      GetPage(
+        name: _Paths.PLACE,
+        page: () => PlaceView(),
+        binding: PlaceBinding(),
+      ),
+      GetPage(
+        name: _Paths.RESTAURANT,
+        page: () => RestaurantView(),
+        binding: RestaurantBinding(),
+      ),
+      GetPage(
+        name: _Paths.HOTEL,
+        page: () => HotelView(),
+        binding: HotelBinding(),
+      ),
+    ]),
     GetPage(
       name: _Paths.PROFILE,
       page: () => ProfileView(),
@@ -128,6 +125,11 @@ class AppPages {
             name: _Paths.BECOME_AGENT,
             page: () => BecomeAgentView(),
             binding: BecomeAgentBinding(),
+          ),
+          GetPage(
+            name: _Paths.TRAVEL_NOTE,
+            page: () => TravelNoteView(),
+            binding: TravelNoteBinding(),
           ),
         ]),
     GetPage(
