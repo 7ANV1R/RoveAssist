@@ -1,9 +1,11 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:roveassist/app/core/theme/ui_helpers.dart';
-import 'package:roveassist/app/data/models/travel_note_model.dart';
-import 'package:roveassist/app/modules/user_profile/travel_note/travel_note_controller.dart';
+
+import '../../../../core/theme/ui_helpers.dart';
+import '../../../../data/models/travel_note_model.dart';
+import '../travel_note_controller.dart';
+import 'travel_plan_view_update.dart';
 
 class TravelPlanCard extends GetView<TravelNoteController> {
   TravelPlanCard({Key? key, required this.travelPlan}) : super(key: key);
@@ -82,10 +84,9 @@ class TravelPlanCard extends GetView<TravelNoteController> {
             )
           ],
         ),
-        openBuilder: (context, action) => Container(),
-        // openBuilder: (context, action) => TravelPlanDetails(
-        //   travelPlan: travelPlan,
-        // ),
+        openBuilder: (context, action) => TravelNoteDetails(
+          travelPlan: travelPlan,
+        ),
       ),
     );
   }

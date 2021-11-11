@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-
 import 'package:get/get.dart';
-import 'package:roveassist/app/core/theme/ui_helpers.dart';
-import 'package:roveassist/app/modules/user_profile/travel_note/widgets/travel_plan_card.dart';
 
 import 'travel_note_controller.dart';
+import 'widgets/travel_plan_card.dart';
 
 class TravelNoteView extends GetView<TravelNoteController> {
   @override
@@ -15,7 +13,7 @@ class TravelNoteView extends GetView<TravelNoteController> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: controller.onTapAddNote,
         backgroundColor: _themeData.primaryColor,
         foregroundColor: _themeData.scaffoldBackgroundColor,
         label: Text('Add Travel Note'),
@@ -49,20 +47,19 @@ class TravelNoteView extends GetView<TravelNoteController> {
                       ],
                     ),
                   )
-                : StaggeredGridView.countBuilder(
-                    crossAxisCount: 2,
-                    physics: BouncingScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: controller.userNote.length,
-                    staggeredTileBuilder: (index) => StaggeredTile.fit(1),
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                    itemBuilder: (context, index) => TravelPlanCard(
-                      travelPlan: controller.userNote[index],
-                    ),
-                  )),
+                : Obx(() => StaggeredGridView.countBuilder(
+                      crossAxisCount: 2,
+                      physics: BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: controller.userNote.length,
+                      staggeredTileBuilder: (index) => StaggeredTile.fit(1),
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                      itemBuilder: (context, index) => TravelPlanCard(
+                        travelPlan: controller.userNote[index],
+                      ),
+                    ))),
           ),
-          // ElevatedButton(onPressed: controller.userNote, child: Text('Fetch'))
         ],
       ),
     );
