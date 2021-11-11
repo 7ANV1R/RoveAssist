@@ -23,8 +23,9 @@ class ProfileView extends GetView<ProfileController> {
                 return Center(child: Loader());
               else if (snapshot.hasData) {
                 Get.put(DatabaseService());
+                return AuthPage();
 
-                return LoggedInProfileView();
+                // return LoggedInProfileView();
               } else if (snapshot.hasError) {
                 return Center(
                   child: Text('Something went wrong'),

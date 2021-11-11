@@ -47,8 +47,7 @@ class TravelNoteController extends GetxController {
             (e) => TravelNoteModel.fromJson(e as Map<String, dynamic>),
           ),
     ).toList();
-
-    final List<dynamic> fetched = fetchedRestaurants;
+    userNote.value = fetchedRestaurants;
 
     fetchedRestaurants.forEach((element) {
       print(element.description);

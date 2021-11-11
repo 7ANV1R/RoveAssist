@@ -20,8 +20,6 @@ import '../modules/home_page/home_page_binding.dart';
 import '../modules/home_page/home_page_view.dart';
 import '../modules/hotel_page/hotel_page_binding.dart';
 import '../modules/hotel_page/hotel_page_view.dart';
-import '../modules/logged_in_profile/bindings/logged_in_profile_binding.dart';
-import '../modules/logged_in_profile/views/logged_in_profile_view.dart';
 import '../modules/login_page/login_page_binding.dart';
 import '../modules/login_page/login_page_view.dart';
 import '../modules/nav_service/bindings/nav_service_binding.dart';
@@ -101,11 +99,11 @@ class AppPages {
       page: () => ProfileView(),
       binding: ProfileBinding(),
     ),
-    GetPage(
-      name: _Paths.LOGGED_IN_PROFILE,
-      page: () => LoggedInProfileView(),
-      binding: LoggedInProfileBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.LOGGED_IN_PROFILE,
+    //   page: () => LoggedInProfileView(),
+    //   binding: LoggedInProfileBinding(),
+    // ),
     GetPage(
       name: _Paths.LOGIN_PAGE,
       page: () => LoginPageView(),
