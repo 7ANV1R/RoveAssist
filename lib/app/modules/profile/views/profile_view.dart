@@ -1,11 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:roveassist/app/data/services/auth_service.dart';
-import 'package:roveassist/app/data/services/database_services.dart';
 
+import '../../../data/services/database_services.dart';
 import '../../../widgets/loader.dart';
-import '../../logged_in_profile/views/logged_in_profile_view.dart';
 import '../controllers/profile_controller.dart';
 import '../widgets/auth_screen.dart';
 

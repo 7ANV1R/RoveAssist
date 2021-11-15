@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../models/travel_plan/travel_plan.dart';
 import '../models/type_model/place_model.dart';
 import '../models/user_model.dart';
 
@@ -65,21 +64,21 @@ class DatabaseService extends GetxService {
     }
   }
 
-  Stream<List<TravelPlanModel>> travelPlanStream(String? email) {
-    return firebaseFirestore
-        .collection("users")
-        .doc(email)
-        .collection("travelPlan")
-        .orderBy("timeCreated", descending: true)
-        .snapshots()
-        .map((event) {
-      List<TravelPlanModel> returnValue = [];
-      event.docs.forEach((element) {
-        returnValue.add(TravelPlanModel.fromDocumentSnapshot(element));
-      });
-      return returnValue;
-    });
-  }
+  // Stream<List<TravelPlanModel>> travelPlanStream(String? email) {
+  //   return firebaseFirestore
+  //       .collection("users")
+  //       .doc(email)
+  //       .collection("travelPlan")
+  //       .orderBy("timeCreated", descending: true)
+  //       .snapshots()
+  //       .map((event) {
+  //     List<TravelPlanModel> returnValue = [];
+  //     event.docs.forEach((element) {
+  //       returnValue.add(TravelPlanModel.fromDocumentSnapshot(element));
+  //     });
+  //     return returnValue;
+  //   });
+  // }
 
   Stream<List<PlaceDataModel>> placeFetchStream() {
     return firebaseFirestore.collection("places").orderBy("name", descending: true).snapshots().map((event) {

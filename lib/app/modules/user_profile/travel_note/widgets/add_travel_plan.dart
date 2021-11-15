@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:roveassist/app/core/theme/ui_helpers.dart';
-import 'package:roveassist/app/modules/logged_in_profile/controllers/logged_in_profile_controller.dart';
 import 'package:roveassist/app/modules/user_profile/travel_note/travel_note_controller.dart';
 import 'package:roveassist/app/widgets/snakbar/general_snakbar.dart';
 

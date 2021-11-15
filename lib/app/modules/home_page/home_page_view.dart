@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:roveassist/app/core/theme/ui_helpers.dart';
 import 'package:roveassist/app/modules/home_page/widgets/category.dart';
+import 'package:roveassist/app/modules/home_page/widgets/package_tour_card.dart';
 
 import 'home_page_controller.dart';
 
@@ -14,6 +15,7 @@ class HomePageView extends GetView<HomePageController> {
 
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Color(0xFFF5F5F5),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
@@ -68,22 +70,20 @@ class HomePageView extends GetView<HomePageController> {
             Category(),
             kVerticalSpaceL,
             Obx(() => controller.selectedIndex.value == 0
-                ? ListView.builder(
+                ?
+                //tour package
+                ListView.separated(
                     shrinkWrap: true,
                     physics: BouncingScrollPhysics(),
-                    itemCount: 5,
-                    itemBuilder: (context, index) => Padding(
-                          padding: const EdgeInsets.only(bottom: 16.0),
-                          child: Container(
-                            height: 200,
-                            decoration: BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                        ))
+                    itemCount: controller.packageTourList.length,
+                    itemBuilder: (context, index) =>
+                        PackageTourCard(packageTourModel: controller.packageTourList[index]),
+                    separatorBuilder: (context, index) => kVerticalSpaceL,
+                  )
                 : controller.selectedIndex.value == 1
-                    ? ListView.builder(
+                    ?
+                    // restaurant
+                    ListView.builder(
                         shrinkWrap: true,
                         physics: BouncingScrollPhysics(),
                         itemCount: 5,
@@ -98,7 +98,9 @@ class HomePageView extends GetView<HomePageController> {
                               ),
                             ))
                     : controller.selectedIndex.value == 2
-                        ? ListView.builder(
+                        ?
+                        //place
+                        ListView.builder(
                             shrinkWrap: true,
                             physics: BouncingScrollPhysics(),
                             itemCount: 5,

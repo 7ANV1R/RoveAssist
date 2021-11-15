@@ -46,12 +46,12 @@ class TravelNoteController extends GetxController {
       headers: headers,
     );
 
-    final List<TravelNoteModel> fetchedRestaurants = List<TravelNoteModel>.from(
+    final List<TravelNoteModel> fetchedNotes = List<TravelNoteModel>.from(
       (json.decode(response.body) as List<dynamic>).where((element) => element['user'] == idintFromToken).map(
             (e) => TravelNoteModel.fromJson(e as Map<String, dynamic>),
           ),
     ).toList();
-    userNote.value = fetchedRestaurants.reversed.toList();
+    userNote.value = fetchedNotes.reversed.toList();
   }
 
   Future<void> onTapAddNote() async {
@@ -85,19 +85,35 @@ class TravelNoteController extends GetxController {
     );
   }
 
-  Future<void> onUpdateandSavePlan(String? newtitle, String newcontent, String planID) async {
-    // _databaseService.updatePlan(newtitle, newcontent, _authService.user?.email ?? user!.email, planID);
-    // Get.back();
-    // await showGeneralSnakbar(
-    //   message: 'Plan Updated',
-    //   backgroundColor: Colors.green,
-    //   icon: Icon(
-    //     Icons.edit_attributes_rounded,
-    //     color: Colors.white,
-    //   ),
-    // );
-    // _detailsPlan.value = true;
-    // _updatePlan.value = false;
+  Future<void> onUpdateandSavePlan(String? newtitle, String newcontent, String noteId) async {
+    try {
+      String baseUrl = '$localhost/note/list/$noteId/';
+      Map<String, String> headers = {'Content-Type': 'application/json'};
+      http.Response response = await http.patch(Uri.parse(baseUrl),
+          headers: headers,
+          body: json.encode(
+            {"title": newtitle, "description": newcontent},
+          ));
+      if (response.body.isNotEmpty) {
+        final encoded = json.decode(response.body);
+        print(encoded);
+      }
+      await getTravelNotes();
+
+      Get.back();
+      await showGeneralSnakbar(
+        message: 'Plan Updated',
+        backgroundColor: Colors.green,
+        icon: Icon(
+          Icons.edit_attributes_rounded,
+          color: Colors.white,
+        ),
+      );
+      _detailsPlan.value = true;
+      _updatePlan.value = false;
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   Future<void> onDeleteNote(String noteId) async {
@@ -121,6 +137,8 @@ class TravelNoteController extends GetxController {
           color: Colors.white,
         ),
       );
+      _detailsPlan.value = true;
+      _updatePlan.value = false;
     } catch (e) {
       print(e.toString());
     }
