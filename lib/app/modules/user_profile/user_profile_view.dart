@@ -51,34 +51,39 @@ class UserProfileView extends GetView<UserProfileController> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Image.asset(
-                      kAssetProfileBG,
-                    ),
-                    Obx(() => controller.userInfo.isNotEmpty
-                        ? ClipRRect(
-                            borderRadius: BorderRadius.circular(100),
-                            child: Container(
-                              height: 70,
-                              width: 70,
-                              child: Center(
-                                child: Text(
-                                  controller.userInfo.first.username.substring(0, 1).toUpperCase(),
-                                  style: TextStyle(
-                                      color: Colors.grey, fontSize: 32.0, fontWeight: FontWeight.bold),
+                GestureDetector(
+                  onTap: () {
+                    controller.pickImages();
+                  },
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Image.asset(
+                        kAssetProfileBG,
+                      ),
+                      Obx(() => controller.userInfo.isNotEmpty
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(100),
+                              child: Container(
+                                height: 70,
+                                width: 70,
+                                child: Center(
+                                  child: Text(
+                                    controller.userInfo.first.username.substring(0, 1).toUpperCase(),
+                                    style: TextStyle(
+                                        color: Colors.grey, fontSize: 32.0, fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ),
-                            ),
-                            // child: Image.network(
-                            //   controller.user!.photoURL!,
-                            //   height: 70,
-                            //   width: 70,
-                            // ),
-                          )
-                        : Container()),
-                  ],
+                              // child: Image.network(
+                              //   controller.user!.photoURL!,
+                              //   height: 70,
+                              //   width: 70,
+                              // ),
+                            )
+                          : Container()),
+                    ],
+                  ),
                 ),
                 Container(
                   color: Colors.grey,

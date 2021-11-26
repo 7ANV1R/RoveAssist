@@ -45,6 +45,7 @@ dependencies:
   flutter_dotenv: ^5.0.2
   jwt_decoder: ^2.0.1
   flutter_speed_dial: ^4.6.6
+  image_picker: ^0.8.4+4
   
   #icon
   font_awesome_flutter: ^9.1.0

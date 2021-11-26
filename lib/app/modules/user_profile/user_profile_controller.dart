@@ -1,15 +1,17 @@
 import 'dart:convert';
+import 'dart:io';
+import 'dart:async';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:roveassist/app/data/models/auth_user_model.dart';
-import 'package:roveassist/app/data/services/storage_service.dart';
-import 'package:roveassist/app/routes/app_pages.dart';
-
-import '../../data/services/user_auth_services.dart';
-
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
+
+import '../../data/models/auth_user_model.dart';
+import '../../data/services/storage_service.dart';
+import '../../data/services/user_auth_services.dart';
+import '../../routes/app_pages.dart';
 
 class UserProfileController extends GetxController {
   final UserAuthServices _userAuthServices = Get.find<UserAuthServices>();
@@ -35,6 +37,8 @@ class UserProfileController extends GetxController {
   }
 
   RxList<AuthUserModel> userInfo = RxList<AuthUserModel>();
+
+  File? imageFile;
 
   Future<void> fetchUserInfo() async {
     if (_storageService.authToken != null) {
@@ -64,5 +68,14 @@ class UserProfileController extends GetxController {
 
   Future<void> onTapTravelNote() async {
     await Get.toNamed(Routes.TRAVEL_NOTE);
+  }
+
+  Future pickImages() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image == null) {
+      return;
+    } else {
+      imageFile = File(image.path);
+    }
   }
 }
