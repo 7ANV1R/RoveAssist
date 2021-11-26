@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:roveassist/app/core/theme/ui_helpers.dart';
 import 'package:roveassist/app/modules/home_page/widgets/category.dart';
 import 'package:roveassist/app/modules/home_page/widgets/package_tour_card.dart';
+import 'package:roveassist/app/modules/home_page/widgets/place_card.dart';
+import 'package:roveassist/app/modules/home_page/widgets/restaurant_card.dart';
 
 import 'home_page_controller.dart';
 
@@ -83,37 +85,24 @@ class HomePageView extends GetView<HomePageController> {
                 : controller.selectedIndex.value == 1
                     ?
                     // restaurant
-                    ListView.builder(
+                    ListView.separated(
                         shrinkWrap: true,
                         physics: BouncingScrollPhysics(),
-                        itemCount: 5,
-                        itemBuilder: (context, index) => Padding(
-                              padding: const EdgeInsets.only(bottom: 8.0),
-                              child: Container(
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  color: Colors.red[200],
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                              ),
-                            ))
+                        itemCount: controller.restaurantList.length,
+                        itemBuilder: (context, index) =>
+                            RestaurantCard(restaurant: controller.restaurantList[index]),
+                        separatorBuilder: (context, index) => kVerticalSpaceL,
+                      )
                     : controller.selectedIndex.value == 2
                         ?
                         //place
-                        ListView.builder(
+                        ListView.separated(
                             shrinkWrap: true,
                             physics: BouncingScrollPhysics(),
-                            itemCount: 5,
-                            itemBuilder: (context, index) => Padding(
-                                  padding: const EdgeInsets.only(bottom: 8.0),
-                                  child: Container(
-                                    height: 200,
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey,
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                  ),
-                                ))
+                            itemCount: controller.placeList.length,
+                            itemBuilder: (context, index) => PlaceCard(place: controller.placeList[index]),
+                            separatorBuilder: (context, index) => kVerticalSpaceL,
+                          )
                         : ListView.builder(
                             shrinkWrap: true,
                             physics: BouncingScrollPhysics(),

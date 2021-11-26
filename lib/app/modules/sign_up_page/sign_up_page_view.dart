@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:roveassist/app/core/theme/ui_helpers.dart';
-import 'package:roveassist/app/core/values/assets.dart';
-import 'package:roveassist/app/widgets/default_button.dart';
-import 'package:roveassist/app/widgets/snakbar/general_snakbar.dart';
 
+import '../../core/theme/ui_helpers.dart';
+import '../../core/values/assets.dart';
+import '../../widgets/default_button.dart';
 import 'sign_up_page_controller.dart';
 
 class SignUpPageView extends GetView<SignUpPageController> {

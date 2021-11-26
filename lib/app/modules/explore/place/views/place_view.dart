@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../../data/services/database_services.dart';
 import '../controllers/place_controller.dart';
-import '../widgets/place_card.dart';
 
 class PlaceView extends GetView<PlaceController> {
   @override
@@ -27,9 +26,9 @@ class PlaceView extends GetView<PlaceController> {
                     ),
                   ],
                 ),
-                child: PlaceCard(
-                  place: controller.placeData[index],
-                ),
+                // child: PlaceCard(
+                //   place: controller.placeData[index],
+                // ),
               ),
             )));
   }

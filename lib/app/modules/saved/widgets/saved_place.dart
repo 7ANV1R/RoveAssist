@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:roveassist/app/modules/explore/place/widgets/place_card.dart';
 
 import '../../../data/services/database_services.dart';
 import '../controllers/saved_controller.dart';
@@ -29,9 +28,9 @@ class SavedPlace extends GetView<SavedController> {
                     ),
                   ],
                 ),
-                child: PlaceCard(
-                  place: controller.savedplaceData[index],
-                ),
+                // child: PlaceCard(
+                //   place: controller.savedplaceData[index],
+                // ),
               ),
             )));
   }

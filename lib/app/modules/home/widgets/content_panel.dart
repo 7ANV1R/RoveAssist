@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:roveassist/app/modules/explore/place/widgets/place_card.dart';
 
 import '../../../core/theme/ui_helpers.dart';
 import '../controllers/home_controller.dart';
 import 'cardOne.dart';
-import 'popular_card.dart';
 
 class ContentPanel extends GetView<HomeController> {
   final ScrollController scrollController;
@@ -66,22 +64,22 @@ class ContentPanel extends GetView<HomeController> {
                     ),
                   ),
                   kVerticalSpaceL,
-                  Obx(() => Padding(
-                        padding: const EdgeInsets.only(left: 16, right: 16),
-                        child: ListView.separated(
-                          physics: BouncingScrollPhysics(),
-                          itemCount: controller.recplaceData.length.isLowerThan(4)
-                              ? controller.recplaceData.length
-                              : 5,
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return PlaceCard(
-                              place: controller.recplaceData[index],
-                            );
-                          },
-                          separatorBuilder: (context, index) => kVerticalSpaceL,
-                        ),
-                      )),
+                  // Obx(() => Padding(
+                  //       padding: const EdgeInsets.only(left: 16, right: 16),
+                  //       child: ListView.separated(
+                  //         physics: BouncingScrollPhysics(),
+                  //         itemCount: controller.recplaceData.length.isLowerThan(4)
+                  //             ? controller.recplaceData.length
+                  //             : 5,
+                  //         shrinkWrap: true,
+                  //         itemBuilder: (context, index) {
+                  //           return PlaceCard(
+                  //             place: controller.recplaceData[index],
+                  //           );
+                  //         },
+                  //         separatorBuilder: (context, index) => kVerticalSpaceL,
+                  //       ),
+                  //     )),
                 ],
               ),
             ],
