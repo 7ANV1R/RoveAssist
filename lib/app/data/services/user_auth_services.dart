@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:roveassist/app/routes/app_pages.dart';
 
+import '../../routes/app_pages.dart';
 import '../../widgets/snakbar/general_snakbar.dart';
 import 'storage_service.dart';
 
@@ -120,4 +120,30 @@ class UserAuthServices extends GetxService {
   Future<void> onLogOut() async {
     _storageService.authToken = null;
   }
+
+  // File? selectedImage;
+  // Uint8List? regularImage;
+  // Future pickImages() async {
+  //   final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
+  //   if (pickedImage == null) {
+  //     return;
+  //   } else {
+  //     selectedImage = File(pickedImage.path);
+  //     regularImage = await selectedImage!.readAsBytes();
+  //     final imageFile = MultipartFile(regularImage, filename: 'profile.png', contentType: 'image');
+  //     print(pickedImage.path);
+  //     print(pickedImage.path.toString());
+  //     print(selectedImage.toString());
+  //     print(imageFile.toString());
+  //     try {
+  //       String baseUrl = '$localhost/accounts/auth/';
+  //       Map<String, String> headers = {'Content-Type': 'application/json'};
+  //       http.Response response = await http.patch(Uri.parse(baseUrl),
+  //           headers: headers,
+  //           body: json.encode(
+  //             {"profile_image": "$localhost/media/user/dp/$imageFile"},
+  //           ));
+  //     } catch (e) {}
+  //   }
+  // }
 }

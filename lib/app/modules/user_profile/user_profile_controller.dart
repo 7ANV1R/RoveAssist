@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
@@ -70,12 +71,68 @@ class UserProfileController extends GetxController {
     await Get.toNamed(Routes.TRAVEL_NOTE);
   }
 
-  Future pickImages() async {
-    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (image == null) {
-      return;
-    } else {
-      imageFile = File(image.path);
+  // File? selectedImage;
+  // Future pickImages() async {
+  //   final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+  // final String? token = _storageService.authToken;
+  // Map<String, dynamic> decodedToken = JwtDecoder.decode(token!);
+  // final String id = decodedToken["user_id"].toString();
+  // print(id);
+
+  //   if (pickedImage != null) {
+  //     try {
+  //       String baseUrl = '$localhost/accounts/auth/$id/';
+
+  //       final request = http.MultipartRequest("PATCH", Uri.parse(baseUrl));
+  //       Map<String, String> headers = {'Content-Type': 'multipart/form-data'};
+
+  //       request.files.add(http.MultipartFile(
+  //           'profile_image', selectedImage!.readAsBytes().asStream(), selectedImage!.lengthSync(),
+  //           filename: selectedImage!.path.split("/").last));
+
+  //       request.headers.addAll(headers);
+  //       final response = await request.send();
+  //       http.Response res = await http.Response.fromStream(response);
+  //       final resJson = jsonDecode(res.body);
+  //       print(resJson.toString());
+  //       print('sucess');
+  //     } catch (e) {
+  //       print('not sucess');
+  //       print(e.toString());
+  //     }
+  //   }
+  // }
+  File? selectedImage;
+  Future pickImage() async {
+    final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      selectedImage = File(pickedImage.path);
+      await uploadImage();
+    }
+  }
+
+  Future uploadImage() async {
+    try {
+      final String? token = _storageService.authToken;
+      Map<String, dynamic> decodedToken = JwtDecoder.decode(token!);
+      final String id = decodedToken["user_id"].toString();
+      print(id);
+      String baseUrl = '$localhost/accounts/auth/$id/';
+      final request = http.MultipartRequest("PATCH", Uri.parse(baseUrl));
+
+      final headers = {"content-type": "multipart/form-data"};
+
+      request.files.add(http.MultipartFile(
+          'profile_image', selectedImage!.readAsBytes().asStream(), selectedImage!.lengthSync(),
+          filename: selectedImage!.path.split("/").last));
+
+      request.headers.addAll(headers);
+      request.send();
+      print('sucsess');
+      this.userInfo.refresh();
+    } catch (e) {
+      print(e.toString());
     }
   }
 }

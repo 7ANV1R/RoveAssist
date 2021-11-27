@@ -4,8 +4,10 @@ class AuthUserModel {
   final String email;
   final String? companyName;
   final bool isAgent;
+  final String? profileImage;
 
   AuthUserModel({
+    required this.profileImage,
     required this.id,
     required this.username,
     required this.email,
@@ -22,6 +24,7 @@ class AuthUserModel {
       email: json['email'] as String,
       companyName: json['company_name'] as String?,
       isAgent: (json['is_agent'] as bool?) ?? false,
+      profileImage: json['profile_image'] as String?,
     );
   }
 }

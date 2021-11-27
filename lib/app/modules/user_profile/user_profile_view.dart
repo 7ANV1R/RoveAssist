@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:roveassist/app/modules/user_profile/widgets/profile_custom_tile.dart';
@@ -53,7 +54,7 @@ class UserProfileView extends GetView<UserProfileController> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    controller.pickImages();
+                    controller.pickImage();
                   },
                   child: Stack(
                     alignment: Alignment.center,
@@ -64,17 +65,30 @@ class UserProfileView extends GetView<UserProfileController> {
                       Obx(() => controller.userInfo.isNotEmpty
                           ? ClipRRect(
                               borderRadius: BorderRadius.circular(100),
-                              child: Container(
-                                height: 70,
-                                width: 70,
-                                child: Center(
-                                  child: Text(
-                                    controller.userInfo.first.username.substring(0, 1).toUpperCase(),
-                                    style: TextStyle(
-                                        color: Colors.grey, fontSize: 32.0, fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
+                              child: controller.userInfo.first.profileImage == null
+                                  ? Container(
+                                      height: 70,
+                                      width: 70,
+                                      child: Center(
+                                        child: Text(
+                                          controller.userInfo.first.username.substring(0, 1).toUpperCase(),
+                                          style: TextStyle(
+                                              color: Colors.grey,
+                                              fontSize: 32.0,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                    )
+                                  : Container(
+                                      height: 70,
+                                      width: 70,
+                                      child: Center(
+                                        child: Obx(() => CachedNetworkImage(
+                                              imageUrl: controller.userInfo.first.profileImage!,
+                                              fit: BoxFit.cover,
+                                            )),
+                                      ),
+                                    ),
                               // child: Image.network(
                               //   controller.user!.photoURL!,
                               //   height: 70,
