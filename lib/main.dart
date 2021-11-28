@@ -12,11 +12,11 @@ import 'app/core/theme/app_themes.dart';
 import 'app/routes/app_pages.dart';
 
 Future<void> main() async {
+  final StorageService _storageService = Get.put(StorageService());
   await GetStorage.init();
+  await dotenv.load();
   WidgetsFlutterBinding.ensureInitialized();
 
-  final StorageService _storageService = Get.put(StorageService());
-  await dotenv.load();
   runApp(_storageService.authToken != null ? MyAppLoggedIn() : MyApp());
 }
 

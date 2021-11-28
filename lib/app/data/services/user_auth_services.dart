@@ -32,7 +32,7 @@ class UserAuthServices extends GetxService {
       print(data);
       if (data.containsKey('access')) {
         _storageService.authToken = data['access'];
-        print(data['access']);
+        print('storage token' + data['access']);
 
         showGeneralSnakbar(
           message: 'Logged in successfully',
