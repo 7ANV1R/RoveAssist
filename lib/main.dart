@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
@@ -17,7 +16,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final StorageService _storageService = Get.put(StorageService());
-  await Firebase.initializeApp();
   await dotenv.load();
   runApp(_storageService.authToken != null ? MyAppLoggedIn() : MyApp());
 }
