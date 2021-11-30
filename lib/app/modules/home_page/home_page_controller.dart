@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:roveassist/app/data/models/service_model/place_model.dart';
 import 'package:roveassist/app/data/models/service_model/restaurant_model.dart';
+import 'package:roveassist/app/modules/home_page/widgets/package_tour_details.dart';
 
 import '../../data/models/service_model/package_tour_model.dart';
 

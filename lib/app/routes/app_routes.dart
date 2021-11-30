@@ -26,6 +26,7 @@ abstract class Routes {
   static const BECOME_AGENT = _Paths.USER_PROFILE + _Paths.BECOME_AGENT;
   static const TOUR_PACKAGE = _Paths.TOUR_PACKAGE;
   static const TRAVEL_NOTE = _Paths.USER_PROFILE + _Paths.TRAVEL_NOTE;
+  static const TOUR_PACKAGE_DASH = _Paths.USER_PROFILE + _Paths.TOUR_PACKAGE_DASH;
 }
 
 abstract class _Paths {
@@ -51,4 +52,6 @@ abstract class _Paths {
   static const BECOME_AGENT = '/become-agent';
   static const TOUR_PACKAGE = '/tour-package';
   static const TRAVEL_NOTE = '/travel-note';
+  static const ADD_TOUR_PACKAGE = '/add-tour-package';
+  static const TOUR_PACKAGE_DASH = '/tour-package-dash';
 }

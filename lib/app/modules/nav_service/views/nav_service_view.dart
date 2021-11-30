@@ -55,6 +55,7 @@ class NavServiceView extends GetView<NavServiceController> {
     Get.lazyPut<UserProfileController>(
       () => UserProfileController(),
     );
+    Get.put(UserProfileController());
     Get.lazyPut<StorageService>(() => StorageService());
     return UserProfileView();
   }

@@ -42,6 +42,8 @@ dependencies:
   jwt_decoder: ^2.0.1
   flutter_speed_dial: ^4.6.6
   image_picker: ^0.8.4+4
+  image_cropper: ^1.4.1
+  flutter_image_compress: ^1.1.0
   
   #icon
   font_awesome_flutter: ^9.1.0
@@ -51,6 +53,7 @@ dependencies:
   flutter: 
     sdk: flutter
   http: ^0.13.4
+  
   
   
 

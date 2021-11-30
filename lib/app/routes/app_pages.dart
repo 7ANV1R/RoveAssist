@@ -4,7 +4,6 @@ import '../modules/auth_view/auth_view_binding.dart';
 import '../modules/auth_view/auth_view_view.dart';
 import '../modules/authentication/authentication_binding.dart';
 import '../modules/authentication/authentication_view.dart';
-
 import '../modules/home_page/home_page_binding.dart';
 import '../modules/home_page/home_page_view.dart';
 import '../modules/hotel_page/hotel_page_binding.dart';
@@ -21,6 +20,8 @@ import '../modules/tour_package/tour_package_binding.dart';
 import '../modules/tour_package/tour_package_view.dart';
 import '../modules/user_profile/become_agent/become_agent_binding.dart';
 import '../modules/user_profile/become_agent/become_agent_view.dart';
+import '../modules/user_profile/tour_package_dash/tour_package_dash_binding.dart';
+import '../modules/user_profile/tour_package_dash/tour_package_dash_view.dart';
 import '../modules/user_profile/travel_note/travel_note_binding.dart';
 import '../modules/user_profile/travel_note/travel_note_view.dart';
 import '../modules/user_profile/user_profile_binding.dart';
@@ -75,6 +76,11 @@ class AppPages {
             name: _Paths.TRAVEL_NOTE,
             page: () => TravelNoteView(),
             binding: TravelNoteBinding(),
+          ),
+          GetPage(
+            name: _Paths.TOUR_PACKAGE_DASH,
+            page: () => TourPackageDashView(),
+            binding: TourPackageDashBinding(),
           ),
         ]),
     GetPage(

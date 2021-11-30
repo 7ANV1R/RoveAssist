@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 import '../../routes/app_pages.dart';
 import '../../widgets/snakbar/general_snakbar.dart';
@@ -117,8 +118,52 @@ class UserAuthServices extends GetxService {
     return true;
   }
 
+  Future<String> getIdFromTokenString() async {
+    if (_storageService.authToken != null) {
+      final String? token = _storageService.authToken;
+      Map<String, dynamic> decodedToken = JwtDecoder.decode(token!);
+      final String id = decodedToken["user_id"].toString();
+      return id;
+    }
+    return 'not found';
+  }
+
+  Future<int> getIdFromTokenInt() async {
+    if (_storageService.authToken != null) {
+      final String? token = _storageService.authToken;
+      Map<String, dynamic> decodedToken = JwtDecoder.decode(token!);
+      final int id = decodedToken["user_id"];
+      return id;
+    }
+    return 0;
+  }
+
   Future<void> onLogOut() async {
     _storageService.authToken = null;
+  }
+
+  int agentid = 0;
+
+  Future<int> getHostId() async {
+    try {
+      var tokenId = await getIdFromTokenInt();
+      print(tokenId.toString());
+
+      String baseUrl = '$localhost/agent/agentlist/';
+      Map<String, String> headers = {'Content-Type': 'application/json'};
+      http.Response response = await http.get(
+        Uri.parse(baseUrl),
+        headers: headers,
+      );
+
+      final fetchedNotes =
+          (json.decode(response.body) as List<dynamic>).where((element) => element['agent'] == tokenId);
+      print('host id ${fetchedNotes.first["id"]}');
+
+      return fetchedNotes.first["id"];
+    } catch (e) {
+      return 0;
+    }
   }
 
   // File? selectedImage;

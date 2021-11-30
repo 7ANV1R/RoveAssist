@@ -13,39 +13,30 @@ class UserProfileView extends GetView<UserProfileController> {
   Widget build(BuildContext context) {
     final ThemeData _themeData = Theme.of(context);
     final TextTheme _textTheme = _themeData.textTheme;
+    // return SafeArea(
+    //     child: Obx(
+    //   () => controller.userInfo.first.isAgent
+    //       ? Scaffold(
+    //           body: Column(
+    //           children: [
+    //             ElevatedButton(
+    //                 onPressed: controller.onRefresh,
+    //                 child: Text('${controller.userInfo.first.username} agent refresh')),
+    //           ],
+    //         ))
+    //       : Scaffold(
+    //           body: Column(
+    //           children: [
+    //             ElevatedButton(
+    //                 onPressed: controller.onRefresh,
+    //                 child: Text('${controller.userInfo.first.username} refresh')),
+    //           ],
+    //         )),
+    // ));
 
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   elevation: 0,
-        //   backgroundColor: Colors.transparent,
-        //   title: Text(
-        //     'Profile',
-        //     style: TextStyle(color: _themeData.secondaryHeaderColor),
-        //   ),
-        //   centerTitle: true,
-        //   leading: BackButton(color: _themeData.secondaryHeaderColor),
-        //   actions: [
-        //     IconButton(
-        //         onPressed: () {},
-        //         icon: Icon(
-        //           Icons.more_horiz,
-        //           color: _themeData.secondaryHeaderColor,
-        //         ))
-        //   ],
-        // ),
-        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        // floatingActionButton: Padding(
-        //   padding: const EdgeInsets.symmetric(horizontal: 104.0),
-        //   child: ElevatedButton.icon(
-        //     onPressed: () {},
-        //     icon: Icon(Icons.add_road),
-        //     label: Text('Add Travel Plan'),
-        //   ),
-        // ),
         body: Column(
-          // shrinkWrap: true,
-          // physics: BouncingScrollPhysics(),
           children: [
             kVerticalSpaceS,
             Row(
@@ -83,10 +74,12 @@ class UserProfileView extends GetView<UserProfileController> {
                                       height: 70,
                                       width: 70,
                                       child: Center(
-                                        child: Obx(() => CachedNetworkImage(
-                                              imageUrl: controller.userInfo.first.profileImage!,
-                                              fit: BoxFit.cover,
-                                            )),
+                                        child: Obx(() => controller.selectedImage == null
+                                            ? CachedNetworkImage(
+                                                imageUrl: controller.userInfo.first.profileImage!,
+                                                fit: BoxFit.cover,
+                                              )
+                                            : Image.file(controller.selectedImage!)),
                                       ),
                                     ),
                               // child: Image.network(
@@ -187,7 +180,7 @@ class UserProfileView extends GetView<UserProfileController> {
                               : Container()),
                           Obx(() => controller.userInfo.first.isAgent
                               ? ProfileMenuTile(
-                                  onTap: () {},
+                                  onTap: controller.onTapTourPackage,
                                   icon: Stack(
                                     alignment: Alignment.center,
                                     children: [
@@ -333,7 +326,8 @@ class UserProfileView extends GetView<UserProfileController> {
                       ),
                     ),
                   )
-                : Loader())
+                : Loader()),
+            ElevatedButton(onPressed: controller.onRefresh, child: Text('Refresh'))
           ],
         ),
       ),
