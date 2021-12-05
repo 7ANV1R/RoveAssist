@@ -35,34 +35,35 @@ class HotelPageView extends GetView<HotelPageController> {
               children: [
                 Text(
                   'Search Hotels',
-                  style: _textTheme.headline1!
-                      .copyWith(color: _themeData.secondaryHeaderColor, fontWeight: FontWeight.w900),
+                  style: _textTheme.headline1!.copyWith(
+                      color: _themeData.secondaryHeaderColor,
+                      fontWeight: FontWeight.w900),
                 ),
                 kVerticalSpaceXS,
                 Text(
                   'Find deals on hotels',
                   style: _textTheme.subtitle1!.copyWith(color: Colors.grey),
                 ),
-                kVerticalSpaceL,
-                TextFormField(
-                  controller: controller.destinationTextController,
-                  decoration: InputDecoration(
-                    fillColor: Colors.white,
-                    suffixIcon: Padding(
-                      padding: const EdgeInsetsDirectional.only(end: 20),
-                      child: Icon(
-                        Icons.search_outlined,
-                      ),
-                    ),
-                    border: OutlineInputBorder(),
-                    labelText: 'City',
-                  ),
+                // kVerticalSpaceL,
+                // TextFormField(
+                //   controller: controller.destinationTextController,
+                //   decoration: InputDecoration(
+                //     fillColor: Colors.white,
+                //     suffixIcon: Padding(
+                //       padding: const EdgeInsetsDirectional.only(end: 20),
+                //       child: Icon(
+                //         Icons.search_outlined,
+                //       ),
+                //     ),
+                //     border: OutlineInputBorder(),
+                //     labelText: 'City',
+                //   ),
 
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.next,
-                  //onFieldSubmitted: controller.onTapSearch,
-                  //validator: controller.searchValidator,
-                ),
+                //   keyboardType: TextInputType.text,
+                //   textInputAction: TextInputAction.next,
+                //   //onFieldSubmitted: controller.onTapSearch,
+                //   //validator: controller.searchValidator,
+                // ),
                 kVerticalSpaceL,
                 TextFormField(
                   decoration: InputDecoration(
@@ -98,7 +99,8 @@ class HotelPageView extends GetView<HotelPageController> {
                       ),
                     );
 
-                    if (datetime != null) controller.formatAndSetCheckInDate(datetime);
+                    if (datetime != null)
+                      controller.formatAndSetCheckInDate(datetime);
                   },
                 ),
                 kVerticalSpaceL,
@@ -136,7 +138,8 @@ class HotelPageView extends GetView<HotelPageController> {
                       ),
                     );
 
-                    if (datetime != null) controller.formatAndSetCheckOutDate(datetime);
+                    if (datetime != null)
+                      controller.formatAndSetCheckOutDate(datetime);
                   },
                 ),
                 kVerticalSpaceL,

@@ -33,9 +33,12 @@ class HotelPageController extends GetxController {
   GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
   late TextEditingController checkInDateController;
   late TextEditingController checkOutDateController;
-  TextEditingController destinationTextController = TextEditingController(text: 'Dhaka');
-  TextEditingController adultsCountTextController = TextEditingController(text: '1');
-  TextEditingController childrenCountTextController = TextEditingController(text: '0');
+  TextEditingController destinationTextController =
+      TextEditingController(text: 'Dhaka');
+  TextEditingController adultsCountTextController =
+      TextEditingController(text: '1');
+  TextEditingController childrenCountTextController =
+      TextEditingController(text: '0');
 
   void formatAndSetCheckInDate(DateTime dateTime) {
     checkInDateController.text = DateFormat('yyyy-MM-dd').format(dateTime);
@@ -44,4 +47,6 @@ class HotelPageController extends GetxController {
   void formatAndSetCheckOutDate(DateTime dateTime) {
     checkOutDateController.text = DateFormat('yyyy-MM-dd').format(dateTime);
   }
+
+  Future<void> onTapSearchHotel() async {}
 }
