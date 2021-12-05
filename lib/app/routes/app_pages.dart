@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:roveassist/app/modules/hotel_page/hotel_search_result/hotel_search_result_binding.dart';
+import 'package:roveassist/app/modules/hotel_page/hotel_search_result/hotel_search_result_view.dart';
 
 import '../modules/auth_view/auth_view_binding.dart';
 import '../modules/auth_view/auth_view_view.dart';
@@ -99,10 +101,16 @@ class AppPages {
       binding: HomePageBinding(),
     ),
     GetPage(
-      name: _Paths.HOTEL_PAGE,
-      page: () => HotelPageView(),
-      binding: HotelPageBinding(),
-    ),
+        name: _Paths.HOTEL_PAGE,
+        page: () => HotelPageView(),
+        binding: HotelPageBinding(),
+        children: [
+          GetPage(
+            name: _Paths.HOTEL_SEARCH_RESULT,
+            page: () => HotelSearchResultView(),
+            binding: HotelSearchResultBinding(),
+          ),
+        ]),
     GetPage(
       name: _Paths.TOUR_PACKAGE,
       page: () => TourPackageView(),

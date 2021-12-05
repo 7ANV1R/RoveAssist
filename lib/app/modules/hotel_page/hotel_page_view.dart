@@ -164,7 +164,7 @@ class HotelPageView extends GetView<HotelPageController> {
                 ),
                 kVerticalSpaceL,
                 DefaultButton(
-                  onTap: () {},
+                  onTap: controller.onTapSearchHotel,
                   color: _themeData.primaryColor,
                   label: Text(
                     'Search Hotels',

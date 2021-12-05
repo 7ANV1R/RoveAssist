@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:roveassist/app/routes/app_pages.dart';
 
 class HotelPageController extends GetxController {
   @override
@@ -48,5 +49,7 @@ class HotelPageController extends GetxController {
     checkOutDateController.text = DateFormat('yyyy-MM-dd').format(dateTime);
   }
 
-  Future<void> onTapSearchHotel() async {}
+  Future<void> onTapSearchHotel() async {
+    await Get.toNamed(Routes.HOTEL_SEARCH_RESULT);
+  }
 }
