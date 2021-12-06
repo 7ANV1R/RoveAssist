@@ -15,7 +15,7 @@ List<Map<String, dynamic>> themes = [
       colorScheme: ColorScheme.light().copyWith(
         primary: Color(0xffFF4F5B),
       ),
-      scaffoldBackgroundColor: const Color(0xfff9f9f9),
+      scaffoldBackgroundColor: const Color(0xFFEEEEEE),
       textTheme: const TextTheme(
         headline1: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
         headline2: TextStyle(fontSize: 26.0, fontWeight: FontWeight.w700),
@@ -40,7 +40,8 @@ List<Map<String, dynamic>> themes = [
 ];
 
 ThemeData getThemeById(BuildContext context, int id) {
-  return themes.where((element) => element['id'] == id).first['data'] as ThemeData;
+  return themes.where((element) => element['id'] == id).first['data']
+      as ThemeData;
   // switch (id) {
   //   case 1:
   //   case 2:

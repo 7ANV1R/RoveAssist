@@ -15,7 +15,7 @@ class HotelModel {
   factory HotelModel.fromJson(Map<String, dynamic> json) {
     return HotelModel(
       id: json['id'] as int,
-      host: json['host'] as int,
+      host: json['company'] as int,
       title: json['title'] as String,
       coverImage: json['cover_image'] as String?,
       location: json['location'] as String?,

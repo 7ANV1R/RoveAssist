@@ -40,6 +40,9 @@ class HotelSearchResultController extends GetxController {
         ),
       ).toList();
       hotelResultList.value = fetchedHotelSearch.reversed.toList();
-    } catch (e) {}
+      print(hotelResultList);
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }
