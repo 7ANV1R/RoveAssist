@@ -23,14 +23,15 @@ abstract class Routes {
   static const AUTHENTICATION = _Paths.AUTHENTICATION;
   static const HOME_PAGE = _Paths.HOME_PAGE;
   static const HOTEL_PAGE = _Paths.HOTEL_PAGE;
-  static const HOTEL_SEARCH_RESULT =
-      _Paths.HOTEL_PAGE + _Paths.HOTEL_SEARCH_RESULT;
+  static const HOTEL_SEARCH_RESULT = _Paths.HOTEL_PAGE + _Paths.HOTEL_SEARCH_RESULT;
   static const BECOME_AGENT = _Paths.USER_PROFILE + _Paths.BECOME_AGENT;
   static const TOUR_PACKAGE = _Paths.TOUR_PACKAGE;
   static const TRAVEL_NOTE = _Paths.TRAVEL_NOTE;
-  static const TOUR_PACKAGE_DASH =
-      _Paths.USER_PROFILE + _Paths.TOUR_PACKAGE_DASH;
+  static const TOUR_PACKAGE_DASH = _Paths.USER_PROFILE + _Paths.TOUR_PACKAGE_DASH;
   static const PAYMENT_METHODS = _Paths.PAYMENT_METHODS;
+  static const HOTEL_DASHBOARD = _Paths.USER_PROFILE + _Paths.HOTEL_DASHBOARD;
+  static const PLACE_DASHBOARD = _Paths.USER_PROFILE + _Paths.PLACE_DASHBOARD;
+  static const RESTAURANT_DASHBOARD = _Paths.USER_PROFILE + _Paths.RESTAURANT_DASHBOARD;
 }
 
 abstract class _Paths {
@@ -60,4 +61,7 @@ abstract class _Paths {
   static const ADD_TOUR_PACKAGE = '/add-tour-package';
   static const TOUR_PACKAGE_DASH = '/tour-package-dash';
   static const PAYMENT_METHODS = '/payment-methods';
+  static const HOTEL_DASHBOARD = '/hotel-dashboard';
+  static const PLACE_DASHBOARD = '/place-dashboard';
+  static const RESTAURANT_DASHBOARD = '/restaurant-dashboard';
 }

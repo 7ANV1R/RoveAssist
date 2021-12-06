@@ -1,8 +1,5 @@
 import 'package:get/get.dart';
 
-import 'package:roveassist/app/modules/payment_methods/payment_methods_binding.dart';
-import 'package:roveassist/app/modules/payment_methods/payment_methods_view.dart';
-
 import '../modules/auth_view/auth_view_binding.dart';
 import '../modules/auth_view/auth_view_view.dart';
 import '../modules/authentication/authentication_binding.dart';
@@ -19,6 +16,8 @@ import '../modules/nav_service/bindings/nav_service_binding.dart';
 import '../modules/nav_service/views/nav_service_view.dart';
 import '../modules/onboarding/bindings/onboarding_binding.dart';
 import '../modules/onboarding/views/onboarding_view.dart';
+import '../modules/payment_methods/payment_methods_binding.dart';
+import '../modules/payment_methods/payment_methods_view.dart';
 import '../modules/sign_up_page/sign_up_page_binding.dart';
 import '../modules/sign_up_page/sign_up_page_view.dart';
 import '../modules/tour_package/tour_package_binding.dart';
@@ -27,6 +26,12 @@ import '../modules/travel_note/travel_note_binding.dart';
 import '../modules/travel_note/travel_note_view.dart';
 import '../modules/user_profile/become_agent/become_agent_binding.dart';
 import '../modules/user_profile/become_agent/become_agent_view.dart';
+import '../modules/user_profile/hotel_dashboard/hotel_dashboard_binding.dart';
+import '../modules/user_profile/hotel_dashboard/hotel_dashboard_view.dart';
+import '../modules/user_profile/place_dashboard/place_dashboard_binding.dart';
+import '../modules/user_profile/place_dashboard/place_dashboard_view.dart';
+import '../modules/user_profile/restaurant_dashboard/restaurant_dashboard_binding.dart';
+import '../modules/user_profile/restaurant_dashboard/restaurant_dashboard_view.dart';
 import '../modules/user_profile/tour_package_dash/tour_package_dash_binding.dart';
 import '../modules/user_profile/tour_package_dash/tour_package_dash_view.dart';
 import '../modules/user_profile/user_profile_binding.dart';
@@ -81,6 +86,21 @@ class AppPages {
             page: () => TourPackageDashView(),
             binding: TourPackageDashBinding(),
           ),
+          GetPage(
+            name: _Paths.HOTEL_DASHBOARD,
+            page: () => HotelDashboardView(),
+            binding: HotelDashboardBinding(),
+          ),
+          GetPage(
+            name: _Paths.PLACE_DASHBOARD,
+            page: () => PlaceDashboardView(),
+            binding: PlaceDashboardBinding(),
+          ),
+          GetPage(
+            name: _Paths.RESTAURANT_DASHBOARD,
+            page: () => RestaurantDashboardView(),
+            binding: RestaurantDashboardBinding(),
+          ),
         ]),
     GetPage(
       name: _Paths.AUTH_VIEW,
@@ -97,17 +117,13 @@ class AppPages {
       page: () => HomePageView(),
       binding: HomePageBinding(),
     ),
-    GetPage(
-        name: _Paths.HOTEL_PAGE,
-        page: () => HotelPageView(),
-        binding: HotelPageBinding(),
-        children: [
-          GetPage(
-            name: _Paths.HOTEL_SEARCH_RESULT,
-            page: () => HotelSearchResultView(),
-            binding: HotelSearchResultBinding(),
-          ),
-        ]),
+    GetPage(name: _Paths.HOTEL_PAGE, page: () => HotelPageView(), binding: HotelPageBinding(), children: [
+      GetPage(
+        name: _Paths.HOTEL_SEARCH_RESULT,
+        page: () => HotelSearchResultView(),
+        binding: HotelSearchResultBinding(),
+      ),
+    ]),
     GetPage(
       name: _Paths.TOUR_PACKAGE,
       page: () => TourPackageView(),

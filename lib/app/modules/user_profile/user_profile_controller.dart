@@ -75,15 +75,15 @@ class UserProfileController extends GetxController {
   }
 
   Future<void> onTapAddHotel() async {
-    // await Get.toNamed(Routes.BECOME_AGENT);
+    await Get.toNamed(Routes.HOTEL_DASHBOARD);
   }
 
   Future<void> onTapAddPlace() async {
-    // await Get.toNamed(Routes.BECOME_AGENT);
+    await Get.toNamed(Routes.PLACE_DASHBOARD);
   }
 
   Future<void> onTapAddRestaurant() async {
-    // await Get.toNamed(Routes.BECOME_AGENT);
+    await Get.toNamed(Routes.RESTAURANT_DASHBOARD);
   }
 
   Future<void> onTapTravelNote() async {

@@ -18,6 +18,10 @@ class PackageTourDetails extends GetView<HomePageController> {
     final TextTheme _textTheme = _themeData.textTheme;
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Details'),
+        centerTitle: true,
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -87,7 +91,9 @@ class PackageTourDetails extends GetView<HomePageController> {
       ),
       body: Stack(
         children: [
-          Column(
+          ListView(
+            shrinkWrap: true,
+            physics: BouncingScrollPhysics(),
             children: [
               packageTour.coverImage != null
                   ? Container(
@@ -105,8 +111,43 @@ class PackageTourDetails extends GetView<HomePageController> {
                       height: screenSize.height * 0.5,
                       color: Colors.grey,
                     ),
-              SizedBox(
-                height: 75,
+              Transform.translate(
+                offset: Offset(0, -50),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Container(
+                    padding: EdgeInsets.all(12),
+                    height: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.25),
+                          blurRadius: 20,
+                          offset: Offset(0, 8), //position of shadow
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            packageTour.title,
+                            style: _textTheme.headline6!.copyWith(color: _themeData.primaryColor),
+                          ),
+                        ),
+                        Container(
+                          color: Colors.grey,
+                          height: 37.5,
+                          width: 0.5,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -127,63 +168,6 @@ class PackageTourDetails extends GetView<HomePageController> {
               )
             ],
           ),
-          Positioned(
-            top: screenSize.height * 0.5 - 37.5,
-            right: 0,
-            left: 0,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Container(
-                height: 75,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.25),
-                      blurRadius: 20,
-                      offset: Offset(0, 8), //position of shadow
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          packageTour.title,
-                          style: _textTheme.headline3!.copyWith(color: _themeData.primaryColor),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.star_rounded,
-                              color: Colors.yellow[700],
-                              size: 18,
-                            ),
-                            Text(
-                              '4.3 (148 ratings)',
-                              style: _textTheme.bodyText2!.copyWith(color: _themeData.secondaryHeaderColor),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Container(
-                      color: Colors.grey,
-                      height: 37.5,
-                      width: 0.5,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );

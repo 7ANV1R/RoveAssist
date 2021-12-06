@@ -138,12 +138,12 @@ class UserProfileView extends GetView<UserProfileController> {
                       //       ? Text('Add New Hotel')
                       //       : Container()),
                       // ),
-                      child: Column(
+                      child: ListView(
                         children: [
                           kVerticalSpaceS,
                           Obx(() => controller.userInfo.first.isAgent
                               ? ProfileMenuTile(
-                                  onTap: () {},
+                                  onTap: controller.onTapAddHotel,
                                   icon: Stack(
                                     alignment: Alignment.center,
                                     children: [
@@ -215,6 +215,78 @@ class UserProfileView extends GetView<UserProfileController> {
                                   ),
                                 )
                               : Container()),
+                          Obx(() => controller.userInfo.first.isAgent
+                              ? ProfileMenuTile(
+                                  onTap: controller.onTapTourPackage,
+                                  icon: Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      Container(
+                                        height: 40,
+                                        width: 40,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(100.0),
+                                          color: Colors.red[50],
+                                        ),
+                                      ),
+                                      Icon(
+                                        Icons.tour,
+                                        color: Colors.red[600],
+                                      ),
+                                    ],
+                                  ),
+                                  title: 'Restaurant',
+                                  trailing: Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      Container(
+                                        height: 35,
+                                        width: 35,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(8.0),
+                                          color: Colors.grey[300],
+                                        ),
+                                      ),
+                                      Icon(Icons.chevron_right),
+                                    ],
+                                  ),
+                                )
+                              : Container()),
+                          ProfileMenuTile(
+                            onTap: controller.onTapAddPlace,
+                            icon: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Container(
+                                  height: 40,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100.0),
+                                    color: Colors.green[50],
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.place,
+                                  color: Colors.green[600],
+                                ),
+                              ],
+                            ),
+                            title: 'Place',
+                            trailing: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Container(
+                                  height: 35,
+                                  width: 35,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    color: Colors.grey[300],
+                                  ),
+                                ),
+                                Icon(Icons.chevron_right),
+                              ],
+                            ),
+                          ),
                           ProfileMenuTile(
                             onTap: controller.onTapTravelNote,
                             icon: Stack(
@@ -235,41 +307,6 @@ class UserProfileView extends GetView<UserProfileController> {
                               ],
                             ),
                             title: 'Travel Note',
-                            trailing: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Container(
-                                  height: 35,
-                                  width: 35,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    color: Colors.grey[300],
-                                  ),
-                                ),
-                                Icon(Icons.chevron_right),
-                              ],
-                            ),
-                          ),
-                          ProfileMenuTile(
-                            onTap: () {},
-                            icon: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Container(
-                                  height: 40,
-                                  width: 40,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100.0),
-                                    color: Colors.green[50],
-                                  ),
-                                ),
-                                Icon(
-                                  Icons.place,
-                                  color: Colors.green[600],
-                                ),
-                              ],
-                            ),
-                            title: 'Place',
                             trailing: Stack(
                               alignment: Alignment.center,
                               children: [

@@ -3,12 +3,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/ui_helpers.dart';
-import '../../../../data/models/service_model/package_tour_model.dart';
+import '../../../../data/models/service_model/place_model.dart';
 
-class DashTourPackCard extends StatelessWidget {
-  const DashTourPackCard({Key? key, required this.packageTourModel}) : super(key: key);
+class PlaceDashCard extends StatelessWidget {
+  const PlaceDashCard({Key? key, required this.placeModel}) : super(key: key);
 
-  final PackageTourModel packageTourModel;
+  final PlaceModel placeModel;
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +42,11 @@ class DashTourPackCard extends StatelessWidget {
                 ),
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: packageTourModel.coverImage == null
+                    child: placeModel.coverImage == null
                         ? Container()
                         : CachedNetworkImage(
-                            imageUrl: packageTourModel.coverImage!,
-                            fit: BoxFit.fill,
+                            imageUrl: placeModel.coverImage!,
+                            fit: BoxFit.cover,
                           )),
               ),
               kHorizontalSpaceM,
@@ -55,7 +55,7 @@ class DashTourPackCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    packageTourModel.title,
+                    placeModel.title,
                     style: _textTheme.headline6,
                   ),
                   // Row(
