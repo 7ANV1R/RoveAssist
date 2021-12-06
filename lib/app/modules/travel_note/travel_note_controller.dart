@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:jwt_decoder/jwt_decoder.dart';
 
-import '../../../data/models/travel_note_model.dart';
-import '../../../data/services/storage_service.dart';
-import '../../../widgets/snakbar/general_snakbar.dart';
+import '../../data/models/travel_note_model.dart';
+import '../../data/services/storage_service.dart';
+import '../../widgets/snakbar/general_snakbar.dart';
 import 'widgets/add_travel_plan.dart';
 
 class TravelNoteController extends GetxController {

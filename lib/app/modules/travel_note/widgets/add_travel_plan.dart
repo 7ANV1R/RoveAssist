@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:roveassist/app/core/theme/ui_helpers.dart';
-import 'package:roveassist/app/modules/user_profile/travel_note/travel_note_controller.dart';
-import 'package:roveassist/app/widgets/snakbar/general_snakbar.dart';
+
+import '../../../core/theme/ui_helpers.dart';
+import '../../../widgets/snakbar/general_snakbar.dart';
+import '../travel_note_controller.dart';
 
 class AddTravelPlan extends GetView<TravelNoteController> {
   const AddTravelPlan({Key? key}) : super(key: key);

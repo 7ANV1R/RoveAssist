@@ -10,6 +10,8 @@ import 'package:roveassist/app/modules/sign_up_page/sign_up_page_controller.dart
 import 'package:roveassist/app/modules/sign_up_page/sign_up_page_view.dart';
 import 'package:roveassist/app/modules/tour_package/tour_package_controller.dart';
 import 'package:roveassist/app/modules/tour_package/tour_package_view.dart';
+import 'package:roveassist/app/modules/travel_note/travel_note_controller.dart';
+import 'package:roveassist/app/modules/travel_note/travel_note_view.dart';
 import 'package:roveassist/app/modules/user_profile/user_profile_controller.dart';
 import 'package:roveassist/app/modules/user_profile/user_profile_view.dart';
 
@@ -29,7 +31,7 @@ class NavServiceView extends GetView<NavServiceController> {
           children: [
             homePage(),
             hotelPage(),
-            tourPackagePage(),
+            travelNotePage(),
             userProfileView(),
           ],
         ),
@@ -38,7 +40,7 @@ class NavServiceView extends GetView<NavServiceController> {
             tabs: [
               TabData(iconData: Icons.directions, title: 'Home'),
               TabData(iconData: Icons.home_work, title: 'Hotel'),
-              TabData(iconData: Icons.loyalty, title: 'Package'),
+              TabData(iconData: Icons.loyalty, title: 'Note'),
               TabData(iconData: Icons.manage_accounts, title: 'Profile'),
             ],
             onTabChangedListener: (position) {
@@ -89,5 +91,13 @@ class NavServiceView extends GetView<NavServiceController> {
     );
 
     return TourPackageView();
+  }
+
+  TravelNoteView travelNotePage() {
+    Get.lazyPut<TravelNoteController>(
+      () => TravelNoteController(),
+    );
+
+    return TravelNoteView();
   }
 }

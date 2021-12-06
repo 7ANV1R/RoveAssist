@@ -2,8 +2,8 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/theme/ui_helpers.dart';
-import '../../../../data/models/travel_note_model.dart';
+import '../../../core/theme/ui_helpers.dart';
+import '../../../data/models/travel_note_model.dart';
 import '../travel_note_controller.dart';
 import 'travel_plan_view_update.dart';
 

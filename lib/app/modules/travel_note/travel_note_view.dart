@@ -11,7 +11,7 @@ class TravelNoteView extends GetView<TravelNoteController> {
     final ThemeData _themeData = Theme.of(context);
     final TextTheme _textTheme = _themeData.textTheme;
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: controller.onTapAddNote,
         backgroundColor: _themeData.primaryColor,
