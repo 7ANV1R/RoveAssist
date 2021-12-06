@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:roveassist/app/data/models/service_model/place_model.dart';
-import 'package:roveassist/app/data/models/service_model/restaurant_model.dart';
-import 'package:roveassist/app/modules/home_page/widgets/package_tour_details.dart';
 
+import '../../data/models/service_model/hotel_model.dart';
 import '../../data/models/service_model/package_tour_model.dart';
+import '../../data/models/service_model/place_model.dart';
+import '../../data/models/service_model/restaurant_model.dart';
 
 class HomePageController extends GetxController {
   final String localhost = dotenv.env['BASE_URL'] ?? 'not found';
@@ -19,6 +19,7 @@ class HomePageController extends GetxController {
     fetchPackageTour();
     fetchRestaurant();
     fetchPlace();
+    fetchHotelResult();
 
     super.onInit();
   }
@@ -38,6 +39,28 @@ class HomePageController extends GetxController {
   RxList<PackageTourModel> packageTourList = RxList<PackageTourModel>();
   RxList<RestaurantModel> restaurantList = RxList<RestaurantModel>();
   RxList<PlaceModel> placeList = RxList<PlaceModel>();
+  RxList<HotelModel> hotelResultList = RxList<HotelModel>();
+
+  Future<void> fetchHotelResult() async {
+    try {
+      String baseUrl = '$localhost/agent/hotellist/';
+      Map<String, String> headers = {'Content-Type': 'application/json'};
+      http.Response response = await http.get(
+        Uri.parse(baseUrl),
+        headers: headers,
+      );
+
+      final List<HotelModel> fetchedHotelSearch = List<HotelModel>.from(
+        (json.decode(response.body) as List<dynamic>).map(
+          (e) => HotelModel.fromJson(e as Map<String, dynamic>),
+        ),
+      ).toList();
+      hotelResultList.value = fetchedHotelSearch.reversed.toList();
+      print(hotelResultList);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
   Future<void> fetchPackageTour() async {
     try {

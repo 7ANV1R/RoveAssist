@@ -11,3 +11,10 @@ const String kAssetCover2 = 'assets/images/other_image/cox_2.jpg';
 const String kAssetCover3 = 'assets/images/other_image/cox_3.jpg';
 const String kAssetCover4 = 'assets/images/other_image/cox_4.jpg';
 const String kAssetProfileBG = 'assets/images/other_image/profile_bg.png';
+
+// payment asset
+
+const String kAssetBkash = 'assets/images/payment_assets/bkash.png';
+const String kAssetRocket = 'assets/images/payment_assets/rocket.png';
+const String kAssetNagad = 'assets/images/payment_assets/nagad.png';
+const String kAssetUpay = 'assets/images/payment_assets/upay.png';

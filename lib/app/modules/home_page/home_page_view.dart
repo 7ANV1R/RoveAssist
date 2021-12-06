@@ -6,6 +6,7 @@ import 'package:roveassist/app/modules/home_page/widgets/category.dart';
 import 'package:roveassist/app/modules/home_page/widgets/package_tour_card.dart';
 import 'package:roveassist/app/modules/home_page/widgets/place_card.dart';
 import 'package:roveassist/app/modules/home_page/widgets/restaurant_card.dart';
+import 'package:roveassist/app/modules/hotel_page/hotel_search_result/widgets/hotel_result_card.dart';
 
 import 'home_page_controller.dart';
 
@@ -103,20 +104,14 @@ class HomePageView extends GetView<HomePageController> {
                             itemBuilder: (context, index) => PlaceCard(place: controller.placeList[index]),
                             separatorBuilder: (context, index) => kVerticalSpaceL,
                           )
-                        : ListView.builder(
+                        : ListView.separated(
                             shrinkWrap: true,
                             physics: BouncingScrollPhysics(),
-                            itemCount: 5,
-                            itemBuilder: (context, index) => Padding(
-                                  padding: const EdgeInsets.only(bottom: 8.0),
-                                  child: Container(
-                                    height: 200,
-                                    decoration: BoxDecoration(
-                                      color: Colors.red[200],
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                  ),
-                                )))
+                            itemCount: controller.hotelResultList.length,
+                            itemBuilder: (context, index) =>
+                                HotelResultCard(hotel: controller.hotelResultList[index]),
+                            separatorBuilder: (context, index) => kVerticalSpaceL,
+                          ))
           ],
         ),
       ),

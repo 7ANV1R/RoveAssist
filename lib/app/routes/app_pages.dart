@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
 
+import 'package:roveassist/app/modules/payment_methods/payment_methods_binding.dart';
+import 'package:roveassist/app/modules/payment_methods/payment_methods_view.dart';
+
 import '../modules/auth_view/auth_view_binding.dart';
 import '../modules/auth_view/auth_view_view.dart';
 import '../modules/authentication/authentication_binding.dart';
@@ -94,17 +97,26 @@ class AppPages {
       page: () => HomePageView(),
       binding: HomePageBinding(),
     ),
-    GetPage(name: _Paths.HOTEL_PAGE, page: () => HotelPageView(), binding: HotelPageBinding(), children: [
-      GetPage(
-        name: _Paths.HOTEL_SEARCH_RESULT,
-        page: () => HotelSearchResultView(),
-        binding: HotelSearchResultBinding(),
-      ),
-    ]),
+    GetPage(
+        name: _Paths.HOTEL_PAGE,
+        page: () => HotelPageView(),
+        binding: HotelPageBinding(),
+        children: [
+          GetPage(
+            name: _Paths.HOTEL_SEARCH_RESULT,
+            page: () => HotelSearchResultView(),
+            binding: HotelSearchResultBinding(),
+          ),
+        ]),
     GetPage(
       name: _Paths.TOUR_PACKAGE,
       page: () => TourPackageView(),
       binding: TourPackageBinding(),
+    ),
+    GetPage(
+      name: _Paths.PAYMENT_METHODS,
+      page: () => PaymentMethodsView(),
+      binding: PaymentMethodsBinding(),
     ),
   ];
 }
