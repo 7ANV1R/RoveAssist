@@ -18,3 +18,10 @@ const String kAssetBkash = 'assets/images/payment_assets/bkash.png';
 const String kAssetRocket = 'assets/images/payment_assets/rocket.png';
 const String kAssetNagad = 'assets/images/payment_assets/nagad.png';
 const String kAssetUpay = 'assets/images/payment_assets/upay.png';
+
+//tabbar image
+
+const String kAssetTabRestaurant = 'assets/images/tab_image/restaurant_bg.jpg';
+const String kAssetTabTour = 'assets/images/tab_image/tour_package_bg.jpg';
+const String kAssetPlaceBg = 'assets/images/tab_image/place_bg.jpg';
+const String kAssetHotelBg = 'assets/images/tab_image/hotel_bg.jpg';

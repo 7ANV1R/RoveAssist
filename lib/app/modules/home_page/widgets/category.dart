@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:roveassist/app/core/theme/ui_helpers.dart';
-import 'package:roveassist/app/modules/home_page/home_page_controller.dart';
+
+import '../../../core/theme/ui_helpers.dart';
+import '../home_page_controller.dart';
 
 class Category extends GetView<HomePageController> {
   const Category({Key? key}) : super(key: key);
@@ -31,28 +32,51 @@ class Category extends GetView<HomePageController> {
           onTap: () {
             controller.selectedIndex.value = index;
           },
-          child: Container(
-            //height: 140,
-            width: (screenSize.width / 3) - 21.33,
-            decoration: BoxDecoration(
-              color:
-                  index == controller.selectedIndex.value ? _themeData.primaryColorLight : Colors.grey[400],
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Stack(
+              alignment: Alignment.center,
+              // fit: StackFit.expand,
               children: [
-                Icon(
-                  controller.iconData[index],
-                  color: _themeData.cardColor,
+                Image.asset(
+                  controller.bgData[index],
+                  // fit: BoxFit.fill,
+                  width: (screenSize.width / 3) - 21.33,
+                  fit: BoxFit.cover,
+                  height: double.infinity,
+                  // width: double.infinity,
+                  alignment: Alignment.center,
                 ),
-                kVerticalSpaceM,
-                Text(
-                  controller.categoryList[index],
-                  style: _textTheme.button!.copyWith(
-                    color: _themeData.cardColor,
+                Container(
+                  //height: 140,
+                  width: (screenSize.width / 3) - 21.33,
+                  decoration: BoxDecoration(
+                    color: index == controller.selectedIndex.value
+                        ? Colors.black.withOpacity(0.50)
+                        : Colors.grey[350]!.withOpacity(0.80),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                )
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        controller.iconData[index],
+                        color: index == controller.selectedIndex.value
+                            ? _themeData.cardColor
+                            : _themeData.secondaryHeaderColor,
+                      ),
+                      kVerticalSpaceM,
+                      Text(
+                        controller.categoryList[index],
+                        style: _textTheme.button!.copyWith(
+                          color: index == controller.selectedIndex.value
+                              ? _themeData.cardColor
+                              : _themeData.secondaryHeaderColor,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

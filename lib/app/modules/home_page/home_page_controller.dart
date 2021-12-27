@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:roveassist/app/core/values/assets.dart';
 
 import '../../data/models/service_model/hotel_model.dart';
 import '../../data/models/service_model/package_tour_model.dart';
@@ -35,6 +36,7 @@ class HomePageController extends GetxController {
   List<String> categoryList = ['Tour Package', 'Restaurant', 'Place', 'Hotel'];
 
   List<IconData> iconData = [Icons.tour, Icons.restaurant_menu, Icons.place, Icons.room_service];
+  List<String> bgData = [kAssetTabTour, kAssetTabRestaurant, kAssetPlaceBg, kAssetHotelBg];
 
   RxList<PackageTourModel> packageTourList = RxList<PackageTourModel>();
   RxList<RestaurantModel> restaurantList = RxList<RestaurantModel>();
