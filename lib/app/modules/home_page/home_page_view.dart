@@ -44,6 +44,12 @@ class HomePageView extends GetView<HomePageController> {
                     color: Colors.white,
                   ),
                   child: TextFormField(
+                    readOnly: true,
+                    // onSaved: () {},
+                    controller: controller.searchController,
+                    // onFieldSubmitted: controller.searchPackageTour(controller.searchController.text),
+                    onTap: controller.onTapSearch,
+
                     textAlign: TextAlign.start,
                     //controller: controller.searchController,
                     textInputAction: TextInputAction.search,

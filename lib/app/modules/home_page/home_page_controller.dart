@@ -6,6 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:roveassist/app/core/values/assets.dart';
+import 'package:roveassist/app/routes/app_pages.dart';
 
 import '../../data/models/service_model/hotel_model.dart';
 import '../../data/models/service_model/package_tour_model.dart';
@@ -33,12 +34,15 @@ class HomePageController extends GetxController {
   @override
   void onClose() {}
 
+  TextEditingController searchController = TextEditingController();
+
   List<String> categoryList = ['Tour Package', 'Restaurant', 'Place', 'Hotel'];
 
   List<IconData> iconData = [Icons.tour, Icons.restaurant_menu, Icons.place, Icons.room_service];
   List<String> bgData = [kAssetTabTour, kAssetTabRestaurant, kAssetPlaceBg, kAssetHotelBg];
 
   RxList<PackageTourModel> packageTourList = RxList<PackageTourModel>();
+  RxList<PackageTourModel> packageTourListResults = RxList<PackageTourModel>();
   RxList<RestaurantModel> restaurantList = RxList<RestaurantModel>();
   RxList<PlaceModel> placeList = RxList<PlaceModel>();
   RxList<HotelModel> hotelResultList = RxList<HotelModel>();
@@ -116,5 +120,9 @@ class HomePageController extends GetxController {
       ).toList();
       placeList.value = fetchedPlace.reversed.toList();
     } catch (e) {}
+  }
+
+  Future<void> onTapSearch() async {
+    Get.toNamed(Routes.SEARCH_RESULTS);
   }
 }
