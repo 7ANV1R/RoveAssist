@@ -1,9 +1,14 @@
+import 'dart:convert';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+
+import '../../data/models/service_model/package_tour_model.dart';
 
 class SearchResultsController extends GetxController {
-  //TODO: Implement SearchResultsController
-
-  final count = 0.obs;
+  final String localhost = dotenv.env['BASE_URL'] ?? 'not found';
   @override
   void onInit() {
     super.onInit();
@@ -16,5 +21,34 @@ class SearchResultsController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
+
+  TextEditingController queryController = TextEditingController();
+  RxList<PackageTourModel> packageTourList = RxList<PackageTourModel>();
+
+  Future<void> fetchPackageTour(String query) async {
+    try {
+      String baseUrl = '$localhost/features/packagetour/';
+      Map<String, String> headers = {'Content-Type': 'application/json'};
+      http.Response response = await http.get(
+        Uri.parse(baseUrl),
+        headers: headers,
+      );
+
+      final List<PackageTourModel> fetchedPackageTour = List<PackageTourModel>.from(
+        (json.decode(response.body) as List<dynamic>)
+            .map(
+          (e) => PackageTourModel.fromJson(e as Map<String, dynamic>),
+        )
+            .where((result) {
+          final titleLower = result.title.toLowerCase();
+          final authorLower = result.description.toLowerCase();
+          final searchLower = query.toLowerCase();
+
+          return titleLower.contains(searchLower) || authorLower.contains(searchLower);
+        }),
+      ).toList();
+      packageTourList.value = fetchedPackageTour.reversed.toList();
+      print(packageTourList);
+    } catch (e) {}
+  }
 }
