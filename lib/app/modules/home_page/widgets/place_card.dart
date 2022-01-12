@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 import 'package:roveassist/app/core/theme/ui_helpers.dart';
 import 'package:roveassist/app/data/models/service_model/place_model.dart';
+import 'package:roveassist/app/modules/home_page/widgets/place_details.dart';
 import 'package:roveassist/app/widgets/default_button.dart';
 
 class PlaceCard extends StatelessWidget {
@@ -88,8 +90,9 @@ class PlaceCard extends StatelessWidget {
                       ),
                     ),
                     DefaultButton(
-                      onTap: () {},
-                      // onTap: () async => controller.onTapRestaurant(restaurant),
+                      onTap: () async {
+                        await Get.to(() => PlaceDetails(place: place));
+                      },
                       color: _themeData.primaryColor,
                       padding: EdgeInsets.all(8.0),
                       label: Row(

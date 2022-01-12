@@ -89,147 +89,51 @@ class PackageTourDetails extends GetView<HomePageController> {
           ),
         ),
       ),
-
       body: ListView(
+        physics: BouncingScrollPhysics(),
         children: [
-          SizedBox(
-            height: screenSize.height,
-            child: Stack(
-              children: [
-                packageTour.coverImage != null
-                    ? Container(
-                        height: screenSize.height * 0.5,
-                        child: CachedNetworkImage(
-                          height: screenSize.height * 0.3,
-                          width: screenSize.width,
-                          imageUrl: packageTour.coverImage!,
-                          placeholder: (context, url) => Loader(),
-                          fit: BoxFit.cover,
-                          errorWidget: (context, url, error) => Icon(Icons.error),
-                        ),
-                      )
-                    : Container(
-                        height: screenSize.height * 0.5,
-                        color: Colors.grey,
-                      ),
-                Container(
-                  margin: EdgeInsets.only(top: screenSize.height * 0.46),
-                  padding: EdgeInsets.only(
-                    top: screenSize.height * 0.12,
-                    left: 16,
-                    right: 16,
+          packageTour.coverImage != null
+              ? Container(
+                  height: screenSize.height * 0.5,
+                  child: CachedNetworkImage(
+                    height: screenSize.height * 0.3,
+                    width: screenSize.width,
+                    imageUrl: packageTour.coverImage!,
+                    placeholder: (context, url) => Loader(),
+                    fit: BoxFit.cover,
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
-                  // height: 1000,
-                  width: double.infinity,
-
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(24),
-                      topRight: Radius.circular(24),
-                    ),
-                  ),
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          packageTour.description,
-                          style: TextStyle(height: 1.5),
-                        ),
-                      ),
-                      // kVerticalSpaceXXXL,
-                    ],
-                  ),
+                )
+              : Container(
+                  height: screenSize.height * 0.5,
+                  color: Colors.grey,
                 ),
-
-                // ProductTitleWithImage(product: product)
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  packageTour.title,
+                  style: _textTheme.headline5,
+                ),
+                kVerticalSpaceL,
+                Text(
+                  'Details:',
+                  style: _textTheme.subtitle1,
+                ),
+                kVerticalSpaceS,
+                Text(
+                  packageTour.description,
+                  style: TextStyle(height: 1.5),
+                ),
               ],
             ),
-          )
+          ),
+          kVerticalSpaceXXXL,
         ],
       ),
-      // body: Stack(
-      //   children: [
-      //     ListView(
-      //       shrinkWrap: true,
-      //       physics: BouncingScrollPhysics(),
-      //       children: [
-      // packageTour.coverImage != null
-      //     ? Container(
-      //         height: screenSize.height * 0.5,
-      //         child: CachedNetworkImage(
-      //           height: screenSize.height * 0.3,
-      //           width: screenSize.width,
-      //           imageUrl: packageTour.coverImage!,
-      //           placeholder: (context, url) => Loader(),
-      //           fit: BoxFit.cover,
-      //           errorWidget: (context, url, error) => Icon(Icons.error),
-      //         ),
-      //       )
-      //     : Container(
-      //         height: screenSize.height * 0.5,
-      //         color: Colors.grey,
-      //       ),
-      //         Transform.translate(
-      //           offset: Offset(0, -50),
-      //           child: Padding(
-      //             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      //             child: Container(
-      //               padding: EdgeInsets.all(12),
-      //               height: 100,
-      //               decoration: BoxDecoration(
-      //                 borderRadius: BorderRadius.circular(8),
-      //                 color: Colors.white,
-      //                 boxShadow: [
-      //                   BoxShadow(
-      //                     color: Colors.grey.withOpacity(0.25),
-      //                     blurRadius: 20,
-      //                     offset: Offset(0, 8), //position of shadow
-      //                   ),
-      //                 ],
-      //               ),
-      //               child: Row(
-      //                 mainAxisAlignment: MainAxisAlignment.center,
-      //                 crossAxisAlignment: CrossAxisAlignment.center,
-      //                 children: [
-      //                   Expanded(
-      //                     child: Text(
-      //                       packageTour.title,
-      //                       style: _textTheme.headline6!.copyWith(color: _themeData.primaryColor),
-      //                     ),
-      //                   ),
-      //                   Container(
-      //                     color: Colors.grey,
-      //                     height: 37.5,
-      //                     width: 0.5,
-      //                   ),
-      //                 ],
-      //               ),
-      //             ),
-      //           ),
-      //         ),
-      //         Padding(
-      //           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      //           child: Column(
-      //             crossAxisAlignment: CrossAxisAlignment.start,
-      //             children: [
-      //               Text(
-      //                 'Details',
-      //                 style: _textTheme.headline6,
-      //               ),
-      //               kVerticalSpaceS,
-      //               Text(
-      //                 packageTour.description,
-      //                 style: _textTheme.bodyText1,
-      //               ),
-      //             ],
-      //           ),
-      //         )
-      //       ],
-      //     ),
-      //   ],
-      // ),
     );
   }
 }

@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 import 'package:roveassist/app/core/theme/ui_helpers.dart';
 import 'package:roveassist/app/data/models/service_model/restaurant_model.dart';
+import 'package:roveassist/app/modules/home_page/widgets/restaurant_details.dart';
 import 'package:roveassist/app/widgets/default_button.dart';
 
 class RestaurantCard extends StatelessWidget {
@@ -55,7 +57,7 @@ class RestaurantCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(restaurant.title, style: _textTheme.headline5),
-                          Text('KM Away', style: _textTheme.bodyText1),
+                          Text('1 KM Away', style: _textTheme.bodyText1),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -88,8 +90,9 @@ class RestaurantCard extends StatelessWidget {
                       ),
                     ),
                     DefaultButton(
-                      onTap: () {},
-                      // onTap: () async => controller.onTapRestaurant(restaurant),
+                      onTap: () async {
+                        await Get.to(() => RestaurantDetails(restaurant: restaurant));
+                      },
                       color: _themeData.primaryColor,
                       padding: EdgeInsets.all(8.0),
                       label: Row(

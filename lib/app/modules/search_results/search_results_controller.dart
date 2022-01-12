@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:roveassist/app/data/models/service_model/place_model.dart';
+import 'package:roveassist/app/data/models/service_model/restaurant_model.dart';
 
 import '../../data/models/service_model/package_tour_model.dart';
 
@@ -24,6 +26,8 @@ class SearchResultsController extends GetxController {
 
   TextEditingController queryController = TextEditingController();
   RxList<PackageTourModel> packageTourList = RxList<PackageTourModel>();
+  RxList<RestaurantModel> restaurantList = RxList<RestaurantModel>();
+  RxList<PlaceModel> placeList = RxList<PlaceModel>();
 
   Future<void> fetchPackageTour(String query) async {
     try {
