@@ -26,7 +26,7 @@ class SearchResultsController extends GetxController {
 
   TextEditingController queryController = TextEditingController();
   RxList<PackageTourModel> packageTourList = RxList<PackageTourModel>();
-  RxList<RestaurantModel> restaurantList = RxList<RestaurantModel>();
+  RxList<RestaurantModel> restaurantResultList = RxList<RestaurantModel>();
   RxList<PlaceModel> placeList = RxList<PlaceModel>();
 
   Future<void> fetchPackageTour(String query) async {
@@ -45,14 +45,68 @@ class SearchResultsController extends GetxController {
         )
             .where((result) {
           final titleLower = result.title.toLowerCase();
-          final authorLower = result.description.toLowerCase();
+
           final searchLower = query.toLowerCase();
 
-          return titleLower.contains(searchLower) || authorLower.contains(searchLower);
+          return titleLower.contains(searchLower);
         }),
       ).toList();
       packageTourList.value = fetchedPackageTour.reversed.toList();
       print(packageTourList);
+    } catch (e) {}
+  }
+
+  Future<void> fetchRestaurant(String query) async {
+    try {
+      String baseUrl = '$localhost/features/restaurant/';
+      Map<String, String> headers = {'Content-Type': 'application/json'};
+      http.Response response = await http.get(
+        Uri.parse(baseUrl),
+        headers: headers,
+      );
+
+      final List<RestaurantModel> fetchedRestaurant = List<RestaurantModel>.from(
+        (json.decode(response.body) as List<dynamic>)
+            .map(
+          (e) => RestaurantModel.fromJson(e as Map<String, dynamic>),
+        )
+            .where((result) {
+          final titleLower = result.title.toLowerCase();
+
+          final searchLower = query.toLowerCase();
+
+          return titleLower.contains(searchLower);
+        }),
+      ).toList();
+      restaurantResultList.value = fetchedRestaurant.reversed.toList();
+      print(restaurantResultList);
+    } catch (e) {}
+  }
+
+  Future<void> fetchPlace(String query) async {
+    try {
+      String baseUrl = '$localhost/features/place/';
+      Map<String, String> headers = {'Content-Type': 'application/json'};
+      http.Response response = await http.get(
+        Uri.parse(baseUrl),
+        headers: headers,
+      );
+
+      final List<PlaceModel> fetchedPlace = List<PlaceModel>.from(
+        (json.decode(response.body) as List<dynamic>)
+            .map(
+          (e) => PlaceModel.fromJson(e as Map<String, dynamic>),
+        )
+            .where((result) {
+          final titleLower = result.title.toLowerCase();
+
+          final searchLower = query.toLowerCase();
+
+          return titleLower.contains(searchLower);
+        }),
+      ).toList();
+      placeList.value = fetchedPlace.reversed.toList();
+      print(restaurantResultList);
     } catch (e) {}
   }
 }

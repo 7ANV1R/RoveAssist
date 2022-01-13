@@ -38,6 +38,8 @@ class SearchResultsView extends GetView<SearchResultsController> {
               // onFieldSubmitted: controller.searchPackageTour(controller.searchController.text),
               onChanged: (text) {
                 controller.fetchPackageTour(controller.queryController.text);
+                controller.fetchRestaurant(controller.queryController.text);
+                controller.fetchPlace(controller.queryController.text);
               },
 
               textAlign: TextAlign.start,
@@ -56,6 +58,8 @@ class SearchResultsView extends GetView<SearchResultsController> {
             IconButton(
                 onPressed: () {
                   controller.fetchPackageTour(controller.queryController.text);
+                  controller.fetchRestaurant(controller.queryController.text);
+                  controller.fetchPlace(controller.queryController.text);
                 },
                 icon: Icon(Icons.search))
           ],

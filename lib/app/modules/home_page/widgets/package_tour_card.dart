@@ -53,14 +53,15 @@ class PackageTourCard extends GetView<HomePageController> {
                 ),
                 kVerticalSpaceS,
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  // crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(packageTourModel.title, style: _textTheme.headline5),
-                          Text('KM Away', style: _textTheme.bodyText1),
+                          kVerticalSpaceS,
+                          // Text('KM Away', style: _textTheme.bodyText1),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

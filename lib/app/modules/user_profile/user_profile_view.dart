@@ -217,7 +217,7 @@ class UserProfileView extends GetView<UserProfileController> {
                               : Container()),
                           Obx(() => controller.userInfo.first.isAgent
                               ? ProfileMenuTile(
-                                  onTap: controller.onTapTourPackage,
+                                  onTap: controller.onTapAddRestaurant,
                                   icon: Stack(
                                     alignment: Alignment.center,
                                     children: [

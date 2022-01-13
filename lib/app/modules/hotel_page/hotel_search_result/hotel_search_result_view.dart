@@ -18,24 +18,22 @@ class HotelSearchResultView extends GetView<HotelSearchResultController> {
           shrinkWrap: true,
           children: [
             Text(
-              'Search Hotels',
-              style: _textTheme.headline1!.copyWith(
-                  color: _themeData.secondaryHeaderColor,
-                  fontWeight: FontWeight.w900),
+              'Showing Search Result',
+              style: _textTheme.headline1!
+                  .copyWith(color: _themeData.secondaryHeaderColor, fontWeight: FontWeight.w900),
             ),
             kVerticalSpaceXS,
-            Text(
-              'Find deals on hotels',
-              style: _textTheme.subtitle1!.copyWith(color: Colors.grey),
-            ),
+            // Text(
+            //   'List of hotel',
+            //   style: _textTheme.subtitle1!.copyWith(color: Colors.grey),
+            // ),
             kVerticalSpaceM,
             Obx(
               () => ListView.separated(
                 shrinkWrap: true,
                 physics: BouncingScrollPhysics(),
                 itemCount: controller.hotelResultList.length,
-                itemBuilder: (context, index) =>
-                    HotelResultCard(hotel: controller.hotelResultList[index]),
+                itemBuilder: (context, index) => HotelResultCard(hotel: controller.hotelResultList[index]),
                 separatorBuilder: (context, index) => kVerticalSpaceL,
               ),
             )
